@@ -1,0 +1,118 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.main-head {
+  height: 150px;
+  background: #FFF;
+}
+
+.sidenav {
+  height: 100%;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+.main {
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .register-form {
+    margin-top: 10%;
+  }
+
+  .register-form {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    margin-left: 40%;
+  }
+
+  .sidenav {
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .register-form {
+    margin-top: 80%;
+  }
+
+  .col-md-6 {
+    max-width: 27%;
+  }
+}
+
+.register-main-text {
+  margin-top: 20%;
+  padding: 60px;
+  color: #fff;
+}
+
+.register-main-text h2 {
+  font-weight: 300;
+}
+
+.btn-black {
+  background-color: #000 !important;
+  color: #fff;
+}
+
+.form-control {
+  min-width: 300px;
+}
+
+.btn-secondary {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonHolder {
+  text-align: center;
+}
+
+.register-main-text{
+  margin-top: 20.5%;
+}
+
+.logo {
+  position: relative;
+  top: 21%;
+  display: block;
+  width: 300px;
+  height: 300px;
+  margin-left: 250px;
+}
+
+.register-div{
+  width: 300px;
+  float: left;
+}
+
+.logo-div {
+  width: 400px;
+  height: 400px;
+  margin-left: 200px;
+}
+
+.background-image{
+  min-width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
