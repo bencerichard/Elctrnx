@@ -57,3 +57,39 @@ body {
   background-color: #000 !important;
   color: #fff;
 }
+
+.buttonHolder {
+  text-align: center;
+}
+
+.btn-black{
+  min-width: 80px;
+}
+
+.registerRedirect{
+  color: grey;
+}
+.login-main-text{
+  margin-top: 20.5%;
+}
+
+.logo{
+  position: relative;
+  top: -9%;
+  display: block;
+  width: 300px;
+  height: 300px;
+  margin-left: 250px;
+}
+
+.login-div{
+  width: 300px;
+  float: left;
+}
+
+.logo-div{
+  width: 400px;
+  height: 400px;
+  margin-left: 200px;
+}
+
