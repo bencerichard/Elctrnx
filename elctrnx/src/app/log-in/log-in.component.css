@@ -9,7 +9,7 @@ body {
   height: 100%;
   background-color: #000;
   overflow-x: hidden;
-  padding-top: 90px;
+  padding-top: 7%;
 }
 .main {
   padding: 0px 10px;
@@ -27,6 +27,25 @@ body {
     margin-top: 10%;
   }
 }
+
+  .logo{
+    position: relative;
+    top: -5%;
+    display: block;
+    width: 250px;
+    height: 250px;
+    margin-left: 50%;
+  }
+
+@media screen and (min-width: 1550px){
+  .logo{
+    margin-left: 65%;
+  }
+  .login-div{
+    margin-left: 7%;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .main {
     margin-left: 40%;
@@ -39,15 +58,17 @@ body {
     left: 0;
   }
   .login-form {
-    margin-top: 80%;
+    margin-top: 62%;
   }
   .register-form {
     margin-top: 20%;
   }
+  .col-md-6 {
+    margin-left: 7%;
+  }
 }
 .login-main-text {
-  margin-top: 20%;
-  padding: 60px;
+  padding: 10%;
   color: #fff;
 }
 .login-main-text h2 {
@@ -73,14 +94,6 @@ body {
   margin-top: 20.5%;
 }
 
-.logo{
-  position: relative;
-  top: -9%;
-  display: block;
-  width: 300px;
-  height: 300px;
-  margin-left: 250px;
-}
 
 .login-div{
   width: 300px;
@@ -90,6 +103,7 @@ body {
 .logo-div{
   width: 400px;
   height: 400px;
-  margin-left: 200px;
+  margin-left: 57%;
 }
+
 

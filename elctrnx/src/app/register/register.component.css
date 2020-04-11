@@ -51,7 +51,8 @@ body {
   }
 
   .col-md-6 {
-    max-width: 27%;
+    max-width: 22%;
+    margin-left: 7%;
   }
 }
 
@@ -89,11 +90,21 @@ body {
 
 .logo {
   position: relative;
-  top: 21%;
+  top: 26.6%;
   display: block;
-  width: 300px;
-  height: 300px;
-  margin-left: 250px;
+  width: 250px;
+  height: 250px;
+  margin-left: 59.9%;
+}
+
+@media screen and (min-width: 1550px){
+  .logo{
+    margin-left: 91.5%;
+    top: 34.3%;
+  }
+  .register-div{
+    margin-left: 16%;
+  }
 }
 
 .register-div{
