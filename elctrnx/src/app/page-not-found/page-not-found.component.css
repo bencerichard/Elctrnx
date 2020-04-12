@@ -1,0 +1,46 @@
+
+.linie
+{
+  width: 50px;
+  color: black;
+  border-top: 0.0517rem solid black;
+}
+
+.linie1
+{
+  margin-top: 16%;
+  width: 50px;
+  color: black;
+  border-top: 0.0517rem solid black;
+}
+
+.text
+{
+  font-size: 1.625em;
+  color: #222323;
+  text-align: center;
+  margin-top: 4%;
+  font-family: "Old Standard TT",serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+.text1
+{
+  text-align: center;
+  color: #222323;
+  font-family: "Old Standard TT",serif !important;
+}
+
+.poza
+{
+  height: 100px;
+  width: 100px;
+  margin: 17% 45.2%  0;
+}
+
+.btn-link:hover
+{
+  text-decoration: none;
+}
