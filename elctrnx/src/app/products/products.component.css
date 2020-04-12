@@ -1,5 +1,58 @@
-.poza{
+.poza {
   display: block;
   width: 100px;
-  height:100px;
+  height: 100px;
 }
+
+.navbar-brand {
+  font-size: 28px;
+  color: black;
+  margin-left: 100px;
+  display: inline-flex;
+  font-family: 'Open Sans';
+  letter-spacing: 4px;
+}
+
+.navbar {
+  border-bottom:solid grey;
+  border-width: medium;
+}
+
+.bg-light{
+  background:#ffffff !important;
+}
+
+.contulMeuButon {
+  display:inline-flex;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black;
+  margin-top: 40%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.contulMeu{
+  display: inline-block;
+  margin-top: 15%;
+}
+
+.shoppingCart{
+  margin-left: 100px;
+  margin-top: 12%;
+}
+
+.carusel{
+  max-height: 400px;
+  min-height: 400px;
+  width: 100% !important;
+}
+
+.slider{
+  padding-left:0px !important;
+  padding-right:0px !important;
+}
+
