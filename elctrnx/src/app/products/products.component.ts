@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 import {Product} from '../Product';
 
 @Component({
@@ -11,22 +12,28 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [
     {
       id: 5,
-      name: "asdafd",
+      name: "Product1",
       price: 100,
       image: "https://static11.edstatic.net/product_images/470x470/resize/02-dell-inspiron-3576-dll-q1-249739-notebook-windows-10-fekete_fl761aiu.jpg?v=1"
     },
     {
       id: 6,
-      name: "aetyyrumd",
+      name: "Product2",
       price: 200,
       image: "https://static11.edstatic.net/product_images/470x470/resize/02-dell-inspiron-3576-dll-q1-249739-notebook-windows-10-fekete_fl761aiu.jpg?v=1"
     }
   ];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
+  }
+
+  my_account(): void {
+    this.router.navigate(['/my-account']);
   }
 
 }
