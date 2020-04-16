@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-my-account',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountComponent implements OnInit {
 
-  constructor() { }
+  showModal = false;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
+  modalFunction(): void{
+     this.showModal = !this.showModal;
+  }
+
+  closeModal():void{
+    this.showModal = !this.showModal;
+  }
 }

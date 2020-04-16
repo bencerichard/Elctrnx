@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {Product} from '../Product';
 
 @Component({
@@ -24,16 +23,11 @@ export class ProductsComponent implements OnInit {
     }
   ];
 
-  constructor(
-    private router: Router
-  ) {
+  constructor() {
   }
 
   ngOnInit(): void {
   }
 
-  my_account(): void {
-    this.router.navigate(['/my-account']);
-  }
 
 }
