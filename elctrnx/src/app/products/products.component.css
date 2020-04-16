@@ -14,8 +14,8 @@
 }
 
 .navbar {
-  border-bottom:solid grey;
   border-width: medium;
+  border-bottom: solid grey;
 }
 
 .bg-light{
@@ -63,5 +63,50 @@
 .card{
   width: 222px;
   height: 160px;
-  object-fit: contain;
+  position: relative;
+}
+
+.card:hover{
+  /*transform: scale(1.05);*/
+  z-index: 10;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cardImage{
+  width: 150px;
+  height: 110px;
+  margin: 0 auto;
+}
+
+.asusImage{
+  width: 150px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.dellImage{
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+.samsungImage{
+  width: 200px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.favorit{
+  margin-left: 90%;
+  margin-top: 5%;
+}
+
+.detailButton{
+  width: 164px;
+  height: 30px;
+  text-align: center
+}
+
+.productCard{
+  display: inline-block;
 }
