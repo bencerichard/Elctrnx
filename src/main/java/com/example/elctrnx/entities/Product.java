@@ -1,12 +1,10 @@
 package com.example.elctrnx.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,4 +24,8 @@ public class Product {
 
     @ManyToOne
     private ProductCategory productCategory;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Stock> stocks;
 }

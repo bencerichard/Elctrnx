@@ -1,11 +1,9 @@
 package com.example.elctrnx.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +20,11 @@ public class Location {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<Stock> stocks;
+
+    @OneToMany(mappedBy = "shippedFrom", cascade = CascadeType.ALL)
+    private List<Order> orders;
 }
