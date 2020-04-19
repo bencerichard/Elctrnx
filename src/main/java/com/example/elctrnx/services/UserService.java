@@ -1,10 +1,12 @@
 package com.example.elctrnx.services;
 
+import com.example.elctrnx.dtos.LogInDTO;
 import com.example.elctrnx.dtos.UserDTO;
 import com.example.elctrnx.entities.Roles;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.exceptions.UserNotFoundException;
 import com.example.elctrnx.exceptions.UsernameAlreadyUsedException;
+import com.example.elctrnx.mappers.LogInMapper;
 import com.example.elctrnx.mappers.UserMapper;
 import com.example.elctrnx.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final RolesService rolesService;
+    private final LogInMapper logInMapper;
 
     public List<UserDTO> findAll() {
         List<UserDTO> userList = new ArrayList<>();
@@ -93,4 +96,20 @@ public class UserService {
         }
     }
 
+    public LogInDTO validateCredentials(LogInDTO logInDTO) {
+        Optional<User> optionalUser = userRepository.findUserByUsername(logInDTO.getUsername());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (user.getPassword().equals(logInDTO.getPassword())) {
+                LogInDTO.builder()
+                        .username(logInDTO.getUsername())
+                        .password(logInDTO.getPassword())
+                        .fullName(logInDTO.getFullName())
+                        .roles(logInDTO.getRoles())
+                        .build();
+                return logInMapper.mapUserToLogInDTO(user);
+            }
+        }
+        throw new UserNotFoundException(logInDTO.getUsername());
+    }
 }
