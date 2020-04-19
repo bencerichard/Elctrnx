@@ -10,7 +10,7 @@ import {Location} from "@angular/common";
 })
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [
+  products2: Product[] = [
     {
       id: 1,
       name: "Iphone 11 Pro 256 Gb",
@@ -19,13 +19,7 @@ export class ProductsComponent implements OnInit {
     },
     {
       id: 1,
-      name: "Samsung Galaxy S20 64 Gb",
-      price: 5600,
-      image: "assets/img/samsungS20.jpg"
-    },
-    {
-      id: 1,
-      name: "Dell 11 Pro 1Tb, 256 SSD full da options",
+      name: "Dell 11 Pro 1Tb, 256 SSD full",
       price: 5600,
       image: "assets/img/dellLogo.png"
     },
@@ -45,6 +39,38 @@ export class ProductsComponent implements OnInit {
       id: 1,
       name: "Iphone 11 Pro 256 Gb",
       price: 5600,
+      image: "https://s12emagst.akamaized.net/products/25344/25343964/images/res_078b9a9407015da56782daa40ae21486_full.jpg"
+    }
+  ];
+  products: Product[] = [
+    {
+      id: 1,
+      name: "Smart TV android Sony bra alo calo",
+      price: 5600,
+      image: "assets/img/iphone11.jpg"
+    },
+    {
+      id: 1,
+      name: "Samsung Galaxy S20 64 Gb",
+      price: 5400,
+      image: "assets/img/samsungS20.jpg"
+    },
+    {
+      id: 1,
+      name: "Dell 11 Pro 1Tb, 256 SSD ",
+      price: 5200,
+      image: "assets/img/asusZen.jpg"
+    },
+    {
+      id: 1,
+      name: "Iphone 11 Pro 256 Gb",
+      price: 5000,
+      image: "assets/img/sonyBravia.jpg"
+    },
+    {
+      id: 5,
+      name: "Product1 asd sa dsa asd",
+      price: 4800,
       image: "assets/img/iphone11.jpg"
     }
   ];
