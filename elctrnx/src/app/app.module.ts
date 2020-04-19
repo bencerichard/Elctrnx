@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import {MDBBootstrapModule} from "angular-bootstrap-md";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
