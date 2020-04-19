@@ -46,7 +46,7 @@
       </div>
 
       <div class="carousel-item">
-        <a href=""> <img class="d-block carusel" src="assets/img/Samsung2.PNG" alt="Third slide"> </a>
+        <a href=""> <img class="d-block carusel" src="assets/img/Samsung3.png" alt="Third slide"> </a>
       </div>
 
     </div>
@@ -60,8 +60,8 @@
     </a>
   </div>
 
-  <div style="display: inline-flex; border: none; " class="polaroid slider mt-5 mb-5">
-    <a href="">
+  <div style="display: inline-flex; border: none;" class="polaroid slider mt-5 mb-5">
+    <a>
       <div class="card justify-content-center">
         <img class="cardImage " src="assets/img/appleLogo.png" alt="Card image cap" (click)="searchApple()">
       </div>
@@ -87,16 +87,57 @@
       </div>
     </a>
   </div>
-</div>
 
-<div class="card-columns slider" style="display: inline-flex; border: none; ">
-  <div class="productCard container mr-3 polaroid " style="width:210px; height: 400px;" *ngFor="let product of products">
-    <img src="assets/img/heart.png" class="favorit">
-    <div class="card-body">
-      <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;"  src="{{product.image}}" alt="Card image">
-      <h4 class="card-text mt-2" style="font-size: 15px; text-align: center"><strong>{{product.name}}</strong></h4>
-      <p class="card-text" style="text-align: center; color: red; font-size: 20px">{{product.price}} Lei</p>
-      <a href="page.html"><img src="assets/img/DetailsButton.PNG" class="detailButton mt-1"></a>
+
+  <div id="carouselExampleIndicators1" class="carousel slide container mt-3 mb-5 slider polaroid"
+       data-ride="carousel" data-interval="10000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="column" *ngFor="let product of products">
+            <div class="cardP mb-5 polaroid">
+              <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <div class="card-body">
+                <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
+                     alt="Card image">
+                <h4 class="card-text mt-2" style="font-size: 15px; text-align: center;min-height: 40px; color: black">
+                  <strong>{{product.name}}</strong></h4>
+                <p class="card-text" style="text-align: center; color: green; font-size: 20px">{{product.price}} Lei</p>
+              </div>
+              <button class="detailButton"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+          <div class="column" *ngFor="let product of products2">
+            <div class="cardP mb-5 polaroid">
+              <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <div class="card-body">
+                <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
+                     alt="Card image">
+                <h4 class="card-text mt-2" style="font-size: 15px; text-align: center;min-height: 40px;">
+                  <strong>{{product.name}}</strong></h4>
+                <p class="card-text" style="text-align: center; color: green; font-size: 20px">{{product.price}} Lei</p>
+              </div>
+              <button class="detailButton"></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+    </ol>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 </div>

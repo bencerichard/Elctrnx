@@ -18,12 +18,12 @@
   border-bottom: solid grey;
 }
 
-.bg-light{
-  background:#ffffff !important;
+.bg-light {
+  background: #ffffff !important;
 }
 
 .contulMeuButon {
-  display:inline-flex;
+  display: inline-flex;
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -35,78 +35,163 @@
   text-decoration: none;
 }
 
-.contulMeu{
+.contulMeu {
   display: inline-block;
   margin-top: 15%;
 }
 
-.shoppingCart{
+.shoppingCart {
   margin-left: 100px;
   margin-top: 12%;
 }
 
-.carusel{
+.carusel {
   max-height: 400px;
   min-height: 400px;
   width: 100% !important;
 }
 
-.slider{
-  padding-left:0px !important;
-  padding-right:0px !important;
+.slider {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 .polaroid {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- }
+}
 
-.card{
+.card {
   width: 222px;
   height: 160px;
   position: relative;
 }
 
-.card:hover{
+.card:hover {
   /*transform: scale(1.05);*/
   z-index: 10;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.cardImage{
+.cardImage {
   width: 150px;
   height: 110px;
   margin: 0 auto;
 }
 
-.asusImage{
+.asusImage {
   width: 150px;
   height: 100px;
   margin: 0 auto;
 }
 
-.dellImage{
+.dellImage {
   width: 70px;
   height: 70px;
   margin: 0 auto;
 }
 
-.samsungImage{
+.samsungImage {
   width: 200px;
   height: 160px;
   margin: 0 auto;
 }
 
-.favorit{
-  margin-left: 90%;
-  margin-top: 5%;
+.favorit {
+  margin-left: 92%;
+  color: grey;
+  height: 20px;
+  width: 20px;
+  background-size: cover;
+  background-image: url("../../assets/img/heartblack.png");
+  background-color: white;
+  border: none;
 }
 
-.detailButton{
+.detailButton {
   width: 164px;
   height: 30px;
-  text-align: center
+  text-align: center;
+  background-image: url("../../assets/img/detailsButton.png");
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
 }
 
-.productCard{
+
+.detailButton:hover {
+  background-image: url("../../assets/img/butonDetalii.png");
+}
+
+
+.productCard {
   display: inline-block;
+}
+
+.cardP {
+  padding: 15px;
+  text-align: center;
+  width: 210px;
+  height: 365px;
+}
+
+.cardP:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.column {
+  margin-left: 15px;
+  width: 18.4%;
+}
+
+.row {
+  max-height: 365px;
+}
+
+.carousel-indicators {
+  bottom: -13%;
+}
+
+.carousel-indicators .active {
+  background-color: green;
+  height: 3px !important;
+}
+
+.carousel-indicators li {
+  background-color: #7F7F7F;
+}
+
+#carouselExampleIndicators .carousel-control-prev-icon {
+  background-image: url("../../assets/img/back.png") !important;
+  height: 32px;
+  width: 32px;
+}
+
+#carouselExampleIndicators .carousel-control-next-icon {
+  background-image: url("../../assets/img/next.png") !important;
+  height: 32px;
+  width: 32px;
+}
+
+#carouselExampleIndicators1 .carousel-control-prev {
+  left: -12%;
+  height: 50px;
+  margin-top: 150px;
+}
+
+#carouselExampleIndicators1 .carousel-control-next {
+  right: -12%;
+  height: 50px;
+  margin-top: 150px;
+}
+
+#carouselExampleIndicators1 .carousel-control-prev-icon {
+  background-image: url("../../assets/img/back.png") !important;
+  height: 32px;
+  width: 32px;
+}
+
+#carouselExampleIndicators1 .carousel-control-next-icon {
+  background-image: url("../../assets/img/next.png") !important;
+  height: 32px;
+  width: 32px;
 }
