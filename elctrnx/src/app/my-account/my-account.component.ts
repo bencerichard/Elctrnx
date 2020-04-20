@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {User} from "../User";
+import {UserService} from "../User.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-my-account',
@@ -9,17 +12,55 @@ export class MyAccountComponent implements OnInit {
 
   showModal = false;
 
-  constructor() {
+  users: User[];
+  user: User;
+
+  constructor(private userService: UserService,
+              private route: ActivatedRoute) {
   }
+
+  getUsers(): void {
+    this.userService.getUsers().subscribe(
+      users => {
+        this.users = users;
+      }
+    )
+  }
+
+  getSingleUser(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.getSingleUser(id).subscribe(
+      user => {
+        this.user = user;
+      }
+    )
+  }
+
+  newUser(user: User): void {
+    this.userService.newUser(user).subscribe();
+  }
+
+
+  updateUser(user: User): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.updateUser(id, user).subscribe();
+  }
+
+  deleteUser() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.deleteUser(id).subscribe();
+  }
+
 
   ngOnInit(): void {
   }
 
-  modalFunction(): void{
-     this.showModal = !this.showModal;
+
+  modalFunction(): void {
+    this.showModal = !this.showModal;
   }
 
-  closeModal():void{
+  closeModal(): void {
     this.showModal = !this.showModal;
   }
 }

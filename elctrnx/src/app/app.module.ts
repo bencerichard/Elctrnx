@@ -8,6 +8,9 @@ import {ProductsComponent} from './products/products.component';
 import {RegisterComponent} from './register/register.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {MyAccountComponent} from './my-account/my-account.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {MyAccountComponent} from './my-account/my-account.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

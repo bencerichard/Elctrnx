@@ -5,7 +5,13 @@ export class User {
   password:string;
   confirmPassword:string;
   fullName:string;
-  email:string;
+  emailAddress:string;
   role:Role;
+  cart:Cart[];
 
+}
+
+export class Cart {
+  productId:number;
+  quantity:number;
 }
