@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -14,7 +14,8 @@ export class ProductsComponent implements OnInit {
   product: Product;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router:Router) {
   }
 
 
@@ -39,19 +40,25 @@ export class ProductsComponent implements OnInit {
     this.productService.newProduct({categoryName,description,productName,price,image} as Product).subscribe();
   }
 
+
   updateProduct(categoryName: string, description: string, productName: string, price: number, image: string):void{
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.updateProduct(id,{categoryName,description,productName,price,image} as Product).subscribe();
   }
 
-  deleteProduct():void{
+  deleteProduct():void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.deleteProduct(id).subscribe();
   }
-
   ngOnInit(): void {
     this.getProducts();
   }
 
+  my_account(): void {
+    this.router.navigate(['/my-account']);
+  }
 
+  searchApple(): void {
+    this.router.navigate(['/my-account']);
+  }
 }
