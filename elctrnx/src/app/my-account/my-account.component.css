@@ -1,21 +1,25 @@
-body{
+body {
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
 }
-.emp-profile{
+
+.emp-profile {
   padding: 3%;
   margin-top: 5%;
   margin-bottom: 3%;
   border-radius: 0.5rem;
   background: #fff;
 }
-.profile-img{
+
+.profile-img {
   text-align: center;
 }
-.profile-img img{
+
+.profile-img img {
   width: 230px;
   height: 150px;
   object-fit: cover;
 }
+
 .profile-img .file {
   position: relative;
   overflow: hidden;
@@ -26,73 +30,197 @@ body{
   font-size: 15px;
   background: #212529b8;
 }
+
 .profile-img .file input {
   position: absolute;
   opacity: 0;
   right: 0;
   top: 0;
 }
-.profile-head h5{
+
+.profile-head h5 {
   color: #333;
 }
-.profile-head h6{
+
+.profile-head h6 {
   color: #0062cc;
 }
-.profile-edit-btn{
+
+.profile-edit-btn {
   border: none;
   border-radius: 1.5rem;
-  width: 70%;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.profile-return-btn {
+  border: none;
+  border-radius: 1.5rem;
   padding: 2%;
   font-weight: 600;
   color: #6c757d;
   cursor: pointer;
 }
-.proile-rating{
+
+.proile-rating {
   font-size: 14px;
   color: #818182;
   margin-top: 5%;
 }
-.proile-rating span{
+
+.proile-rating span {
   color: #495057;
   font-size: 15px;
   font-weight: 600;
 }
-.profile-head .nav-tabs{
-  margin-bottom:5%;
+
+.profile-head .nav-tabs {
+  margin-bottom: 5%;
 }
-.profile-head .nav-tabs .nav-link{
-  font-weight:600;
+
+.profile-head .nav-tabs .nav-link {
+  font-weight: 600;
   border: none;
 }
-.profile-head .nav-tabs .nav-link.active{
+
+.profile-head .nav-tabs .nav-link.active {
   border: none;
-  border-bottom:2px solid #0062cc;
+  border-bottom: 2px solid #0062cc;
 }
-.profile-work{
+
+.profile-work {
   padding: 14%;
   margin-top: -15%;
 }
-.profile-work p{
+
+.profile-work p {
   font-size: 12px;
   color: #818182;
   font-weight: 600;
   margin-top: 10%;
 }
-.profile-work a{
+
+.profile-work a {
   text-decoration: none;
   color: #495057;
   font-weight: 600;
   font-size: 14px;
 }
-.profile-work ul{
+
+.profile-work ul {
   list-style: none;
 }
-.profile-tab label{
+
+.profile-tab label {
   font-weight: 600;
 }
-.profile-tab p{
+
+.profile-tab p {
   font-weight: 600;
   color: #0062cc;
 }
 
+.profile-edit-form{
+  max-width: 22%;
+  margin-left: 15%;
+  margin-top: 5%;
+  margin-bottom: 7%;
+}
+
+.slider {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.btn-edit-profile {
+  color: black;
+  background-color: white;
+  border: none;
+}
+
+.btn-save-profile-changes{
+  color: black;
+  background-color: ghostwhite;
+  border: none;
+}
+
+.btn-secondary {
+  color: white;
+  background-color: lightslategray;
+  border: none;
+}
+
+.form-control {
+  max-width: 250px;
+}
+
+.modal {
+  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  height: 40px;
+  background-color: black;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 0.01px ;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 6px;
+  background-color: black;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
 
