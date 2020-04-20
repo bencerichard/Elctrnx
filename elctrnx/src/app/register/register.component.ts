@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createAccount(): void {
-    if (this.registrationData.password.value === this.registrationData.consfirmPassword.value) {
+    if (this.registrationData.password.value === this.registrationData.confirmPassword.value) {
       this.userService.newUser({
         username: this.registrationData.username.value,
         password: this.registrationData.password.value,
