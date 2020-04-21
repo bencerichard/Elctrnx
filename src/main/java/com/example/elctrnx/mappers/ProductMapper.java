@@ -17,6 +17,7 @@ public class ProductMapper {
                 .categoryDescription(product.getProductCategory().getDescription())
                 .categoryName(product.getProductCategory().getName())
                 .image(product.getImage())
+                .producer(product.getProducer())
                 .build();
     }
 }

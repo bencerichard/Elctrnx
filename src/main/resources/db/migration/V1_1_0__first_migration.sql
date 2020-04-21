@@ -12,7 +12,7 @@ create table category (product_category_id integer not null, description varchar
 create table location (id integer not null, name varchar(255), address_id integer, primary key (id)) engine=InnoDB;
 create table order_ (id integer not null, created_at datetime, delivery_location_id integer, shipped_from_id integer, user_user_id integer, primary key (id)) engine=InnoDB;
 create table order_detail (id integer not null, product_id integer, quantity integer, order_id integer, primary key (id)) engine=InnoDB;
-create table product (product_id integer not null, description varchar(500), image varchar(255), name varchar(255), price decimal(19,2), product_category_product_category_id integer, primary key (product_id)) engine=InnoDB;
+create table product (product_id integer not null, description varchar(500), image varchar(255), name varchar(255), price decimal(19,2),producer varchar(255), product_category_product_category_id integer, primary key (product_id)) engine=InnoDB;
 create table roles (role_id integer not null, role_name varchar(255), primary key (role_id)) engine=InnoDB;
 create table stock (id integer not null auto_increment, quantity integer, location_id integer, product_product_id integer, primary key (id)) engine=InnoDB;
 create table user (user_id integer not null, email_address varchar(255), fist_name varchar(255), last_name varchar(255), password varchar(255), username varchar(255), role_role_id integer, primary key (user_id)) engine=InnoDB;

@@ -27,6 +27,7 @@ public class ProductService {
                 .description(productDTO.getDescription())
                 .price(productDTO.getPrice())
                 .image(productDTO.getImage())
+                .producer(productDTO.getProducer())
                 .productCategory(this.testCategoryExistence(productDTO.getCategoryName(), productDTO.getCategoryDescription()))
                 .build();
         productRepository.save(product);
@@ -40,6 +41,7 @@ public class ProductService {
             existingProduct.setPrice(productDTO.getPrice());
             existingProduct.setDescription(productDTO.getDescription());
             existingProduct.setImage(productDTO.getImage());
+            existingProduct.setProducer(productDTO.getProducer());
             existingProduct.setProductCategory(this.testCategoryExistence(productDTO.getCategoryName(), productDTO.getCategoryDescription()));
 
             Product updatedProduct = productRepository.save(existingProduct);

@@ -15,10 +15,11 @@ public class Product {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue()
     private Integer productId;
     private BigDecimal price;
     private String name;
+    private String producer;
 
     @Column(length = 500)
     private String description;

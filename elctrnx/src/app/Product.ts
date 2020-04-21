@@ -5,4 +5,5 @@ export class Product {
   productName: string;
   price: number;
   image: string;
+  producer:string;
 }

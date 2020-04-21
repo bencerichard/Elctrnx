@@ -41,19 +41,27 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  newProduct(categoryName: string, description: string, productName: string, price: number, image: string): void {
-    this.productService.newProduct({categoryName, description, productName, price, image} as Product).subscribe();
+  newProduct(categoryName: string, description: string, productName: string, price: number, image: string, producer: string): void {
+    this.productService.newProduct({
+      categoryName,
+      description,
+      productName,
+      price,
+      image,
+      producer
+    } as Product).subscribe();
   }
 
 
-  updateProduct(categoryName: string, description: string, productName: string, price: number, image: string): void {
+  updateProduct(categoryName: string, description: string, productName: string, price: number, image: string, producer: string): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.updateProduct(id, {
       categoryName,
       description,
       productName,
       price,
-      image
+      image,
+      producer
     } as Product).subscribe();
   }
 
