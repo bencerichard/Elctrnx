@@ -23,11 +23,15 @@ export class UserService {
     return this.http.get<User>(this.userUrl + id);
   }
 
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(this.userUrl + username);
+  }
+
   newUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions);
   }
 
-  updateUser(id:number,user: User): Observable<User> {
+  updateUser(id: number, user: User): Observable<User> {
     return this.http.put<User>(this.userUrl + id, user, this.httpOptions);
   }
 
