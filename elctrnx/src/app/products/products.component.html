@@ -60,30 +60,30 @@
     </a>
   </div>
 
-  <div style="display: inline-flex; border: none;" class="polaroid slider mt-5 mb-5">
+  <div style="display: inline-flex; border: none;" class="topBrands polaroid slider mt-5 mb-5">
     <a>
       <div class="card justify-content-center">
         <img class="cardImage " src="assets/img/appleLogo.png" alt="Card image cap" (click)="searchApple()">
       </div>
     </a>
-    <a href="">
+    <a>
       <div class="card justify-content-center">
-        <img class="cardImage justify-content-center" src="assets/img/sonyLogo.png" alt="Card image cap">
+        <img class="cardImage justify-content-center" src="assets/img/sonyLogo.png" alt="Card image cap" (click)="searchSony()">
       </div>
     </a>
-    <a href="">
+    <a>
       <div class="card justify-content-center">
-        <img class="asusImage justify-content-center" src="assets/img/asusLogo.jpg" alt="Card image cap">
+        <img class="asusImage justify-content-center" src="assets/img/asusLogo.jpg" alt="Card image cap" (click)="searchAsus()">
       </div>
     </a>
-    <a href="">
+    <a>
       <div class="card justify-content-center">
-        <img class="samsungImage justify-content-center" src="assets/img/samsungLogo.png" alt="Card image cap">
+        <img class="samsungImage justify-content-center" src="assets/img/samsungLogo.png" alt="Card image cap" (click)="searchSamsung()">
       </div>
     </a>
-    <a href="">
+    <a>
       <div class="card justify-content-center">
-        <img class="dellImage justify-content-center" src="assets/img/dellLogo.png" alt="Card image cap">
+        <img class="dellImage justify-content-center" src="assets/img/dellLogo.png" alt="Card image cap" (click)="searchDell()">
       </div>
     </a>
   </div>
@@ -153,24 +153,24 @@
 
               <li id="firstLi" style="color:black;; font-size: 16px"> TV, Audio-Video
                 <ul style="list-style: none">
-                  <a href=""> <li>TV</li> </a>
-                  <a href=""> <li>Headphones</li> </a>
-                  <a href=""> <li>Speakers</li> </a>
+                  <a (click)="tvs()"> <li>TV</li> </a>
+                  <a (click)="headphones()"> <li>Headphones</li> </a>
+                  <a (click)="speakers()"> <li>Speakers</li> </a>
                 </ul>
               </li>
 
               <li id="secondLi" style="color: black;font-size: 16px">Gadgets
                 <ul style="list-style: none">
-                 <a href=""> <li>Smartwatches</li> </a>
-                 <a href=""> <li>Smart Home Kits</li> </a>
+                 <a (click)="smartWatches()"> <li>Smartwatches</li> </a>
+                 <a (click)="smartHome()"> <li>Smart Home Kits</li> </a>
                 </ul>
               </li>
 
               <li id="thirdLi" style="color: black;font-size: 16px">Devices
                 <ul style="list-style: none">
-                 <a href=""> <li>Smartphones</li> </a>
-                 <a href=""> <li>Tablets</li> </a>
-                 <a href=""> <li>Laptops</li> </a>
+                 <a (click)="smartphones()"> <li>Smartphones</li> </a>
+                 <a (click)="tablets()"> <li>Tablets</li> </a>
+                 <a (click)="laptops()"> <li>Laptops</li> </a>
                 </ul>
               </li>
 
@@ -180,13 +180,13 @@
 
           <div id="middle" style="float:left ;width: 300px; height: 350px; background-color: white">
             <ul style="list-style: none">
-              <li> <a href="">Beats</a></li>
-              <li> <a href="">Bose</a></li>
-              <li> <a href="">JBL</a></li>
-              <li> <a href="">LG</a></li>
-              <li> <a href="">Samsung</a></li>
-              <li> <a href="">Apple</a></li>
-              <li> <a href="">Dell</a></li>
+              <li> <a (click)="searchBeats()">Beats</a></li>
+              <li> <a (click)="searchBose()">Bose</a></li>
+              <li> <a (click)="searchJbl()">JBL</a></li>
+              <li> <a (click)="searchLg()">LG</a></li>
+              <li> <a (click)="searchSamsung()">Samsung</a></li>
+              <li> <a (click)="searchApple()">Apple</a></li>
+              <li> <a (click)="searchDell()">Dell</a></li>
             </ul>
           </div>
 

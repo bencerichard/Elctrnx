@@ -79,7 +79,71 @@ export class ProductsComponent implements OnInit {
   }
 
   searchApple(): void {
-    this.router.navigate(['/my-account']);
+    this.router.navigate(['/listing-products-apple']);
+  }
+
+  searchSamsung(): void {
+    this.router.navigate(['/listing-products-samsung']);
+  }
+
+  searchSony(): void {
+    this.router.navigate(['/listing-products-sony']);
+  }
+
+  searchAsus(): void {
+    this.router.navigate(['/listing-products-asus']);
+  }
+
+  searchDell(): void {
+    this.router.navigate(['/listing-products-dell']);
+  }
+
+  searchBeats(): void {
+    this.router.navigate(['/listing-products-beats']);
+  }
+
+  searchBose(): void {
+    this.router.navigate(['/listing-products-bose']);
+  }
+
+  searchJbl(): void {
+    this.router.navigate(['/listing-products-jbl']);
+  }
+
+  searchLg(): void {
+    this.router.navigate(['/listing-products-lg']);
+  }
+
+  smartphones(): void{
+    this.router.navigate(['/listing-products-smartphones']);
+  }
+
+  headphones(): void{
+    this.router.navigate(['/listing-products-headphones']);
+  }
+
+  tvs():void{
+    this.router.navigate(['/listing-products-tvs']);
+  }
+
+  speakers(): void{
+    this.router.navigate(['/listing-products-speakers']);
+  }
+
+  smartWatches(): void{
+    this.router.navigate(['/listing-products-smartwatches']);
+  }
+
+  smartHome(): void{
+      this.router.navigate(['/listing-products-smarthome']);
+  }
+
+  tablets(): void{
+    this.router.navigate(['/listing-products-tablets']);
+  }
+
+  laptops(): void{
+    this.router.navigate(['/listing-products-laptops']);
   }
 
   logout(): void {
