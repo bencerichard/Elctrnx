@@ -10,6 +10,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {MyAccountComponent} from './my-account/my-account.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ListingProductsComponent } from './listing-products/listing-products.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     RegisterComponent,
     PageNotFoundComponent,
     MyAccountComponent,
+    ListingProductsComponent,
 
   ],
   imports: [

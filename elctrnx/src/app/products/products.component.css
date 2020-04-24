@@ -147,6 +147,37 @@
   max-height: 365px;
 }
 
+.topBrands{
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .column {
+    width: 23%;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .topBrands{
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 981px) {
+  .column {
+    width: 30%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 755px) {
+  .column {
+    width: 40%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
 .carousel-indicators {
   bottom: -14%;
 }
