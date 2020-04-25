@@ -29,8 +29,15 @@ import {NotifierModule} from "angular-notifier";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NotifierModule.withConfig({position: {horizontal: {position: "right"}, vertical: {position: "bottom"}}}),
-
+    NotifierModule.withConfig(
+      {position: {horizontal: {position: "right"}, vertical: {position: "bottom"}},
+        behaviour: {
+          autoHide: 2000,
+          onClick: false,
+          onMouseover: "pauseAutoHide",
+          showDismissButton: true,
+          stacking: 1
+        },}),
   ],
   providers: [],
   bootstrap: [AppComponent]
