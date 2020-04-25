@@ -28,8 +28,10 @@ export class ListingProductsComponent implements OnInit {
   tablets: Product[];
   laptops: Product[];
 
+
+
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProducts();

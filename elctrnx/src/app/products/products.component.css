@@ -328,3 +328,8 @@
 #right{
   background-color: white;
 }
+
+a,
+a label {
+  cursor: pointer;
+}
