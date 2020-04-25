@@ -11,6 +11,7 @@ import {MyAccountComponent} from './my-account/my-account.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ListingProductsComponent } from './listing-products/listing-products.component';
+import {NotifierModule} from "angular-notifier";
 
 
 @NgModule({
@@ -30,7 +31,15 @@ import { ListingProductsComponent } from './listing-products/listing-products.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    NotifierModule.withConfig(
+      {position: {horizontal: {position: "right"}, vertical: {position: "bottom"}},
+        behaviour: {
+          autoHide: 2000,
+          onClick: false,
+          onMouseover: "pauseAutoHide",
+          showDismissButton: true,
+          stacking: 1
+        },}),
   ],
   providers: [],
   bootstrap: [AppComponent]

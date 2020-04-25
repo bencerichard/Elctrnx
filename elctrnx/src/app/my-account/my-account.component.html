@@ -58,7 +58,7 @@
                 <label>Username</label>
               </div>
               <div class="col-md-6">
-                <p>Kshiti123</p>
+                <p>{{user.username}}</p>
               </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
                 <label>Full Name</label>
               </div>
               <div class="col-md-6">
-                <p>Kshiti Ghelani</p>
+                <p>{{user.fullName}}</p>
               </div>
             </div>
             <div class="row">
@@ -74,7 +74,7 @@
                 <label>Email</label>
               </div>
               <div class="col-md-6">
-                <p>kshitighelani@gmail.com</p>
+                <p>{{user.emailAddress}}</p>
               </div>
             </div>
             <div class="row">
@@ -100,36 +100,37 @@
       </div>
       <div class="modal-body">
         <div class="col-md-6 col-sm-12 profile-edit-form">
-        <div class="register-form">
-          <div class="register-div">
-            <form style="min-width: 300px; text-align: left">
-              <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" placeholder="Username">
-              </div>
-              <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" class="form-control" placeholder="Full Name">
-              </div>
-              <div class="form-group">
-                <label>E-mail</label>
-                <input type="text" class="form-control" placeholder="E-mail">
-              </div>
-              <div class="form-group">
-                <label>Address</label>
-                <input type="password" class="form-control" placeholder="Address">
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control" placeholder="Confirm Password">
-              </div>
-            </form>
+          <div class="register-form">
+            <div class="register-div">
+              <form [formGroup]="accountEditForm" style="min-width: 300px; text-align: left">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" class="form-control" formControlName="{{user.username}}" placeholder="Username"
+                         value="{{user.username}}"/>
+                </div>
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" class="form-control" formControlName="fullName" placeholder="Full Name"/>
+                </div>
+                <div class="form-group">
+                  <label>E-mail</label>
+                  <input type="text" class="form-control" formControlName="email" placeholder="E-mail"/>
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="password" class="form-control" placeholder="Address">
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input type="password" class="form-control" placeholder="Confirm Password">
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
         </div>
 
         <div class="modal-footer">
