@@ -15,7 +15,7 @@ public class ProductCategory {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productCategoryId;
     private String name;
     private String description;

@@ -17,7 +17,7 @@ public class Address {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String country;
     private String city;

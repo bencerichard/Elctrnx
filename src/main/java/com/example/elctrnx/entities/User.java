@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String fistName;
     private String lastName;
@@ -27,4 +27,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Cart> selectedProducts;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorites> favoritesList;
 }

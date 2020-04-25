@@ -29,14 +29,14 @@ values (5, 'Monitor Led Dell UltraSharp 23.8"', 3,
         1400,
         'Monitor IPS LED Dell UltraSharp U2417H 23.8", QHD, HDMI, Black', 'Dell');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (11, 'Iphone 11 Pro Max 256 Gb"', 2,
+values (11, 'Iphone 11 Pro Max 256 Gb', 2,
         'https://s12emagst.akamaized.net/products/25344/25343983/images/res_78e0711f60a6c662c26bc784d808634f_450x450_ksv.jpg',
         5700,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
         the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (12, 'Iphone 11 128 Gb"', 2,
+values (12, 'Iphone 11 128 Gb', 2,
         'https://s12emagst.akamaized.net/products/25344/25343946/images/res_ea53f1cbaf304b84a43d524690abf986_450x450_k9i6.jpg',
         4000,
         'Meet iPhone 11. All-new dual-camera system with Ultra Wide and Night mode.All-day battery. Six new colors. And the A13 Bionic, our fastest chip ever.',
@@ -70,14 +70,14 @@ values (16, 'Iphone 11 Pro 256 Gb', 2,
         the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (17, 'Iphone 11 Pro Max 64 Gb"', 2,
+values (17, 'Iphone 11 Pro Max 64 Gb', 2,
         'https://s12emagst.akamaized.net/products/25344/25343983/images/res_78e0711f60a6c662c26bc784d808634f_450x450_ksv.jpg',
         5700,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
         the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (18, 'Iphone 11 Pro Max 512 Gb"', 2,
+values (18, 'Iphone 11 Pro Max 512 Gb', 2,
         'https://s12emagst.akamaized.net/products/25344/25343983/images/res_78e0711f60a6c662c26bc784d808634f_450x450_ksv.jpg',
         7000,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
