@@ -6,33 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "order_")
-public class Order {
+public class Cart {
 
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private LocalDateTime createdAt;
-
-    @ManyToOne
-    private Location shippedFrom;
+    private Integer quantity;
+    private Integer productId;
 
     @ManyToOne
     private User user;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Location deliveryLocation;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetail;
 }

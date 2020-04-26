@@ -45,4 +45,16 @@ public class UserController {
     public void deleteUser(@PathVariable String username) {
         userService.deleteByUsername(username);
     }
+
+    @PatchMapping("/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO postCart(@PathVariable String username, @RequestBody UserDTO userDTO) {
+        return userService.postCart(username, userDTO);
+    }
+
+    @PatchMapping("/favorites/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO postFavorites(@PathVariable String username, @RequestBody UserDTO userDTO) {
+        return userService.postFavorites(username, userDTO);
+    }
 }
