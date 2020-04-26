@@ -16,7 +16,7 @@ public class OrderDetail {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer quantity;
     private Integer productId;

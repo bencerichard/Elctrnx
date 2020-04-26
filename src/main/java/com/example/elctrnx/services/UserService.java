@@ -6,6 +6,8 @@ import com.example.elctrnx.entities.Roles;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.exceptions.UserNotFoundException;
 import com.example.elctrnx.exceptions.UsernameAlreadyUsedException;
+import com.example.elctrnx.mappers.CartMapper;
+import com.example.elctrnx.mappers.FavoritesMapper;
 import com.example.elctrnx.mappers.LogInMapper;
 import com.example.elctrnx.mappers.UserMapper;
 import com.example.elctrnx.repositories.UserRepository;
@@ -24,6 +26,8 @@ public class UserService {
     private final UserMapper userMapper;
     private final RolesService rolesService;
     private final LogInMapper logInMapper;
+    private final CartMapper cartMapper;
+    private final FavoritesMapper favoritesMapper;
 
     public List<UserDTO> findAll() {
         List<UserDTO> userList = new ArrayList<>();
@@ -111,5 +115,29 @@ public class UserService {
             }
         }
         throw new UserNotFoundException(logInDTO.getUsername());
+    }
+
+    public UserDTO postCart(String username, UserDTO userDTO) {
+        Optional<User> optionalUser = userRepository.findUserByUsername(username);
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setSelectedProducts(cartMapper.mapCartDTOListToCartList(userDTO.getCart()));
+            existingUser.getSelectedProducts().forEach(selectedProduct -> selectedProduct.setUser(existingUser));
+            userRepository.save(existingUser);
+            return userMapper.mapUserToUserDTO(existingUser);
+        }
+        throw new UserNotFoundException(username);
+    }
+
+    public UserDTO postFavorites(String username, UserDTO userDTO) {
+        Optional<User> optionalUser = userRepository.findUserByUsername(username);
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setFavoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(userDTO.getFavorites()));
+            existingUser.getFavoritesList().forEach(favoritesList -> favoritesList.setUser(existingUser));
+            userRepository.save(existingUser);
+            return userMapper.mapUserToUserDTO(existingUser);
+        }
+        throw new UserNotFoundException(username);
     }
 }
