@@ -4,7 +4,7 @@
       <li class="nav-item">
       </li>
       <li class="nav-item">
-        <a class="contulMeuButon" href="my-account"><i class="ion-ios-arrow-down"></i>BH</a>
+        <a class="contulMeuButon" href="my-account"><i class="ion-ios-arrow-down"></i>{{clientName}}</a>
       </li>
 
       <li class="nav-item">
@@ -33,13 +33,13 @@
 <!--APPLE-->
 
  <div *ngIf="route.snapshot.url.toString().includes('apple')">
-  <div class="row mb-4 polaroid" style="margin-left: 0!important; margin-right: 0!important; height: 100px">
+  <div class="row mb-4 polaroid slider" style="margin-left: 0!important; margin-right: 0!important; height: 100px">
     <div class="col-4 my-auto"></div>
     <div class="col-4 my-auto text-center"> <img src="../../assets/img/appleLogo.png" style="max-height: 100px; max-width: 200px;"></div>
     <div class="col-4"> </div>
   </div>
 
-  <div class="row">
+  <div class="row slider">
     <div class="column" *ngFor="let product of appleProducts">
       <div class="cardP mb-5 polaroid">
         <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
@@ -87,7 +87,7 @@
   <!--  SONY-->
 
   <div *ngIf="route.snapshot.url.toString().includes('sony')">
-    <div class="row mb-4 polaroid" style="margin-left: 0!important; margin-right: 0!important; height: 100px">
+    <div class="row mb-4 polaroid slider" style="margin-left: 0!important; margin-right: 0!important; height: 100px">
 
       <div class="col-4 my-auto"></div>
       <div class="col-4 my-auto text-center"> <img src="../../assets/img/sonyLogo.png" style="max-height: 105px; max-width: 200px;"></div>
@@ -95,7 +95,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row slider">
       <div class="column" *ngFor="let product of sonyProducts">
         <div class="cardP mb-5 polaroid">
           <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>

@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
+import {User} from "../User";
+import {UserService} from "../User.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -13,13 +16,24 @@ export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   products2: Product[] = [];
+  user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
+
+  clientName: string;
+
+  prepareClientName (){
+    this.user.subscribe( user => {
+      let userArray = user.fullName.split(" ",2);
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+    } );
+  }
 
   product: Product;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
-              private authentcationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private userService: UserService) {
   }
 
 
@@ -72,6 +86,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+    this.prepareClientName();
   }
 
   my_account(): void {
@@ -147,6 +162,6 @@ export class ProductsComponent implements OnInit {
   }
 
   logout(): void {
-    this.authentcationService.logout();
+    this.authenticationService.logout();
   }
 }

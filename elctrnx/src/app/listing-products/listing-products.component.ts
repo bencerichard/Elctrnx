@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../Product";
 import {ProductService} from "../Product.service";
 import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
+import {User} from "../User";
+import {UserService} from "../User.service";
 
 @Component({
   selector: 'app-listing-products',
@@ -28,13 +31,24 @@ export class ListingProductsComponent implements OnInit {
   tablets: Product[];
   laptops: Product[];
 
+  user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
 
+  clientName: string;
+
+  prepareClientName (){
+    this.user.subscribe( user => {
+      let userArray = user.fullName.split(" ",2);
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+    } );
+  }
 
   constructor(private productService: ProductService,
-              public route: ActivatedRoute) { }
+              public route: ActivatedRoute,
+              private userService:UserService) { }
 
   ngOnInit(): void {
     this.getProducts();
+    this.prepareClientName();
   }
 
   getProducts(): void {

@@ -4,6 +4,9 @@ import {UserService} from "../User.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../Product.service";
+import {AuthenticationService} from "../Authentication.service";
+import {ProductsComponent} from "../products/products.component";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-my-account',
@@ -15,13 +18,21 @@ export class MyAccountComponent implements OnInit {
   showModal = false;
   returnUrl: string;
   id: number;
+  userNav: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
+  clientName: string;
 
-  accountEditForm = new FormGroup({
+  prepareClientName (){
+    this.userNav.subscribe( user => {
+      let userArray = user.fullName.split(" ",2);
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+    } );
+  }
+
+  accountEditForm   = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    fullName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    fullName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
   });
-
 
   users: User[] = [];
   user: User;
@@ -29,6 +40,7 @@ export class MyAccountComponent implements OnInit {
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
+              private authenticationService: AuthenticationService,
               ) {
   }
 
@@ -50,11 +62,9 @@ export class MyAccountComponent implements OnInit {
   }
 
   getUser(username: string): void {
-    debugger;
     this.userService.getUserByUsername(username).subscribe(
       user=>{
         this.user = user;
-        debugger;
       }
     )
   }
@@ -62,7 +72,6 @@ export class MyAccountComponent implements OnInit {
   newUser(user: User): void {
     this.userService.newUser(user).subscribe();
   }
-
 
   updateUser(user: User): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -74,30 +83,47 @@ export class MyAccountComponent implements OnInit {
     this.userService.deleteUser(id).subscribe();
   }
 
-
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getSingleUser(this.id).subscribe(data => {
+    this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(data => {
       this.accountEditForm = new FormGroup({
-        username: new FormControl('', [Validators.required]),
-        fullName: new FormControl('', [Validators.required, Validators.minLength(4)]),
-        email: new FormControl('', [Validators.required]),
+        username: new FormControl(
+          data.username,
+          [
+            Validators.required,
+            Validators.minLength(1)
+          ]
+        ),
+
+        fullName: new FormControl(data.fullName,
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]
+        ),
+        email: new FormControl(data.emailAddress,
+          [
+            Validators.required,
+            Validators.minLength(5)
+          ]),
       });
     });
     this.getUsers();
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.prepareClientName();
     this.getUser(localStorage.getItem('username'));
-    debugger;
   }
 
 
   modalFunction(): void {
     this.showModal = !this.showModal;
-    debugger;
   }
 
   closeModal(): void {
     this.showModal = !this.showModal;
+  }
+
+  logout(): void {
+    this.authenticationService.logout();
   }
 }
 

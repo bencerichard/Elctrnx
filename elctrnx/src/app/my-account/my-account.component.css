@@ -128,11 +128,6 @@ body {
   margin-bottom: 7%;
 }
 
-.slider {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-}
-
 .btn-edit-profile {
   color: black;
   background-color: white;
@@ -224,3 +219,62 @@ body {
   animation-duration: 0.4s
 }
 
+.poza {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  color: black;
+  margin-left: 100px;
+  display: inline-flex;
+  font-family: 'Open Sans';
+  letter-spacing: 4px;
+}
+
+.navbar {
+  border-width: medium;
+  border-bottom: solid grey;
+}
+
+.bg-light {
+  background: #ffffff !important;
+}
+
+.contulMeuButon {
+  display: inline-flex;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black;
+  margin-top: 40%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.contulMeu {
+  display: inline-block;
+  margin-top: 15%;
+}
+
+.shoppingCart {
+  margin-left: 100px;
+  margin-top: 12%;
+}
+
+.slider {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.polaroid {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.sticky-top{
+  position: fixed;
+}
