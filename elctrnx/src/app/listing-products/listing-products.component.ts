@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../Product";
 import {ProductService} from "../Product.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {User} from "../User";
+import {Favorites, User} from "../User";
 import {UserService} from "../User.service";
-
+import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-listing-products',
   templateUrl: './listing-products.component.html',
@@ -30,10 +30,11 @@ export class ListingProductsComponent implements OnInit {
   smartHome: Product[];
   tablets: Product[];
   laptops: Product[];
+  favoriteProductsArray: Product[] = [];
 
   user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
-
   clientName: string;
+  private readonly notifier: NotifierService;
 
   prepareClientName (){
     this.user.subscribe( user => {
@@ -42,19 +43,26 @@ export class ListingProductsComponent implements OnInit {
     } );
   }
 
+
   constructor(private productService: ProductService,
               public route: ActivatedRoute,
-              private userService:UserService) { }
+              private userService:UserService,
+              private router: Router,
+              private notifierService: NotifierService) {
+
+    this.notifier = notifierService
+  }
 
   ngOnInit(): void {
     this.getProducts();
     this.prepareClientName();
   }
 
+
   getProducts(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.getProducts(localStorage.getItem('username')).subscribe(
       products => {
-        this.appleProducts = products.filter( p =>  p.producer === "Apple" );
+        this.appleProducts = products.filter( p => p.producer === "Apple" );
         this.samsungProducts = products.filter( p =>  p.producer === "Samsung" );
         this.sonyProducts = products.filter( p =>  p.producer === "Sony" );
         this.asusProducts = products.filter( p =>  p.producer === "Asus" );
@@ -71,8 +79,28 @@ export class ListingProductsComponent implements OnInit {
         this.smartHome = products.filter( p =>  p.categoryName === "Smart Home Kits" );
         this.tablets = products.filter( p =>  p.categoryName === "Tablets" );
         this.laptops = products.filter( p =>  p.categoryName === "Laptops" );
+        this.favoriteProductsArray = products.filter( p => p.isFavorite === true);
       }
     );
   }
 
+  fav(): void{
+      this.router.navigate(['/listing-products-favorites']);
+  }
+
+  isFavorite(product: Product): boolean{
+    return product.isFavorite;
+  }
+
+  addToFavorites(product: Product){
+    this.userService.addToFavorites(localStorage.getItem('username'), product.id).subscribe( () => {} );
+    product.isFavorite = true;
+    this.notifier.notify("success", "Product added to favorites");
+  }
+
+  deleteFromFavorites(product: Product){
+    this.userService.deleteFromFavorites(product.id,localStorage.getItem('username')).subscribe( () => {} );
+    product.isFavorite = false;
+    this.notifier.notify("default", "Product removed from favorites");
+  }
 }

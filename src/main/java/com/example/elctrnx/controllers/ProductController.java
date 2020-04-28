@@ -16,10 +16,10 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping
+    @GetMapping("/all/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductDTO> getAllProducts() {
-        return productService.getProducts();
+    public List<ProductDTO> getAllProducts(@PathVariable String username) {
+        return productService.getProducts(username);
     }
 
     @PostMapping

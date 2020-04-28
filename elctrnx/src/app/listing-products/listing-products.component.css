@@ -72,13 +72,24 @@
   margin: 0 auto;
 }
 
-.favorit {
+.notFavorit {
   margin-left: 92%;
   color: grey;
   height: 20px;
   width: 20px;
   background-size: cover;
   background-image: url("../../assets/img/heartblack.png");
+  background-color: white;
+  border: none;
+}
+
+.favorit{
+  margin-left: 92%;
+  color: grey;
+  height: 20px;
+  width: 20px;
+  background-size: cover;
+  background-image: url("../../assets/img/heart-schwarz.png");
   background-color: white;
   border: none;
 }
@@ -162,4 +173,11 @@
 
 #selection li{
  color: #678098;
+}
+
+#emptyPhoto{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 33%;
 }

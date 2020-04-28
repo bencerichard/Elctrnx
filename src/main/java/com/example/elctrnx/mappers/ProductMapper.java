@@ -17,6 +17,7 @@ public class ProductMapper {
                 .categoryDescription(product.getProductCategory().getDescription())
                 .categoryName(product.getProductCategory().getName())
                 .image(product.getImage())
+                .isFavorite(product.getIsFavorite())
                 .producer(product.getProducer())
                 .build();
     }

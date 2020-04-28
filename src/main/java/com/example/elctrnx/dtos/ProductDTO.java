@@ -22,4 +22,5 @@ public class ProductDTO implements Serializable {
     private String categoryName;
     private String categoryDescription;
     private String producer;
+    private Boolean isFavorite;
 }

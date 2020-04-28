@@ -39,5 +39,11 @@ export class UserService {
     return this.http.delete<User>(this.userUrl + id, this.httpOptions);
   }
 
+  addToFavorites(username: string, favorites: number) {
+    return this.http.patch(this.userUrl + 'favorites/' + username, {productId: favorites}, this.httpOptions);
+  }
 
+  deleteFromFavorites(id: number, username: string) {
+    return this.http.delete("http://localhost:8080/favorites/" + id + "/" + username);
+  }
 }

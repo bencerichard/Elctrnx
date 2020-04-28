@@ -25,7 +25,7 @@
       </li>
 
       <li class="nav-item">
-        <a href="/log-in"> <img src="assets/img/heart.png" class="shoppingCart"></a>
+        <a (click)="favorites()"> <img src="assets/img/heart.png" class="shoppingCart"></a>
       </li>
     </ul>
   </nav>
@@ -96,7 +96,8 @@
         <div class="row">
           <div class="column" *ngFor="let product of products">
             <div class="cardP mb-5 polaroid">
-              <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="addToFavorites(product)" *ngIf="isFavorite(product) === false" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="deleteFromFavorites(product)" *ngIf="isFavorite(product) === true" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
               <div class="card-body">
                 <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
                      alt="Card image">
@@ -113,7 +114,8 @@
         <div class="row">
           <div class="column" *ngFor="let product of products2">
             <div class="cardP mb-5 polaroid">
-              <button class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="addToFavorites(product)" *ngIf="isFavorite(product) === false" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="deleteFromFavorites(product)" *ngIf="isFavorite(product) === true" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
               <div class="card-body">
                 <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
                      alt="Card image">

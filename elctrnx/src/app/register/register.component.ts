@@ -4,9 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../User.service";
 import {first} from "rxjs/operators";
 import {Cart} from "../User";
-
-// import {AuthenticationService} from "../authentication.service"
-
+import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,14 +15,16 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   returnUrl: string;
   cart: Cart[] = [];
+  private readonly notifier: NotifierService;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    // private authenticationService:AuthenticationService
+    private notifierService: NotifierService
   ) {
+    this.notifier = notifierService;
   }
 
   cancel(): void {
@@ -41,11 +41,15 @@ export class RegisterComponent implements OnInit {
         emailAddress: this.registrationData.emailAddress.value,
         role: {roleName: 'Client'},
         cart: this.cart,
+        favorites: []
       }).pipe(first()).subscribe(
         data => this.router.navigate(['/log-in'])
       );
+      this.notifier.notify("info", "Account created with success");
     }
-    else{}
+    else{
+      this.notifier.notify("error", "Password doesn't match Confirm Password");
+    }
 
   }
 

@@ -30,6 +30,7 @@ const routes: Routes = [
   {path: 'listing-products-tablets',component:ListingProductsComponent},
   {path: 'listing-products-laptops',component:ListingProductsComponent},
   {path: 'listing-products-smartphones',component:ListingProductsComponent},
+  {path: 'listing-products-favorites',component:ListingProductsComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];

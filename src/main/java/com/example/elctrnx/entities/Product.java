@@ -20,6 +20,7 @@ public class Product {
     private BigDecimal price;
     private String name;
     private String producer;
+    private Boolean isFavorite;
 
     @Column(length = 500)
     private String description;

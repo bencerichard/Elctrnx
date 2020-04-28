@@ -6,4 +6,5 @@ export class Product {
   price: number;
   image: string;
   producer:string;
+  isFavorite: boolean;
 }

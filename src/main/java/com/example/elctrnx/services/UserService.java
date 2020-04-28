@@ -1,5 +1,6 @@
 package com.example.elctrnx.services;
 
+import com.example.elctrnx.dtos.FavoritesDTO;
 import com.example.elctrnx.dtos.LogInDTO;
 import com.example.elctrnx.dtos.UserDTO;
 import com.example.elctrnx.entities.Roles;
@@ -28,6 +29,7 @@ public class UserService {
     private final LogInMapper logInMapper;
     private final CartMapper cartMapper;
     private final FavoritesMapper favoritesMapper;
+    private final ProductService productService;
 
     public List<UserDTO> findAll() {
         List<UserDTO> userList = new ArrayList<>();
@@ -52,6 +54,8 @@ public class UserService {
                     .lastName(splitName[1])
                     .password(newUser.getPassword())
                     .role(role)
+                    .selectedProducts(cartMapper.mapCartDTOListToCartList(newUser.getCart()))
+                    .favoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(newUser.getFavorites()))
                     .build();
             userRepository.save(user);
             return userMapper.mapUserToUserDTO(user);
@@ -129,11 +133,14 @@ public class UserService {
         throw new UserNotFoundException(username);
     }
 
-    public UserDTO postFavorites(String username, UserDTO userDTO) {
+    public UserDTO postFavorites(String username, FavoritesDTO favoritesDTO) {
+        List<FavoritesDTO> favoritesDTOList = new ArrayList<>();
+        favoritesDTOList.add(favoritesDTO);
+
         Optional<User> optionalUser = userRepository.findUserByUsername(username);
         if (optionalUser.isPresent()) {
             User existingUser = optionalUser.get();
-            existingUser.setFavoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(userDTO.getFavorites()));
+            existingUser.setFavoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(favoritesDTOList));
             existingUser.getFavoritesList().forEach(favoritesList -> favoritesList.setUser(existingUser));
             userRepository.save(existingUser);
             return userMapper.mapUserToUserDTO(existingUser);

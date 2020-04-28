@@ -34,7 +34,7 @@ import {NotifierModule} from "angular-notifier";
     NotifierModule.withConfig(
       {position: {horizontal: {position: "right"}, vertical: {position: "bottom"}},
         behaviour: {
-          autoHide: 2000,
+          autoHide: 3000,
           onClick: false,
           onMouseover: "pauseAutoHide",
           showDismissButton: true,

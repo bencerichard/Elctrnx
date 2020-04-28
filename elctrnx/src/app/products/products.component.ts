@@ -3,10 +3,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
-import {User} from "../User";
+import {Favorites, User} from "../User";
 import {UserService} from "../User.service";
 import {Observable} from "rxjs";
-
+import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -27,23 +27,40 @@ export class ProductsComponent implements OnInit {
     } );
   }
 
+  private readonly notifier: NotifierService;
+
   product: Product;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private notifierService: NotifierService) {
+
+    this.notifier = notifierService;
   }
 
 
   getProducts(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.getProducts(localStorage.getItem('username')).subscribe(
       products => {
         this.products = products;
         this.products2 = products;
       }
     );
+  }
+
+  addToFavorites(product: Product){
+    this.userService.addToFavorites(localStorage.getItem('username'), product.id).subscribe( () => {} );
+    product.isFavorite = true;
+    this.notifier.notify("success", "Product added to favorites");
+  }
+
+  deleteFromFavorites(product: Product){
+    this.userService.deleteFromFavorites(product.id,localStorage.getItem('username')).subscribe( () => {} );
+    product.isFavorite = false;
+    this.notifier.notify("default", "Product removed from favorites");
   }
 
   getSingleProduct(): void {
@@ -161,7 +178,15 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/listing-products-laptops']);
   }
 
+  favorites(): void{
+    this.router.navigate(['/listing-products-favorites']);
+  }
+
   logout(): void {
     this.authenticationService.logout();
+  }
+
+  isFavorite(product: Product): boolean{
+    return product.isFavorite;
   }
 }

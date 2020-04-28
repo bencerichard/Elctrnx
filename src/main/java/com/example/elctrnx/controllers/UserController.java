@@ -1,5 +1,6 @@
 package com.example.elctrnx.controllers;
 
+import com.example.elctrnx.dtos.FavoritesDTO;
 import com.example.elctrnx.dtos.UserDTO;
 import com.example.elctrnx.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,7 @@ public class UserController {
 
     @PatchMapping("/favorites/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDTO postFavorites(@PathVariable String username, @RequestBody UserDTO userDTO) {
-        return userService.postFavorites(username, userDTO);
+    public UserDTO postFavorites(@PathVariable String username, @RequestBody FavoritesDTO favoritesDTO) {
+        return userService.postFavorites(username, favoritesDTO);
     }
 }
