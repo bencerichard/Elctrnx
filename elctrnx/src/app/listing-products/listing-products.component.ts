@@ -47,7 +47,7 @@ export class ListingProductsComponent implements OnInit {
   constructor(private productService: ProductService,
               public route: ActivatedRoute,
               private userService:UserService,
-              private router: Router,
+              public router: Router,
               private notifierService: NotifierService) {
 
     this.notifier = notifierService

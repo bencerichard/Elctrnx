@@ -344,3 +344,8 @@ a,
 a label {
   cursor: pointer;
 }
+
+.mat-badge-content{
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(117,0,0,1) 50%, rgba(246,0,0,1) 100%);
+}
