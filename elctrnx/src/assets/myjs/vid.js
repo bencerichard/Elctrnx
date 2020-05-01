@@ -1,5 +1,5 @@
 
-function scrollVideo() {
+function scrollPlay() {
 
   const intro = document.querySelector(".intro");
   const video = intro.querySelector("video");
@@ -10,7 +10,7 @@ function scrollVideo() {
   const controller = new ScrollMagic.Controller();
 
   let scene = new ScrollMagic.Scene({
-    duration: 12000,
+    duration: 4600,
     triggerElement: intro,
     triggerHook: 0
   })
@@ -21,7 +21,7 @@ function scrollVideo() {
   const textAnim = TweenMax.fromTo(text, 3, {opacity: 1}, {opacity: 0});
 
   let scene2 = new ScrollMagic.Scene({
-    duration: 3000,
+    duration: 2000,
     triggerElement: intro,
     triggerHook: 0
   })
@@ -40,5 +40,5 @@ function scrollVideo() {
     delay += (scrollpos - delay) * accelamount;
 
     video.currentTime = delay;
-  }, 5.0);
+  }, 255.0);
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-declare const scrollVideo: any;
+declare const scrollPlay: any;
 
 @Component({
   selector: 'app-scroll',
@@ -13,7 +13,7 @@ export class ScrollComponent implements OnInit {
   }
 
   animateScroll(){
-    scrollVideo();
+    scrollPlay();
   }
 
   ngOnInit(): void {
