@@ -10,9 +10,13 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {MyAccountComponent} from './my-account/my-account.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ListingProductsComponent } from './listing-products/listing-products.component';
+import {ListingProductsComponent } from './listing-products/listing-products.component';
 import {NotifierModule} from "angular-notifier";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatIconModule} from "@angular/material/icon";
+import {MatBadgeModule} from '@angular/material/badge';
+import {ScrollComponent } from './scroll/scroll.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,7 @@ import {NotifierModule} from "angular-notifier";
     PageNotFoundComponent,
     MyAccountComponent,
     ListingProductsComponent,
-
+    ScrollComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,16 +36,22 @@ import {NotifierModule} from "angular-notifier";
     FormsModule,
     ReactiveFormsModule,
     NotifierModule.withConfig(
-      {position: {horizontal: {position: "right"}, vertical: {position: "bottom"}},
+      {
+        position: {horizontal: {position: "right"}, vertical: {position: "bottom"}},
         behaviour: {
           autoHide: 3000,
           onClick: false,
           onMouseover: "pauseAutoHide",
           showDismissButton: true,
           stacking: 1
-        },}),
+        },
+      }),
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatIconModule,
+    MatBadgeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import {RegisterComponent} from "./register/register.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {MyAccountComponent} from "./my-account/my-account.component";
 import {ListingProductsComponent} from "./listing-products/listing-products.component";
+import {ScrollComponent} from "./scroll/scroll.component";
 
 const routes: Routes = [
   {path: 'products', component: ProductsComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'listing-products-laptops',component:ListingProductsComponent},
   {path: 'listing-products-smartphones',component:ListingProductsComponent},
   {path: 'listing-products-favorites',component:ListingProductsComponent},
+  {path: 'scroll',component: ScrollComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];
