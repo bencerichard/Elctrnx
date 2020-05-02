@@ -28,10 +28,10 @@ public class ProductController {
         return productService.createProduct(productDTO);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{username}/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductDTO oneProduct(@PathVariable Integer id) {
-        return productService.getProductById(id);
+    public ProductDTO oneProduct(@PathVariable String username, @PathVariable Integer id) {
+        return productService.getProductById(username,id);
     }
 
     @PutMapping("/{id}")

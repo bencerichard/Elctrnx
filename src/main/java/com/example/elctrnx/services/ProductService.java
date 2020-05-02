@@ -65,11 +65,23 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public ProductDTO getProductById(Integer id) throws ProductNotFoundException {
+    public ProductDTO getProductById(String username,Integer id) throws ProductNotFoundException {
         Optional<Product> productOptional = productRepository.findById(id);
 
         if (productOptional.isPresent()) {
-            return productMapper.mapProductToProductDto(productOptional.get());
+
+            Product existingProduct = productOptional.get();
+
+            List<FavoritesDTO> favorites = favoritesService.getFavoritesforUserWithUsername(username);
+
+            existingProduct.setIsFavorite(false);
+
+            favorites.forEach( favoritesDTO -> {
+                if(existingProduct.getProductId().equals(favoritesDTO.getProductId()))
+                    existingProduct.setIsFavorite(true);
+            });
+
+            return productMapper.mapProductToProductDto(existingProduct);
         } else {
             throw new ProductNotFoundException("This product doesn't exist");
         }
