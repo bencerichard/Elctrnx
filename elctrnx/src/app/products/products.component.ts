@@ -65,7 +65,7 @@ export class ProductsComponent implements OnInit {
 
   getSingleProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getSingleProduct(id).subscribe(
+    this.productService.getSingleProduct(localStorage.getItem('username'),id).subscribe(
       product => {
         this.product = product;
       }
