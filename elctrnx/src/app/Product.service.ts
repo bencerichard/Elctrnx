@@ -20,8 +20,8 @@ export class ProductService {
     return this.http.get<Product[]>(this.productsUrl+ 'all/'+ username);
   }
 
-  getSingleProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(this.productsUrl + id);
+  getSingleProduct(username: string, id: number): Observable<Product> {
+    return this.http.get<Product>(this.productsUrl + username+ '/' + id);
   }
 
   newProduct(product: Product): Observable<Product> {

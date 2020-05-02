@@ -17,6 +17,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from "@angular/material/icon";
 import {MatBadgeModule} from '@angular/material/badge';
 import {ScrollComponent } from './scroll/scroll.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {ScrollComponent } from './scroll/scroll.component';
     MyAccountComponent,
     ListingProductsComponent,
     ScrollComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import {ScrollComponent } from './scroll/scroll.component';
     MatSliderModule,
     MatIconModule,
     MatBadgeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -71,14 +71,14 @@ export class ListingProductsComponent implements OnInit {
         this.boseProducts = products.filter( p =>  p.producer === "Bose" );
         this.jblProducts = products.filter( p =>  p.producer === "JBL" );
         this.lgProducts = products.filter( p =>  p.producer === "LG" );
-        this.smartPhones = products.filter( p =>  p.categoryName === "Smartphones" );
-        this.headphones = products.filter( p =>  p.categoryName === "Headphones" );
-        this.tvs = products.filter( p =>  p.categoryName === "Smart TVs" );
-        this.speakers = products.filter( p =>  p.categoryName === "Speakers" );
-        this.smartWatches = products.filter( p =>  p.categoryName === "Smartwatches" );
-        this.smartHome = products.filter( p =>  p.categoryName === "Smart Home Kits" );
-        this.tablets = products.filter( p =>  p.categoryName === "Tablets" );
-        this.laptops = products.filter( p =>  p.categoryName === "Laptops" );
+        this.smartPhones = products.filter( p =>  p.categoryName === "Smartphone" );
+        this.headphones = products.filter( p =>  p.categoryName === "Headphone" );
+        this.tvs = products.filter( p =>  p.categoryName === "Smart TV" );
+        this.speakers = products.filter( p =>  p.categoryName === "Speaker" );
+        this.smartWatches = products.filter( p =>  p.categoryName === "Smartwatch" );
+        this.smartHome = products.filter( p =>  p.categoryName === "Smart Home Kit" );
+        this.tablets = products.filter( p =>  p.categoryName === "Tablet" );
+        this.laptops = products.filter( p =>  p.categoryName === "Laptop" );
         this.favoriteProductsArray = products.filter( p => p.isFavorite === true);
       }
     );
