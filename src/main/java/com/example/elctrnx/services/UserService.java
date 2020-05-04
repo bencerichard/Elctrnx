@@ -67,15 +67,14 @@ public class UserService {
         userRepository.deleteByUsername(username);
     }
 
-    public UserDTO update(Integer id, UserDTO userToUpdate) {
+    public UserDTO update(String username, UserDTO userToUpdate) {
         String[] splitName = splitNames(userToUpdate.getFullName());
-        Roles role = Roles.builder()
-                .roleName(userToUpdate.getRole().getRoleName())
-                .roleId(userToUpdate.getRole().getId())
-                .build();
 
-        if (userRepository.findById(id).isPresent()) {
-            User existingUser = userRepository.findById(id).get();
+        Roles role = rolesService.getRoleByName(userToUpdate.getRole().getRoleName());
+
+        if (userRepository.findUserByUsername(username).isPresent()) {
+            User existingUser = userRepository.findUserByUsername(username).get();
+            existingUser.setUsername(userToUpdate.getUsername());
             existingUser.setEmailAddress(userToUpdate.getEmailAddress());
             existingUser.setFistName(splitName[0]);
             existingUser.setLastName(splitName[1]);
@@ -84,7 +83,7 @@ public class UserService {
             userRepository.save(existingUser);
             return userMapper.mapUserToUserDTO(existingUser);
         } else {
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException(username);
         }
     }
 
@@ -146,5 +145,18 @@ public class UserService {
             return userMapper.mapUserToUserDTO(existingUser);
         }
         throw new UserNotFoundException(username);
+    }
+
+    public List<String> getAllUsernames(String username) {
+        List<User> users = userRepository.findAll();
+        List<String> usernameList = new ArrayList<>();
+
+        users.forEach( user ->
+                {
+                    if(!user.getUsername().equals(username))
+                    usernameList.add(user.getUsername());
+                }
+        );
+        return usernameList;
     }
 }

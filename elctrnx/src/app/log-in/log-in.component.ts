@@ -62,8 +62,6 @@ export class LogInComponent implements OnInit {
           this.router.navigate(['/products']).then();
           this.authenticationService.isLoggedIn = true;
           localStorage.setItem('username', this.loginData.username.value);
-          localStorage.setItem('fullName', this.loginData.fullName.value);
-          localStorage.setItem('email', this.loginData.email.value);
         },
         error => {
           this.notifier.notify("error", "Wrong username or password");

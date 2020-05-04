@@ -3,10 +3,11 @@ body {
 }
 
 .emp-profile {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   padding: 3%;
-  margin-top: 5%;
-  margin-bottom: 3%;
-  border-radius: 0.5rem;
   background: #fff;
 }
 
@@ -132,6 +133,7 @@ body {
   color: black;
   background-color: white;
   border: none;
+  cursor: context-menu;
 }
 
 .btn-save-profile-changes{
@@ -275,6 +277,51 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.sticky-top{
+.sticky-top {
   position: fixed;
+}
+
+#check{
+  position: absolute;
+  color: #2AB64B;
+  right: 2%;
+  bottom: -24px;
+  transform: rotateZ(-10deg);
+  font-size: 35px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline:none;
+}
+
+.inputs{
+  position: absolute;
+  outline: none;
+  border: none;
+  top: -8px;
+  color: #0056B3;
+}
+
+.inputsNonEdit{
+  position: absolute;
+  outline: none;
+  border: none;
+  cursor: context-menu;
+  color: #0056B3;
+}
+
+.inputs:focus{
+  border: none;
+}
+
+ .inputs.ng-valid{
+  border: none;
+ }
+
+.inputs.ng-invalid{
+  border-bottom: 1px solid red;
+}
+
+.inputLabel:active{
+  outline: none;
 }

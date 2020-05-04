@@ -27,12 +27,16 @@ export class UserService {
     return this.http.get<User>(this.userUrl + username);
   }
 
+  getAllUsernames(username: string):Observable<string[]>{
+    return this.http.get<string[]>(this.userUrl+'/getUsernames/'+username);
+  }
+
   newUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions);
   }
 
-  updateUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>(this.userUrl + id, user, this.httpOptions);
+  updateUser(username: string, user: User): Observable<User> {
+    return this.http.put<User>(this.userUrl + username, user, this.httpOptions);
   }
 
   deleteUser(id: number): Observable<User> {
