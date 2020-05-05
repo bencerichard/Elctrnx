@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
@@ -12,7 +12,7 @@ import {NotifierService} from "angular-notifier";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
   products2: Product[] = [];
@@ -104,6 +104,10 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.prepareClientName();
+  }
+
+  ngOnDestroy(): void {
+    this.authenticationService.isLoggedIn = true;
   }
 
   my_account(): void {

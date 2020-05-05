@@ -3,10 +3,9 @@ import {User} from "../User";
 import {UserService} from "../User.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
-import {ProductsComponent} from "../products/products.component";
 import {Observable} from "rxjs";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-my-account',
@@ -21,14 +20,14 @@ export class MyAccountComponent implements OnInit {
   userNav: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   clientName: string;
 
-  prepareClientName (){
-    this.userNav.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
+  prepareClientName() {
+    this.userNav.subscribe(user => {
+      let userArray = user.fullName.split(" ", 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
-    } );
+    });
   }
 
-  accountEditForm   = new FormGroup({
+  accountEditForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     fullName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
@@ -36,12 +35,13 @@ export class MyAccountComponent implements OnInit {
 
   users: User[] = [];
   user: User;
+  hoar: string;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
-              ) {
+              private location: Location) {
   }
 
   getUsers(): void {
@@ -63,7 +63,7 @@ export class MyAccountComponent implements OnInit {
 
   getUser(username: string): void {
     this.userService.getUserByUsername(username).subscribe(
-      user=>{
+      user => {
         this.user = user;
       }
     )
@@ -84,33 +84,37 @@ export class MyAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authenticationService.isLoggedIn = true;
     this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(data => {
-      this.accountEditForm = new FormGroup({
-        username: new FormControl(
+      this.accountEditForm = this.formBuilder.group({
+        username: [
           data.username,
-          [
-            Validators.required,
-            Validators.minLength(1)
-          ]
-        ),
+          Validators.required,
+          Validators.minLength(1)
+        ],
 
-        fullName: new FormControl(data.fullName,
-          [
-            Validators.required,
-            Validators.minLength(4)
-          ]
-        ),
-        email: new FormControl(data.emailAddress,
-          [
-            Validators.required,
-            Validators.minLength(5)
-          ]),
+
+        fullName: [
+          data.fullName,
+          Validators.required,
+          Validators.minLength(4)
+        ],
+        email: [
+          data.emailAddress,
+          Validators.required,
+          Validators.minLength(5)
+        ],
       });
     });
     this.getUsers();
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     this.prepareClientName();
     this.getUser(localStorage.getItem('username'));
+    this.userService.getCustomerHoar(localStorage.getItem('username')).subscribe(
+      hoar => {
+        this.hoar = hoar
+      }
+    )
   }
 
 
@@ -124,6 +128,11 @@ export class MyAccountComponent implements OnInit {
 
   logout(): void {
     this.authenticationService.logout();
+  }
+
+  goBack(): void {
+    this.authenticationService.isLoggedIn = true;
+    this.location.back();
   }
 }
 

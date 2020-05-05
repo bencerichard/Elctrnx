@@ -46,4 +46,8 @@ export class UserService {
   deleteFromFavorites(id: number, username: string) {
     return this.http.delete("http://localhost:8080/favorites/" + id + "/" + username);
   }
+
+  getCustomerHoar(username: string):Observable<string> {
+    return this.http.get<string>(this.userUrl + username + "/hoar");
+  }
 }

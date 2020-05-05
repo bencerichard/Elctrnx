@@ -15,6 +15,11 @@ import com.example.elctrnx.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,10 +54,11 @@ public class UserService {
             Roles role = rolesService.getRoleByName(newUser.getRole().getRoleName());
             User user = User.builder()
                     .emailAddress(newUser.getEmailAddress())
+                    .registrationDate(LocalDateTime.now())
                     .username(newUser.getUsername())
                     .fistName(splitName[0])
                     .lastName(splitName[1])
-                    .password(newUser.getPassword())
+                    .password(UserService.getMd5(newUser.getPassword()))
                     .role(role)
                     .selectedProducts(cartMapper.mapCartDTOListToCartList(newUser.getCart()))
                     .favoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(newUser.getFavorites()))
@@ -79,7 +85,7 @@ public class UserService {
             existingUser.setEmailAddress(userToUpdate.getEmailAddress());
             existingUser.setFistName(splitName[0]);
             existingUser.setLastName(splitName[1]);
-            existingUser.setPassword(userToUpdate.getPassword());
+            existingUser.setPassword(UserService.getMd5(userToUpdate.getPassword()));
             existingUser.setRole(role);
             userRepository.save(existingUser);
             return userMapper.mapUserToUserDTO(existingUser);
@@ -108,7 +114,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findUserByUsername(logInDTO.getUsername());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getPassword().equals(logInDTO.getPassword())) {
+            if (user.getPassword().equals(UserService.getMd5(logInDTO.getPassword()))) {
                 LogInDTO.builder()
                         .username(logInDTO.getUsername())
                         .password(logInDTO.getPassword())
@@ -146,5 +152,45 @@ public class UserService {
             return userMapper.mapUserToUserDTO(existingUser);
         }
         throw new UserNotFoundException(username);
+    }
+
+    public static String getMd5(String input) {
+        try {
+
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest
+            //  of an input digest() return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String getCustomerHoar(String username) {
+        Optional<User> optionalUser = userRepository.findUserByUsername(username);
+        if (optionalUser.isPresent()) {
+            User currentUser = optionalUser.get();
+            LocalDateTime start = currentUser.getRegistrationDate();
+            LocalDateTime end = LocalDateTime.now();
+            Duration diff = Duration.between(start, end);
+            Long hoar = diff.toDays();
+            return hoar.toString();
+        }
+        return null;
     }
 }

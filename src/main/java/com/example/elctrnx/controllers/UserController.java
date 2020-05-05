@@ -58,4 +58,10 @@ public class UserController {
     public UserDTO postFavorites(@PathVariable String username, @RequestBody FavoritesDTO favoritesDTO) {
         return userService.postFavorites(username, favoritesDTO);
     }
+
+    @GetMapping("/{username}/hoar")
+    @ResponseStatus(HttpStatus.OK)
+    public String getCustomerHoar(@PathVariable String username) {
+        return userService.getCustomerHoar(username);
+    }
 }
