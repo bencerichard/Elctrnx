@@ -25,6 +25,11 @@ export class MyAccountComponent implements OnInit {
   users: User[] = [];
   user: User;
   allUsernames : string[];
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  imageName: any;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -150,6 +155,7 @@ export class MyAccountComponent implements OnInit {
     this.prepareClientName();
     this.getUser(localStorage.getItem('username'));
     this.getAllUsernames();
+    this.getImage();
   }
 
   getAllUsernames(){
@@ -226,6 +232,28 @@ export class MyAccountComponent implements OnInit {
     if (this.accountEditForm.get(name).invalid) {
       return true;
     }
+  }
+
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadImage() {
+    debugger
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.userService.postImage(uploadImageData).subscribe(() => {});
+  }
+
+  getImage() {
+    this.userService.getImage('unnamed.png')
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
   }
 }
 

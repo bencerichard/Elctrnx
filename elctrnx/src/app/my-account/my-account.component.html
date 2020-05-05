@@ -4,10 +4,11 @@
     <div class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img src="/assets/img/no_profile_picture.png" alt="no_profile " height="230" width="230"/>
+<!--          <img *ngIf="this.selectedFile !== null" src="/assets/img/no_profile_picture.png"  (click)="uploadImage()" alt="no_profile " height="230" width="230"/>-->
+          <img *ngIf="retrievedImage != null"  [src]="retrievedImage"  (click)="uploadImage()" alt="no_profile " height="230" width="230"/>
           <div class="file btn btn-lg btn-primary">
             Change Photo
-            <input type="file" name="file"/>
+            <input type="file" (change)="onFileChanged($event)" name="file"/>
           </div>
         </div>
       </div>
@@ -137,7 +138,6 @@
             <div *ngIf="isEditingEnabled;">
              <button [disabled]="!accountEditForm.valid" (click)="updateUser()" id="check" class="fas fa-check fa-2x" data-toggle="tooltip" data-placement="top" title="Save changes"></button>
             </div>
-
           </div>
         </div>
       </div>

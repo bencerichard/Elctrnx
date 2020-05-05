@@ -50,4 +50,14 @@ export class UserService {
   deleteFromFavorites(id: number, username: string) {
     return this.http.delete("http://localhost:8080/favorites/" + id + "/" + username);
   }
+
+  postImage(uploadImageData :FormData): Observable<any> {
+    debugger
+    return this.http.post<any>('http://localhost:8080/image/upload', uploadImageData)
+  }
+
+  getImage(imageName: any): Observable<any>{
+    return this.http.get<any>( 'http://localhost:8080/image/get/' + imageName);
+  }
+
 }
