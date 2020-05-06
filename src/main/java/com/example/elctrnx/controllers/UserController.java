@@ -29,10 +29,16 @@ public class UserController {
         return userService.save(newUser);
     }
 
-    @PutMapping()
+    @PutMapping("/{username}")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDTO updateUser(@PathVariable Integer id, @RequestBody UserDTO userToUpdate) {
-        return userService.update(id, userToUpdate);
+    public UserDTO updateUser(@PathVariable String username, @RequestBody UserDTO userToUpdate) {
+        return userService.update(username, userToUpdate);
+    }
+
+    @GetMapping("/getUsernames/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<String> getAllUsernames(@PathVariable String username){
+        return userService.getAllUsernames(username);
     }
 
     @GetMapping("/{username}")

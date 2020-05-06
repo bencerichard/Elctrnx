@@ -32,7 +32,8 @@ export class RegisterComponent implements OnInit {
   }
 
   createAccount(): void {
-    if (this.registrationData.password.value === this.registrationData.confirmPassword.value) {
+    if (this.registrationData.password.value === this.registrationData.confirmPassword.value
+      && this.registrationData.username.value != '' && this.registrationData.password.value != '') {
       this.userService.newUser({
         username: this.registrationData.username.value,
         password: this.registrationData.password.value,
@@ -43,14 +44,29 @@ export class RegisterComponent implements OnInit {
         cart: this.cart,
         favorites: []
       }).pipe(first()).subscribe(
-        data => this.router.navigate(['/log-in'])
+        data => {
+          this.router.navigate(['/log-in']);
+          this.notifier.notify("info", "Account created with success");
+        },
+        error => {
+          if (error.error.message === '1') {
+            this.notifier.notify("warning", "Please enter your Full name");
+          } else {
+            this.notifier.notify("error", "This username is taken");
+          }
+        }
       );
-      this.notifier.notify("info", "Account created with success");
+    } else {
+      if (this.registrationData.username.value === '') {
+        this.notifier.notify("error", "Enter an username");
+      } else {
+        if (this.registrationData.password.value === '' || this.registrationData.confirmPassword.value === '') {
+          this.notifier.notify("error", "Enter password");
+        } else {
+          this.notifier.notify("error", "Password doesn't match confirm Password");
+        }
+      }
     }
-    else{
-      this.notifier.notify("error", "Password doesn't match Confirm Password");
-    }
-
   }
 
   ngOnInit(): void {
