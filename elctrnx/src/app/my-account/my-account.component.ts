@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../Authentication.service";
 import {Observable} from "rxjs";
+import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
 import {NotifierService} from "angular-notifier";
 
@@ -30,10 +31,12 @@ export class MyAccountComponent implements OnInit {
   base64Data: any;
   retrieveResonse: any;
   imageName: any;
+  hoar: string;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
+              private location: Location,
               private authenticationService: AuthenticationService,
               private notifierService: NotifierService,
               private router: Router,
@@ -41,9 +44,9 @@ export class MyAccountComponent implements OnInit {
     this.notifier = notifierService;
   }
 
-  prepareClientName (){
-    this.userNav.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
+  prepareClientName() {
+    this.userNav.subscribe(user => {
+      let userArray = user.fullName.split(" ", 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
       this.isAdmin = user.role.roleName === 'Admin';
     } );
@@ -84,7 +87,6 @@ export class MyAccountComponent implements OnInit {
       ])
   });
 
-
   getUsers(): void {
     this.userService.getUsers().subscribe(
       users => {
@@ -104,7 +106,7 @@ export class MyAccountComponent implements OnInit {
 
   getUser(username: string): void {
     this.userService.getUserByUsername(username).subscribe(
-      user=>{
+      user => {
         this.user = user;
       }
     )
@@ -154,6 +156,13 @@ export class MyAccountComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     this.prepareClientName();
     this.getUser(localStorage.getItem('username'));
+
+    this.userService.getCustomerHoar(localStorage.getItem('username')).subscribe(
+      hoar => {
+        this.hoar = hoar
+      }
+    );
+
     this.getAllUsernames();
     this.getImage();
   }
@@ -162,6 +171,7 @@ export class MyAccountComponent implements OnInit {
     this.userService.getAllUsernames(localStorage.getItem('username')).subscribe(
       usernames => this.allUsernames = usernames
     ) ;
+
   }
 
   updateUser(): void {
@@ -233,6 +243,13 @@ export class MyAccountComponent implements OnInit {
       return true;
     }
   }
+
+  goBack(): void {
+    this.authenticationService.isLoggedIn = true;
+    this.location.back();
+  }
+
+
 
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];

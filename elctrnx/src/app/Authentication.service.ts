@@ -28,6 +28,7 @@ export class AuthenticationService {
       .pipe(map(user => {
         if (user) {
           this.isLoggedIn = true;
+          debugger
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
