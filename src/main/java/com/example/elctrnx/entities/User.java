@@ -3,6 +3,7 @@ package com.example.elctrnx.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -21,6 +22,7 @@ public class User {
     private String username;
     private String password;
     private String emailAddress;
+    private LocalDateTime registrationDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Roles role;

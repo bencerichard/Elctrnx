@@ -22,9 +22,11 @@
               class="fas fa-user-edit fa-lg"></i></button>
 
           </div>
+
           <h6 *ngIf="!isAdmin" class="mt-2">Client</h6>
           <h6 *ngIf="isAdmin" class="mt-2">Administrator</h6>
-          <p class="proile-rating">Thank you for being our customer for : <span>3 months</span></p>
+          <p class="proile-rating">Thank you for being our customer for : <span>{{hoar}}</span></p>
+
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="home-tab" (click)="disableEdit()" data-toggle="tab" href="#home" role="tab" aria-controls="home"
@@ -38,7 +40,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <a href="/products"> <img src="assets/img/back-button.png" class="profile-return-btn-btn ml-2"></a>
+        <a (click)="goBack()" style="cursor: pointer"> <img src="assets/img/back-button.png" class="profile-return-btn-btn ml-2"></a>
       </div>
     </div>
     <div class="row">
