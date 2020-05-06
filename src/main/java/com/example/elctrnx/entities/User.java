@@ -35,4 +35,7 @@ public class User {
     @ToString.Exclude
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorites> favoritesList;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Image image;
 }
