@@ -8,7 +8,6 @@ import {MyAccountComponent} from "./my-account/my-account.component";
 import {ListingProductsComponent} from "./listing-products/listing-products.component";
 import {ScrollComponent} from "./scroll/scroll.component";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
-import {AuthGuardService} from "./guards/auth-guard.service";
 
 const routes: Routes = [
   {path: 'products', component: ProductsComponent},
