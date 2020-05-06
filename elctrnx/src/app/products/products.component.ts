@@ -12,7 +12,7 @@ import {NotifierService} from "angular-notifier";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
   products2: Product[] = [];
@@ -100,10 +100,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getProducts();
     this.prepareClientName();
-  }
-
-  ngOnDestroy(): void {
-    this.authenticationService.isLoggedIn = true;
   }
 
   my_account(): void {
