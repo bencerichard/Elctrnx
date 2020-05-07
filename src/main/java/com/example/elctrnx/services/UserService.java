@@ -3,6 +3,7 @@ package com.example.elctrnx.services;
 import com.example.elctrnx.dtos.FavoritesDTO;
 import com.example.elctrnx.dtos.LogInDTO;
 import com.example.elctrnx.dtos.UserDTO;
+import com.example.elctrnx.entities.Image;
 import com.example.elctrnx.entities.Roles;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.exceptions.UserNotFoundException;
@@ -93,6 +94,18 @@ public class UserService {
         }
     }
 
+    public void setUserImage(String username, Image image){
+
+        Optional<User> user = userRepository.findUserByUsername(username);
+
+        if(user.isPresent()) {
+            User existingUser = user.get();
+            existingUser.setImage(image);
+            userRepository.save(existingUser);
+        }
+
+    }
+
     public User findUserByUsername(String username) {
         if (userRepository.findUserByUsername(username).isPresent())
             return userRepository.findUserByUsername(username).get();
@@ -179,17 +192,20 @@ public class UserService {
         }
     }
 
-    public String getCustomerHoar(String username) {
+    public Integer getCustomerHoar(String username) {
         Optional<User> optionalUser = userRepository.findUserByUsername(username);
         if (optionalUser.isPresent()) {
             User currentUser = optionalUser.get();
             LocalDateTime start = currentUser.getRegistrationDate();
             LocalDateTime end = LocalDateTime.now();
             Duration diff = Duration.between(start, end);
-            Long hoar = diff.toDays();
-            return hoar.toString();
+            long hoar = diff.toDays();
+            if (hoar==0)
+                hoar= Long.valueOf(1);
+            return (int) hoar;
         }
         return null;
+    }
 
     public List<String> getAllUsernames(String username) {
         List<User> users = userRepository.findAll();

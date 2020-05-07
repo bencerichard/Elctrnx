@@ -51,18 +51,18 @@ export class UserService {
     return this.http.delete("http://localhost:8080/favorites/" + id + "/" + username);
   }
 
-  getCustomerHoar(username: string):Observable<string> {
-    return this.http.get<string>(this.userUrl + username + "/hoar");
+  getCustomerHoar(username: string):Observable<number> {
+    return this.http.get<number>(this.userUrl + username + "/hoar");
   }
 
 
-  postImage(uploadImageData :FormData): Observable<any> {
+  postImage(uploadImageData :FormData, username: string): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/image/upload/' +username, uploadImageData)
+  }
+
+  getImage(username: string): Observable<any>{
     debugger
-    return this.http.post<any>('http://localhost:8080/image/upload', uploadImageData)
-  }
-
-  getImage(imageName: any): Observable<any>{
-    return this.http.get<any>( 'http://localhost:8080/image/get/' + imageName);
+    return this.http.get<any>( 'http://localhost:8080/image/get/' + username);
   }
 
 }

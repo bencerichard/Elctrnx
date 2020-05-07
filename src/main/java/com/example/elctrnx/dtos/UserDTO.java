@@ -1,6 +1,6 @@
 package com.example.elctrnx.dtos;
 
-import com.example.elctrnx.entities.Favorites;
+import com.example.elctrnx.entities.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,5 +23,5 @@ public class UserDTO implements Serializable {
     private RoleDTO role;
     private List<CartDTO> cart;
     private List<FavoritesDTO> favorites;
-
+    private Image image;
 }

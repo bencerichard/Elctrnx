@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../User";
+import {Image, User} from "../User";
 import {UserService} from "../User.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -30,8 +30,9 @@ export class MyAccountComponent implements OnInit {
   retrievedImage: any;
   base64Data: any;
   retrieveResonse: any;
-  imageName: any;
-  hoar: string;
+  hoar: number;
+  image: Image;
+  displayMessage = false;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -42,6 +43,11 @@ export class MyAccountComponent implements OnInit {
               private router: Router,
   ) {
     this.notifier = notifierService;
+  }
+
+  prepareForUpload(): boolean{
+    this.displayMessage = true;
+    return true;
   }
 
   prepareClientName() {
@@ -105,9 +111,13 @@ export class MyAccountComponent implements OnInit {
   }
 
   getUser(username: string): void {
+    debugger
     this.userService.getUserByUsername(username).subscribe(
       user => {
         this.user = user;
+        this.image = user.image;
+        if(user.image!=null)
+          this.getImage();
       }
     )
   }
@@ -164,7 +174,6 @@ export class MyAccountComponent implements OnInit {
     );
 
     this.getAllUsernames();
-    this.getImage();
   }
 
   getAllUsernames(){
@@ -198,10 +207,9 @@ export class MyAccountComponent implements OnInit {
         role: this.isAdmin === true ? {roleName: 'Admin'} : {roleName: 'Client'},
         cart: [],
         favorites: []
-      }).pipe(first()).subscribe(
+      } as User).pipe(first()).subscribe(
         data => {
           localStorage.setItem('username',this.editedData.username.value);
-          // this.router.navigate(['/products']);
           location.reload();
           this.notifier.notify("info", "Account updated with success");
         },
@@ -249,38 +257,28 @@ export class MyAccountComponent implements OnInit {
     this.location.back();
   }
 
-
-
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
   }
 
   uploadImage() {
-    debugger
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.userService.postImage(uploadImageData).subscribe(() => {});
+    this.userService.postImage(uploadImageData,localStorage.getItem('username')).subscribe(() => {
+    });
+    location.reload();
   }
 
-  getImage() {
-    this.userService.getImage('unnamed.png')
-      .subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      );
+  getImage(): void{
+
+      this.userService.getImage(localStorage.getItem('username'))
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          }
+        );
+
   }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../User.service";
 import {first} from "rxjs/operators";
-import {Cart} from "../User";
+import {Cart, User} from "../User";
 import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-register',
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         role: {roleName: 'Client'},
         cart: this.cart,
         favorites: []
-      }).pipe(first()).subscribe(
+      } as User).pipe(first()).subscribe(
         data => {
           this.router.navigate(['/log-in']);
           this.notifier.notify("info", "Account created with success");

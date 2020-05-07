@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'my-account', component: MyAccountComponent},
   {path: 'listing-products', component: ListingProductsComponent},
-  {path: 'listing-products-apple', component: ListingProductsComponent, canActivate: [AuthGuardService]},
+  {path: 'listing-products-apple', component: ListingProductsComponent},
   {path: 'listing-products-samsung', component: ListingProductsComponent},
   {path: 'listing-products-sony', component: ListingProductsComponent},
   {path: 'listing-products-asus', component: ListingProductsComponent},
@@ -36,7 +36,7 @@ const routes: Routes = [
   {path: 'listing-products-smartphones', component: ListingProductsComponent},
   {path: 'listing-products-favorites', component: ListingProductsComponent},
   {path: 'scroll', component: ScrollComponent},
-  {path: 'detail/:id', component: ProductDetailComponent, canActivate: [AuthGuardService]},
+  {path: 'detail/:id', component: ProductDetailComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];

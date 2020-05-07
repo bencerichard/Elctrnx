@@ -1,7 +1,9 @@
 package com.example.elctrnx.controllers;
 
 import com.example.elctrnx.entities.Image;
-import com.example.elctrnx.repositories.ImageRepository;
+import com.example.elctrnx.entities.User;
+import com.example.elctrnx.services.ImageService;
+import com.example.elctrnx.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -11,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -21,32 +22,44 @@ import java.util.zip.Inflater;
 @RequestMapping(value = "/image")
 public class ImageController {
 
+    //TODO change dependecy injection to RequiredArgsConstructor
     @Autowired
-    ImageRepository imageRepository;
+    ImageService imageService;
 
-    @PostMapping("/upload")
-    public RequestEntity.BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+    //TODO change dependecy injection to RequiredArgsConstructor
+    @Autowired
+    private UserService userService;
 
-        System.out.println("Original Image Byte Size - " + file.getBytes().length);
+    @PostMapping("/upload/{username}")
+    public RequestEntity.BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file, @PathVariable String username) throws IOException {
+
+        User user = userService.findUserByUsername(username);
+
         Image img = Image.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .picByte(compressBytes(file.getBytes()))
                 .build();
 
-        imageRepository.save(img);
+        imageService.save(img);
+
+        user.setImage(img);
+        userService.setUserImage(username,img);
+
         return (RequestEntity.BodyBuilder) ResponseEntity.status(HttpStatus.OK);
     }
 
-    @GetMapping(path = { "/get/{imageName}" })
-    public Image getImage(@PathVariable("imageName") String imageName) throws IOException {
+    @GetMapping(path = { "/get/{username}" })
+    public Image getImage(@PathVariable("username")String username) throws IOException {
 
-        final Optional<Image> retrievedImage = imageRepository.findByName(imageName);
+        User user = userService.findUserByUsername(username);
+
+        final Image retrievedImage = user.getImage();
         return Image.builder()
-                        .name(retrievedImage.get().getName())
-                        .type(retrievedImage.get().getType())
-                        .picByte(decompressBytes(retrievedImage.get().getPicByte()))
-                        .build();
+                .name(retrievedImage.getName())
+                .type(retrievedImage.getType())
+                .picByte(decompressBytes(retrievedImage.getPicByte()))
+                .build();
     }
 
     public static byte[] compressBytes(byte[] data) {
@@ -55,7 +68,7 @@ public class ImageController {
         deflater.finish();
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[2048];
         while (!deflater.finished()) {
             int count = deflater.deflate(buffer);
             outputStream.write(buffer, 0, count);
@@ -73,7 +86,7 @@ public class ImageController {
         Inflater inflater = new Inflater();
         inflater.setInput(data);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[2048];
         try {
             while (!inflater.finished()) {
                 int count = inflater.inflate(buffer);

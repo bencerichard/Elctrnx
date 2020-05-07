@@ -25,9 +25,6 @@ public class Image {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "picByte", length = 1000)
+    @Column(name = "picByte", length = 3000)
     private byte[] picByte;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
 }

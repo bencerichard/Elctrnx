@@ -67,7 +67,7 @@ public class UserController {
 
     @GetMapping("/{username}/hoar")
     @ResponseStatus(HttpStatus.OK)
-    public String getCustomerHoar(@PathVariable String username) {
+    public Integer getCustomerHoar(@PathVariable String username) {
         return userService.getCustomerHoar(username);
     }
 }

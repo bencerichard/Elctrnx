@@ -294,6 +294,20 @@ body {
   outline:none;
 }
 
+#checkPhoto{
+  position: absolute;
+  top: 179px;
+  right: 60px;
+  cursor: pointer !important;
+  color: #2AB64B;
+  font-size: 20px;
+  transform: rotateZ(-10deg);
+  background: none;
+  border: none;
+  outline:none;
+  z-index: 99;
+}
+
 .inputs{
   position: absolute;
   outline: none;
