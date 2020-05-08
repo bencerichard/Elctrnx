@@ -46,8 +46,8 @@
   <div class="row slider">
     <div class="column" *ngFor="let product of appleProducts">
       <div class="cardP mb-5 polaroid">
-        <button *ngIf="isFavorite(product) === false" (click)="addToFavorites(product)" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
-        <button *ngIf="isFavorite(product) === true" (click)="deleteFromFavorites(product)" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+        <button *ngIf="isFavorite(product) === false" (click)="addToFavorites(product)" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+        <button *ngIf="isFavorite(product) === true" (click)="deleteFromFavorites(product)" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
         <div class="card-body">
           <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
                alt="Card image">

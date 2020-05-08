@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../User";
+import {Image, User} from "../User";
 import {UserService} from "../User.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
-import {ProductsComponent} from "../products/products.component";
 import {Observable} from "rxjs";
+import {Location} from "@angular/common";
+import {first} from "rxjs/operators";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-my-account',
@@ -15,34 +16,82 @@ import {Observable} from "rxjs";
 })
 export class MyAccountComponent implements OnInit {
 
-  showModal = false;
   returnUrl: string;
   id: number;
   userNav: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   clientName: string;
-
-  prepareClientName (){
-    this.userNav.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
-    } );
-  }
-
-  accountEditForm   = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    fullName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-  });
-
+  isEditingEnabled = false;
+  isAdmin : boolean;
+  private readonly notifier: NotifierService;
   users: User[] = [];
   user: User;
+  allUsernames : string[];
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  hoar: number;
+  image: Image;
+  displayMessage = false;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
+              private location: Location,
               private authenticationService: AuthenticationService,
-              ) {
+              private notifierService: NotifierService,
+              private router: Router,
+  ) {
+    this.notifier = notifierService;
   }
+
+  prepareForUpload(): boolean{
+    this.displayMessage = true;
+    return true;
+  }
+
+  prepareClientName() {
+    this.userNav.subscribe(user => {
+      let userArray = user.fullName.split(" ", 2);
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+      this.isAdmin = user.role.roleName === 'Admin';
+    } );
+  }
+
+  accountEditForm   = new FormGroup({
+    username: new FormControl('',
+      [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+    fullName: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Z][a-z]+ [A-Z][a-z]+$/)
+      ]),
+    email: new FormControl('',
+      [
+      Validators.required,
+      Validators
+        .pattern(
+          /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
+    ]),
+    address: new FormControl('',
+      [
+      Validators.required,
+      Validators.minLength(4)
+    ]),
+    password: new FormControl('',
+      [
+      Validators.required,
+        Validators.minLength(3)
+      ]),
+    confirmPassword: new FormControl('',
+      [
+        Validators.required,
+        Validators.minLength(3),
+      ])
+  });
 
   getUsers(): void {
     this.userService.getUsers().subscribe(
@@ -62,25 +111,15 @@ export class MyAccountComponent implements OnInit {
   }
 
   getUser(username: string): void {
+    debugger
     this.userService.getUserByUsername(username).subscribe(
-      user=>{
+      user => {
         this.user = user;
+        this.image = user.image;
+        if(user.image!=null)
+          this.getImage();
       }
     )
-  }
-
-  newUser(user: User): void {
-    this.userService.newUser(user).subscribe();
-  }
-
-  updateUser(user: User): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.updateUser(id, user).subscribe();
-  }
-
-  deleteUser() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.deleteUser(id).subscribe();
   }
 
   ngOnInit(): void {
@@ -90,20 +129,36 @@ export class MyAccountComponent implements OnInit {
           data.username,
           [
             Validators.required,
-            Validators.minLength(1)
+            Validators.minLength(3)
           ]
         ),
-
         fullName: new FormControl(data.fullName,
           [
             Validators.required,
-            Validators.minLength(4)
+            Validators.pattern(/^[A-Z][a-z]+ [A-Z][a-z]+$/)
           ]
         ),
         email: new FormControl(data.emailAddress,
           [
             Validators.required,
-            Validators.minLength(5)
+            Validators
+              .pattern(
+                /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
+          ]),
+        address: new FormControl(data.fullName,
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]),
+        password: new FormControl(data.password,
+          [
+            Validators.required,
+            Validators.minLength(3)
+          ]),
+        passwordConfirm: new FormControl(data.password,
+          [
+            Validators.required,
+            Validators.minLength(3)
           ]),
       });
     });
@@ -111,29 +166,119 @@ export class MyAccountComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     this.prepareClientName();
     this.getUser(localStorage.getItem('username'));
+
+    this.userService.getCustomerHoar(localStorage.getItem('username')).subscribe(
+      hoar => {
+        this.hoar = hoar
+      }
+    );
+
+    this.getAllUsernames();
   }
 
+  getAllUsernames(){
+    this.userService.getAllUsernames(localStorage.getItem('username')).subscribe(
+      usernames => this.allUsernames = usernames
+    ) ;
 
-  modalFunction(): void {
-    this.showModal = !this.showModal;
   }
 
-  closeModal(): void {
-    this.showModal = !this.showModal;
+  updateUser(): void {
+
+    let ok=1;
+
+    this.allUsernames.forEach(
+      username => {
+        if(username === this.editedData.username.value) {
+          this.notifier.notify("error", "This username is taken");
+          ok = 0;
+        }
+      }
+    );
+
+      if ( ok === 1 && this.editedData.password.value === this.editedData.passwordConfirm.value
+      && this.editedData.username.value != '' && this.editedData.password.value != '') {
+      this.userService.updateUser(localStorage.getItem('username'),{
+        username: this.editedData.username.value,
+        password: this.editedData.password.value,
+        confirmPassword: this.editedData.passwordConfirm.value,
+        fullName: this.editedData.fullName.value,
+        emailAddress: this.editedData.email.value,
+        role: this.isAdmin === true ? {roleName: 'Admin'} : {roleName: 'Client'},
+        cart: [],
+        favorites: []
+      } as User).pipe(first()).subscribe(
+        data => {
+          localStorage.setItem('username',this.editedData.username.value);
+          location.reload();
+          this.notifier.notify("info", "Account updated with success");
+        },
+        error => {
+          if (error.error.message === '1') {
+            this.notifier.notify("warning", "Please enter your Full name");
+          } else {
+            this.notifier.notify("error", "This username is taken");
+          }
+        }
+      );
+    } else {
+      if (this.editedData.username.value === '' && ok === 1) {
+        this.notifier.notify("error", "Enter an username");
+      } else {
+        if (this.editedData.password.value === '' || this.editedData.passwordConfirm.value === '' && ok === 1) {
+          this.notifier.notify("error", "Enter password");
+        } else if(ok === 1) {
+          this.notifier.notify("error", "Password doesn't match confirm Password");
+        }
+      }
+    }
   }
 
-  logout(): void {
-    this.authenticationService.logout();
+  get editedData() {
+    return this.accountEditForm.controls;
+  }
+
+  enableEdit(){
+    this.isEditingEnabled = true;
+  }
+
+  disableEdit(){
+    this.isEditingEnabled = false;
+  }
+
+   findInvalidControls(name: string) {
+    if (this.accountEditForm.get(name).invalid) {
+      return true;
+    }
+  }
+
+  goBack(): void {
+    this.authenticationService.isLoggedIn = true;
+    this.location.back();
+  }
+
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadImage() {
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.userService.postImage(uploadImageData,localStorage.getItem('username')).subscribe(() => {
+    });
+    location.reload();
+  }
+
+  getImage(): void{
+
+      this.userService.getImage(localStorage.getItem('username'))
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          }
+        );
+
   }
 }
-
-
-
-
-
-
-
-
-
-
-

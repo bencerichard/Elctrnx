@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
@@ -17,18 +17,8 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   products2: Product[] = [];
   user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
-
   clientName: string;
-
-  prepareClientName (){
-    this.user.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
-    } );
-  }
-
   private readonly notifier: NotifierService;
-
   product: Product;
 
   constructor(private productService: ProductService,
@@ -37,10 +27,16 @@ export class ProductsComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private userService: UserService,
               private notifierService: NotifierService) {
-
     this.notifier = notifierService;
   }
 
+
+  prepareClientName (){
+    this.user.subscribe( user => {
+      let userArray = user.fullName.split(" ",2);
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+    } );
+  }
 
   getProducts(): void {
     this.productService.getProducts(localStorage.getItem('username')).subscribe(

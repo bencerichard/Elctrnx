@@ -23,6 +23,7 @@ public class UserMapper {
                 .role(roleMapper.mapRoleToRoleDTO(user.getRole()))
                 .cart(cartMapper.mapCartListToCartDTOList(user.getSelectedProducts()))
                 .favorites(favoritesMapper.mapFavoritesListToFavoritesDTOList(user.getFavoritesList()))
+                .image(user.getImage())
                 .build();
     }
 }

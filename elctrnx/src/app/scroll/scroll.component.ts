@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 declare const scrollPlay: any;
 
@@ -7,7 +7,7 @@ declare const scrollPlay: any;
   templateUrl: './scroll.component.html',
   styleUrls: ['./scroll.component.css']
 })
-export class ScrollComponent implements OnInit {
+export class ScrollComponent implements OnInit, OnDestroy {
 
   constructor() {
   }
@@ -20,4 +20,7 @@ export class ScrollComponent implements OnInit {
     this.animateScroll();
   }
 
+  ngOnDestroy(): void {
+   location.reload();
+  }
 }

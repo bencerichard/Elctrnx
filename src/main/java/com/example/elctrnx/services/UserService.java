@@ -3,6 +3,7 @@ package com.example.elctrnx.services;
 import com.example.elctrnx.dtos.FavoritesDTO;
 import com.example.elctrnx.dtos.LogInDTO;
 import com.example.elctrnx.dtos.UserDTO;
+import com.example.elctrnx.entities.Image;
 import com.example.elctrnx.entities.Roles;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.exceptions.UserNotFoundException;
@@ -15,6 +16,11 @@ import com.example.elctrnx.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,10 +55,11 @@ public class UserService {
             Roles role = rolesService.getRoleByName(newUser.getRole().getRoleName());
             User user = User.builder()
                     .emailAddress(newUser.getEmailAddress())
+                    .registrationDate(LocalDateTime.now())
                     .username(newUser.getUsername())
                     .fistName(splitName[0])
                     .lastName(splitName[1])
-                    .password(newUser.getPassword())
+                    .password(UserService.getMd5(newUser.getPassword()))
                     .role(role)
                     .selectedProducts(cartMapper.mapCartDTOListToCartList(newUser.getCart()))
                     .favoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(newUser.getFavorites()))
@@ -67,25 +74,36 @@ public class UserService {
         userRepository.deleteByUsername(username);
     }
 
-    public UserDTO update(Integer id, UserDTO userToUpdate) {
+    public UserDTO update(String username, UserDTO userToUpdate) {
         String[] splitName = splitNames(userToUpdate.getFullName());
-        Roles role = Roles.builder()
-                .roleName(userToUpdate.getRole().getRoleName())
-                .roleId(userToUpdate.getRole().getId())
-                .build();
 
-        if (userRepository.findById(id).isPresent()) {
-            User existingUser = userRepository.findById(id).get();
+        Roles role = rolesService.getRoleByName(userToUpdate.getRole().getRoleName());
+
+        if (userRepository.findUserByUsername(username).isPresent()) {
+            User existingUser = userRepository.findUserByUsername(username).get();
+            existingUser.setUsername(userToUpdate.getUsername());
             existingUser.setEmailAddress(userToUpdate.getEmailAddress());
             existingUser.setFistName(splitName[0]);
             existingUser.setLastName(splitName[1]);
-            existingUser.setPassword(userToUpdate.getPassword());
+            existingUser.setPassword(UserService.getMd5(userToUpdate.getPassword()));
             existingUser.setRole(role);
             userRepository.save(existingUser);
             return userMapper.mapUserToUserDTO(existingUser);
         } else {
-            throw new UserNotFoundException(id);
+            throw new UserNotFoundException(username);
         }
+    }
+
+    public void setUserImage(String username, Image image){
+
+        Optional<User> user = userRepository.findUserByUsername(username);
+
+        if(user.isPresent()) {
+            User existingUser = user.get();
+            existingUser.setImage(image);
+            userRepository.save(existingUser);
+        }
+
     }
 
     public User findUserByUsername(String username) {
@@ -108,7 +126,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findUserByUsername(logInDTO.getUsername());
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (user.getPassword().equals(logInDTO.getPassword())) {
+            if (user.getPassword().equals(UserService.getMd5(logInDTO.getPassword()))) {
                 LogInDTO.builder()
                         .username(logInDTO.getUsername())
                         .password(logInDTO.getPassword())
@@ -146,5 +164,60 @@ public class UserService {
             return userMapper.mapUserToUserDTO(existingUser);
         }
         throw new UserNotFoundException(username);
+    }
+
+    public static String getMd5(String input) {
+        try {
+
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest
+            //  of an input digest() return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Integer getCustomerHoar(String username) {
+        Optional<User> optionalUser = userRepository.findUserByUsername(username);
+        if (optionalUser.isPresent()) {
+            User currentUser = optionalUser.get();
+            LocalDateTime start = currentUser.getRegistrationDate();
+            LocalDateTime end = LocalDateTime.now();
+            Duration diff = Duration.between(start, end);
+            long hoar = diff.toDays();
+            if (hoar==0)
+                hoar= Long.valueOf(1);
+            return (int) hoar;
+        }
+        return null;
+    }
+
+    public List<String> getAllUsernames(String username) {
+        List<User> users = userRepository.findAll();
+        List<String> usernameList = new ArrayList<>();
+
+        users.forEach( user ->
+                {
+                    if(!user.getUsername().equals(username))
+                    usernameList.add(user.getUsername());
+                }
+        );
+        return usernameList;
+
     }
 }

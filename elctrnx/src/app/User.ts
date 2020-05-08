@@ -9,6 +9,13 @@ export class User {
   role:Role;
   cart:Cart[];
   favorites: Favorites[];
+  image: Image;
+}
+
+export class Image {
+  name:string;
+  type:string;
+  picByte:any;
 }
 
 export class Cart {
