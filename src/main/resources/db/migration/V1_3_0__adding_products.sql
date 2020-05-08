@@ -8,7 +8,7 @@ values (1, 'Iphone 11 Pro 256 Gb', 2,
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (2, 'Samsung Galaxy S20 64 Gb', 2,
         'https://s12emagst.akamaized.net/products/28451/28450673/images/res_e8507ba30388ea5053e015325ef2a793_450x450_rif2.jpg',
-        5000,
+        4000,
         'Meet Galaxy S20. With revolutionary 8K Video Snap changing how you capture not just video but photography. Add in Samsung Knox security,
          an intelligent battery, powerful processor and massive storage — and the Galaxy S20 unveils a whole new world for mobile.',
         'Samsung');
@@ -33,7 +33,7 @@ values (5, 'Monitor Led Dell UltraSharp 23.8"', 3,
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (11, 'Iphone 11 Pro Max 256 Gb', 2,
         'https://s12emagst.akamaized.net/products/25344/25343983/images/res_78e0711f60a6c662c26bc784d808634f_450x450_ksv.jpg',
-        5700,
+        6700,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
         the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
         'Apple');
@@ -230,7 +230,7 @@ values (42, 'LED Smart TV Samsung, 108 cm', 3,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (43, 'LED Curved Smart TV Samsung, 123 cm', 3,
+values (43, 'LED Smart TV Samsung, 123 cm', 3,
         'https://s12emagst.akamaized.net/products/20709/20708868/images/res_a8719021e804d26bf0069a76a621568f_450x450_579j.jpg',
         2600,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
@@ -266,25 +266,25 @@ values (48, 'LED Smart TV Sony Bravia, 101.4 cm', 3,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Sony');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (49, 'LED Android Smart TV Sony Bravia, 123.2 cm', 3,
+values (49, 'LED Smart TV Sony Bravia, 123.2 cm', 3,
         'https://s12emagst.akamaized.net/products/21350/21349552/images/res_ab8bd9fd651f7f5d74039028b92b2756_450x450_g167.jpeg',
         4300,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Sony');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (50, 'LED Android Smart TV Sony Bravia, 123.2 cm', 3,
+values (50, 'LED Smart TV Sony Bravia, 123.2 cm', 3,
         'https://s12emagst.akamaized.net/products/21350/21349558/images/res_d259df307cc7b1f7a9829bbd2dfa55c6_450x450_vhl2.jpg',
         5500,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Sony');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (51, 'OLED Android Smart TV Sony, 163.9 cm', 3,
+values (51, 'OLED  Smart TV Sony, 163 cm', 3,
         'https://s12emagst.akamaized.net/products/21350/21349560/images/res_d9c0f6fd7a70df95cf812113fce07bb6_450x450_460d.jpg',
         14000,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Sony');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (52, 'LED Android Smart TV Sony Bravia, 214.8 cm', 3,
+values (52, 'LED Smart TV Sony Bravia, 214 cm', 3,
         'https://s12emagst.akamaized.net/products/21350/21349575/images/res_a2c39a9e7c6ca4a33df5a526c4fb6140_450x450_qnm1.jpg',
         17000,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
@@ -458,7 +458,7 @@ values (80, 'Tellur WiFi Smart Camera', 7,
         'Replace your outdated security lights with Floodlight Cam, a motion-activated HD camera with two-way talk, lights and a siren. See, hear and speak to people on your property. Shine the lights on all your blindspots. And sound the siren on suspicious activity. All from your phone, tablet and PC.',
         'Tellur');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (81, 'Xiaomi Temperature and Humidity Sensor', 7,
+values (81, 'Xiaomi Temperature Sensor', 7,
         'https://s12emagst.akamaized.net/products/17446/17445544/images/res_ae55228aa7fad0bd1de10eff8be99ca3_450x450_m0a6.jpg',
         70,
         'From across the room or across the country, your Wi-Fi thermostat makes it easy to remotely control and schedule your home comfort - Anytime. Anywhere. Designed to work with the wires you already have, this thermostat does not require a common wire (c-wire) for most installations, so it is compatible with the HVAC equipment in many homes in U.S. Canada.',
@@ -512,13 +512,13 @@ values (89, 'Apple iPad Air 3, 10.5", 256GB', 8,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (90, 'Apple iPad Pro (2018), 12.9", 256GB', 8,
+values (90, 'Apple iPad Pro (2018), 256GB', 8,
         'https://s12emagst.akamaized.net/products/18296/18295782/images/res_955b8853033ac73acf34d344c5e8db2d_450x450_7sit.jpg',
         6000,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (91, 'Apple iPad Pro (2018), 12.9", 512GB', 8,
+values (91, 'Apple iPad Pro (2018), 512GB', 8,
         'https://s12emagst.akamaized.net/products/18296/18295782/images/res_955b8853033ac73acf34d344c5e8db2d_450x450_7sit.jpg',
         7000,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',
