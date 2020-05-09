@@ -458,7 +458,7 @@ values (80, 'Tellur WiFi Smart Camera', 7,
         'Replace your outdated security lights with Floodlight Cam, a motion-activated HD camera with two-way talk, lights and a siren. See, hear and speak to people on your property. Shine the lights on all your blindspots. And sound the siren on suspicious activity. All from your phone, tablet and PC.',
         'Tellur');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (81, 'Xiaomi Temperature Sensor', 7,
+values (81, 'Xiaomi Thermostat', 7,
         'https://s12emagst.akamaized.net/products/17446/17445544/images/res_ae55228aa7fad0bd1de10eff8be99ca3_450x450_m0a6.jpg',
         70,
         'From across the room or across the country, your Wi-Fi thermostat makes it easy to remotely control and schedule your home comfort - Anytime. Anywhere. Designed to work with the wires you already have, this thermostat does not require a common wire (c-wire) for most installations, so it is compatible with the HVAC equipment in many homes in U.S. Canada.',

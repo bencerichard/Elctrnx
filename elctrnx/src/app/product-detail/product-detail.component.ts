@@ -7,6 +7,7 @@ import {Observable} from "rxjs";
 import {User} from "../User";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-product-detail',
@@ -19,6 +20,8 @@ export class ProductDetailComponent implements OnInit {
   clientName: string;
   user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   private readonly notifier: NotifierService;
+  isAdmin = false;
+  showModal = false;
 
   constructor(
     private router: Router,
@@ -26,7 +29,8 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private notifierService: NotifierService) {
+    private notifierService: NotifierService,
+    private location: Location) {
     this.notifier = notifierService
   }
 
@@ -44,6 +48,14 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
+  deleteProduct(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.location.back();
+    });
+  }
+
+
   ngOnInit(): void {
     this.getProduct();
     this.prepareClientName();
@@ -60,7 +72,9 @@ export class ProductDetailComponent implements OnInit {
   prepareClientName() {
     this.user.subscribe(user => {
       let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      if (user.role.roleName.toLowerCase() === 'admin')
+        this.isAdmin = true;
     });
   }
 
@@ -80,5 +94,9 @@ export class ProductDetailComponent implements OnInit {
     });
     product.isFavorite = false;
     this.notifier.notify("default", "Product removed from favorites");
+  }
+
+  modalFunction() {
+    this.showModal = !this.showModal;
   }
 }
