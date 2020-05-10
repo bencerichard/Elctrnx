@@ -591,8 +591,15 @@
 
 </div>
 
+<div class="dropup">
 <button class="polaroid" id="circularFilter" ></button>
-<button class="polaroid" id="cresc" (click)="ascendingByName()">cresc</button>
-<button class="polaroid" id="descr" (click)="descendingByName()">descr</button>
+<div class="dropup-content">
+  <a (click)="ascendingByName()">Ascending by Name</a>
+  <a (click)="descendingByName()">Descending by Name</a>
+  <a (click)="ascendingByPrice()">Ascending by Price</a>
+  <a (click)="descendingByPrice()">Descending by Price</a>
+</div>
+
+</div>
 
 
