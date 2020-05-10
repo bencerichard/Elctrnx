@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "./Product";
-import {User} from "./User";
+import {Cart, OrderInput, User} from "./User";
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
@@ -35,4 +35,23 @@ export class ProductService {
   deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(this.productsUrl + id);
   }
+
+  private apiUrl = 'http://localhost:8080/';
+
+  postOrder(orderInput: OrderInput) {
+    return this.http.post(this.apiUrl + 'orders', orderInput, this.httpOptions);
+  }
+
+  postCart(username: string, cart: Cart[]) {
+    return this.http.patch(this.apiUrl + 'users/' + username, {cart}, this.httpOptions);
+  }
+
+  deleteFromCart(productId: number, username: string) {
+    return this.http.delete(this.apiUrl + 'cart/' + productId + '/' + username);
+  }
+
+  deleteCartAfterCheckout(username: string) {
+    return this.http.delete(this.apiUrl + 'cart/' + username);
+  }
+
 }

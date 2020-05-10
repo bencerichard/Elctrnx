@@ -1,6 +1,7 @@
 package com.example.elctrnx.controllers;
 
 import com.example.elctrnx.dtos.FavoritesDTO;
+import com.example.elctrnx.dtos.OrderDTO;
 import com.example.elctrnx.dtos.UserDTO;
 import com.example.elctrnx.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ public class UserController {
         return userService.update(username, userToUpdate);
     }
 
+
     @GetMapping("/getUsernames/{username}")
     @ResponseStatus(HttpStatus.OK)
     public List<String> getAllUsernames(@PathVariable String username){
@@ -45,6 +47,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public UserDTO getUser(@PathVariable String username) {
         return userService.findByUsername(username);
+    }
+
+    @GetMapping("/{username}/allOrders")
+    public List<OrderDTO> getAllOrdersForUser(@PathVariable String username){
+        return userService.getAllOrdersForUser(username);
     }
 
     @DeleteMapping("/{username}")

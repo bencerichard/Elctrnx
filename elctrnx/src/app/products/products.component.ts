@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from '../Product';
 import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
-import {Favorites, User} from "../User";
+import {Cart, User} from "../User";
 import {UserService} from "../User.service";
 import {Observable} from "rxjs";
 import {NotifierService} from "angular-notifier";
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -20,22 +21,36 @@ export class ProductsComponent implements OnInit {
   clientName: string;
   private readonly notifier: NotifierService;
   product: Product;
+  listOfProducts: Product[] = [];
+  cart: Cart[] = [];
+
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
               private router: Router,
               private authenticationService: AuthenticationService,
               private userService: UserService,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService,
+  ) {
     this.notifier = notifierService;
   }
 
+  getUserCart(username: string) {
+    this.userService.getUserByUsername(username).subscribe(user => {
+        this.cart = user.cart;
+        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'), prod.productId).subscribe(a => {
+          this.listOfProducts.push(a);
+        }));
+      }
+    );
+  }
 
-  prepareClientName (){
-    this.user.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
+
+  prepareClientName() {
+    this.user.subscribe(user => {
+      let userArray = user.fullName.split(" ", 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
-    } );
+    });
   }
 
   getProducts(): void {
@@ -47,21 +62,23 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  addToFavorites(product: Product){
-    this.userService.addToFavorites(localStorage.getItem('username'), product.id).subscribe( () => {} );
+  addToFavorites(product: Product) {
+    this.userService.addToFavorites(localStorage.getItem('username'), product.id).subscribe(() => {
+    });
     product.isFavorite = true;
     this.notifier.notify("success", "Product added to favorites");
   }
 
-  deleteFromFavorites(product: Product){
-    this.userService.deleteFromFavorites(product.id,localStorage.getItem('username')).subscribe( () => {} );
+  deleteFromFavorites(product: Product) {
+    this.userService.deleteFromFavorites(product.id, localStorage.getItem('username')).subscribe(() => {
+    });
     product.isFavorite = false;
     this.notifier.notify("default", "Product removed from favorites");
   }
 
   getSingleProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.getSingleProduct(localStorage.getItem('username'),id).subscribe(
+    this.productService.getSingleProduct(localStorage.getItem('username'), id).subscribe(
       product => {
         this.product = product;
       }
@@ -100,6 +117,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.prepareClientName();
+    this.getUserCart(localStorage.getItem('username'));
   }
 
   my_account(): void {
@@ -142,39 +160,39 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['/listing-products-lg']);
   }
 
-  smartphones(): void{
+  smartphones(): void {
     this.router.navigate(['/listing-products-smartphones']);
   }
 
-  headphones(): void{
+  headphones(): void {
     this.router.navigate(['/listing-products-headphones']);
   }
 
-  tvs():void{
+  tvs(): void {
     this.router.navigate(['/listing-products-tvs']);
   }
 
-  speakers(): void{
+  speakers(): void {
     this.router.navigate(['/listing-products-speakers']);
   }
 
-  smartWatches(): void{
+  smartWatches(): void {
     this.router.navigate(['/listing-products-smartwatches']);
   }
 
-  smartHome(): void{
-      this.router.navigate(['/listing-products-smarthome']);
+  smartHome(): void {
+    this.router.navigate(['/listing-products-smarthome']);
   }
 
-  tablets(): void{
+  tablets(): void {
     this.router.navigate(['/listing-products-tablets']);
   }
 
-  laptops(): void{
+  laptops(): void {
     this.router.navigate(['/listing-products-laptops']);
   }
 
-  favorites(): void{
+  favorites(): void {
     this.router.navigate(['/listing-products-favorites']);
   }
 
@@ -182,7 +200,11 @@ export class ProductsComponent implements OnInit {
     this.authenticationService.logout();
   }
 
-  isFavorite(product: Product): boolean{
+  isFavorite(product: Product): boolean {
     return product.isFavorite;
+  }
+
+  getNumberOfItemsInCart() {
+    return this.listOfProducts.length;
   }
 }

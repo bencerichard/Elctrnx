@@ -16,6 +16,6 @@ export class PageNotFoundComponent implements OnInit {
   }
 
   clickHere(): void{
-    this.router.navigate(['/log-in']);
+    this.router.navigate(['/products']);
   }
 }

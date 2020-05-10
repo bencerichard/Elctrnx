@@ -25,11 +25,11 @@ body {
 
 @media screen and (max-width: 450px) {
   .register-form {
-    margin-top: 10%;
+    margin-top: 15%;
   }
 
   .register-form {
-    margin-top: 10%;
+    margin-top: 15%;
   }
 }
 
@@ -47,7 +47,7 @@ body {
   }
 
   .register-form {
-    margin-top: 80%;
+    margin-top: 50%;
   }
 
   .col-md-6 {
@@ -90,7 +90,7 @@ body {
 
 .logo {
   position: relative;
-  top: 26.6%;
+  top: 39.2%;
   display: block;
   width: 250px;
   height: 250px;

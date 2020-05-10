@@ -12,6 +12,7 @@ public class UserMapper {
     private final RoleMapper roleMapper;
     private final CartMapper cartMapper;
     private final FavoritesMapper favoritesMapper;
+    private final AddressMapper addressMapper;
 
     public UserDTO mapUserToUserDTO(User user) {
         return UserDTO.builder()
@@ -24,6 +25,7 @@ public class UserMapper {
                 .cart(cartMapper.mapCartListToCartDTOList(user.getSelectedProducts()))
                 .favorites(favoritesMapper.mapFavoritesListToFavoritesDTOList(user.getFavoritesList()))
                 .image(user.getImage())
+                .addressDTO(addressMapper.mapAddressToAddressDTO(user.getAddress()))
                 .build();
     }
 }

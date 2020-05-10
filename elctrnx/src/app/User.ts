@@ -10,6 +10,7 @@ export class User {
   cart:Cart[];
   favorites: Favorites[];
   image: Image;
+  addressDTO: DeliveryLocations
 }
 
 export class Image {
@@ -28,7 +29,20 @@ export class Favorites {
 }
 
 export interface  OrderInput {
-  username: string;
-  productList: Cart[];
-  favoritesList: Favorites[];
+  userId: string;
+  productsList: Cart[];
+  deliveryLocation: DeliveryLocations
+}
+
+export interface  OrderInput2 {
+  userId: string;
+  productsList: Cart[];
+  deliveryLocation: DeliveryLocations,
+  orderTimestamp: Date
+}
+
+export class DeliveryLocations {
+  addressCountry: string;
+  addressCity: string;
+  addressStreet: string;
 }

@@ -311,7 +311,10 @@ body {
 .inputs{
   position: absolute;
   outline: none;
-  border: none;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-bottom: 1.5px solid #f1f1f1;
   top: -8px;
   color: #0056B3;
 }
@@ -325,14 +328,14 @@ body {
 }
 
 .inputs:focus{
-  border: none;
+  /*border: none;*/
 }
 
  .inputs.ng-valid{
-  border: none;
+  /*border: none;*/
  }
 
-.inputs.ng-invalid{
+.inputs.ng-invalid.ng-touched{
   border-bottom: 1px solid red;
 }
 

@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "strategy",
+      "type": "com.example.elctrnx.strategies.StrategyEnum",
+      "description": "Description for strategy."
+    }
+  ] }

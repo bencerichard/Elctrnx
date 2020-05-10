@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../User.service";
 import {first} from "rxjs/operators";
-import {Cart, User} from "../User";
+import {Cart, DeliveryLocations, User} from "../User";
 import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-register',
@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   returnUrl: string;
   cart: Cart[] = [];
   private readonly notifier: NotifierService;
+  userAddress: string[];
 
   constructor(
     private router: Router,
@@ -34,6 +35,9 @@ export class RegisterComponent implements OnInit {
   createAccount(): void {
     if (this.registrationData.password.value === this.registrationData.confirmPassword.value
       && this.registrationData.username.value != '' && this.registrationData.password.value != '') {
+
+      this.userAddress = this.registrationData.addressDTO.value.split(", ",3);
+
       this.userService.newUser({
         username: this.registrationData.username.value,
         password: this.registrationData.password.value,
@@ -42,6 +46,11 @@ export class RegisterComponent implements OnInit {
         emailAddress: this.registrationData.emailAddress.value,
         role: {roleName: 'Client'},
         cart: this.cart,
+        addressDTO: {
+          addressCountry:this.userAddress[0],
+          addressCity:this.userAddress[1],
+          addressStreet:this.userAddress[2]
+          },
         favorites: []
       } as User).pipe(first()).subscribe(
         data => {
@@ -76,7 +85,8 @@ export class RegisterComponent implements OnInit {
       emailAddress: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      addressDTO: ['', Validators.required]
     });
 
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';

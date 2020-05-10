@@ -2,18 +2,18 @@ package com.example.elctrnx.services;
 
 import com.example.elctrnx.dtos.FavoritesDTO;
 import com.example.elctrnx.dtos.LogInDTO;
+import com.example.elctrnx.dtos.OrderDTO;
 import com.example.elctrnx.dtos.UserDTO;
 import com.example.elctrnx.entities.Image;
+import com.example.elctrnx.entities.Order;
 import com.example.elctrnx.entities.Roles;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.exceptions.UserNotFoundException;
 import com.example.elctrnx.exceptions.UsernameAlreadyUsedException;
-import com.example.elctrnx.mappers.CartMapper;
-import com.example.elctrnx.mappers.FavoritesMapper;
-import com.example.elctrnx.mappers.LogInMapper;
-import com.example.elctrnx.mappers.UserMapper;
+import com.example.elctrnx.mappers.*;
 import com.example.elctrnx.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -35,7 +35,10 @@ public class UserService {
     private final LogInMapper logInMapper;
     private final CartMapper cartMapper;
     private final FavoritesMapper favoritesMapper;
-    private final ProductService productService;
+    private final OrderMapper orderMapper;
+
+    @Autowired
+    private OrderService orderService;
 
     public List<UserDTO> findAll() {
         List<UserDTO> userList = new ArrayList<>();
@@ -52,6 +55,7 @@ public class UserService {
     public UserDTO save(UserDTO newUser) {
         if (!userRepository.findUserByUsername(newUser.getUsername()).isPresent()) {
             String[] splitName = splitNames(newUser.getFullName());
+
             Roles role = rolesService.getRoleByName(newUser.getRole().getRoleName());
             User user = User.builder()
                     .emailAddress(newUser.getEmailAddress())
@@ -61,6 +65,10 @@ public class UserService {
                     .lastName(splitName[1])
                     .password(UserService.getMd5(newUser.getPassword()))
                     .role(role)
+                    .address(orderService.testAddressExistence(newUser.getAddressDTO().getAddressCountry(),
+                            newUser.getAddressDTO().getAddressCity(),
+                            newUser.getAddressDTO().getAddressStreet()
+                            ))
                     .selectedProducts(cartMapper.mapCartDTOListToCartList(newUser.getCart()))
                     .favoritesList(favoritesMapper.mapFavoritesDTOListToFavoritesList(newUser.getFavorites()))
                     .build();
@@ -87,6 +95,10 @@ public class UserService {
             existingUser.setLastName(splitName[1]);
             existingUser.setPassword(UserService.getMd5(userToUpdate.getPassword()));
             existingUser.setRole(role);
+            existingUser.setAddress(orderService.testAddressExistence(userToUpdate.getAddressDTO().getAddressCountry(),
+                            userToUpdate.getAddressDTO().getAddressCity(),
+                            userToUpdate.getAddressDTO().getAddressStreet()
+                    ));
             userRepository.save(existingUser);
             return userMapper.mapUserToUserDTO(existingUser);
         } else {
@@ -94,11 +106,11 @@ public class UserService {
         }
     }
 
-    public void setUserImage(String username, Image image){
+    public void setUserImage(String username, Image image) {
 
         Optional<User> user = userRepository.findUserByUsername(username);
 
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             User existingUser = user.get();
             existingUser.setImage(image);
             userRepository.save(existingUser);
@@ -185,9 +197,7 @@ public class UserService {
                 hashtext = "0" + hashtext;
             }
             return hashtext;
-        }
-
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
@@ -200,8 +210,8 @@ public class UserService {
             LocalDateTime end = LocalDateTime.now();
             Duration diff = Duration.between(start, end);
             long hoar = diff.toDays();
-            if (hoar==0)
-                hoar= Long.valueOf(1);
+            if (hoar == 0)
+                hoar = Long.valueOf(1);
             return (int) hoar;
         }
         return null;
@@ -211,13 +221,25 @@ public class UserService {
         List<User> users = userRepository.findAll();
         List<String> usernameList = new ArrayList<>();
 
-        users.forEach( user ->
+        users.forEach(user ->
                 {
-                    if(!user.getUsername().equals(username))
-                    usernameList.add(user.getUsername());
+                    if (!user.getUsername().equals(username))
+                        usernameList.add(user.getUsername());
                 }
         );
         return usernameList;
 
+    }
+
+    public List<OrderDTO> getAllOrdersForUser(String username) {
+        List<Order> ordersList = orderService.getOrdersForUser(username);
+
+        List<OrderDTO> orderDTOS = new ArrayList<>();
+
+        ordersList.forEach(order -> {
+            orderDTOS.add(orderMapper.mapOrderToOrderDTO(order));
+        });
+
+        return orderDTOS;
     }
 }

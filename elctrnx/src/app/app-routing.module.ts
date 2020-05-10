@@ -9,12 +9,14 @@ import {ListingProductsComponent} from "./listing-products/listing-products.comp
 import {ScrollComponent} from "./scroll/scroll.component";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
 import {AuthGuardService} from "./guards/auth-guard.service";
+import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 
 const routes: Routes = [
   {path: 'products', component: ProductsComponent},
   // {path: 'products', component: ProductsComponent,canActivate: [AuthGuardService]},
   {path: 'log-in', component: LogInComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'my-account', component: MyAccountComponent},
   {path: 'listing-products', component: ListingProductsComponent},
   {path: 'listing-products-apple', component: ListingProductsComponent},

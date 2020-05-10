@@ -23,10 +23,10 @@
         <a class="navbar-brand" href="/products"> <strong>Elctrnx</strong></a>
       </li>
 
-      <span matBadge="2" matBadgeSize="small" matBadgeColor="" style="position: absolute; top: 25px; left: 790px">  </span>
+      <span matBadge="{{getNumberOfItemsInCart()}}" matBadgeSize="small" matBadgeColor="" style="position: absolute; top: 25px; left: 790px">  </span>
 
       <li class="nav-item">
-        <a href="/log-in"> <img src="assets/img/supermarket.png" class="shoppingCart"></a>
+        <a href="/shopping-cart"> <img src="assets/img/supermarket.png" class="shoppingCart"></a>
       </li>
 
       <li class="nav-item">
@@ -60,11 +60,15 @@
       {{product.description}}
       </div>
 
-      <button class="mdc-button mdc-button--raised" id="addToCartButton"> ADD TO CART </button>
+      <button class="mdc-button mdc-button--raised" (click)="addToCart()" id="addToCartButton"> ADD TO CART </button>
 
     </div>
   </div>
 
+  </div>
+
+  <div class="footer-copyright text-center py-3 mt-2" style="padding-bottom: 0!important;">© 2020 Copyright:
+    <a href=""> Elctrnx.com</a>
   </div>
 
 </div>

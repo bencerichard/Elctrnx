@@ -161,6 +161,13 @@
   border-top: 0.0517rem solid grey;
 }
 
+#totalCash {
+  position: absolute;
+  font-size: 15px;
+  color: white;
+  top:15%;
+}
+
 .linie2
 {
   position: absolute;

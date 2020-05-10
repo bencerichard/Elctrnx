@@ -3,7 +3,7 @@ import {Product} from "../Product";
 import {ProductService} from "../Product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
-import {Favorites, User} from "../User";
+import {Cart, Favorites, User} from "../User";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
 @Component({
@@ -35,12 +35,25 @@ export class ListingProductsComponent implements OnInit {
   user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   clientName: string;
   private readonly notifier: NotifierService;
+  listOfProducts: Product[] = [];
+  cart: Cart[] = [];
+
 
   prepareClientName (){
     this.user.subscribe( user => {
       let userArray = user.fullName.split(" ",2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
     } );
+  }
+
+  getUserCart(username: string) {
+    this.userService.getUserByUsername(username).subscribe(user => {
+        this.cart = user.cart;
+        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'),prod.productId).subscribe(a => {
+          this.listOfProducts.push(a);
+        }));
+      }
+    );
   }
 
 
@@ -56,6 +69,7 @@ export class ListingProductsComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.prepareClientName();
+    this.getUserCart(localStorage.getItem('username'));
   }
 
 
@@ -102,5 +116,9 @@ export class ListingProductsComponent implements OnInit {
     this.userService.deleteFromFavorites(product.id,localStorage.getItem('username')).subscribe( () => {} );
     product.isFavorite = false;
     this.notifier.notify("default", "Product removed from favorites");
+  }
+
+  getNumberOfItemsInCart() {
+    return this.listOfProducts.length;
   }
 }

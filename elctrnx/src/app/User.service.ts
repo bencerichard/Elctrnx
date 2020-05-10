@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {User} from "./User";
+import {OrderInput2, User} from "./User";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -61,8 +61,10 @@ export class UserService {
   }
 
   getImage(username: string): Observable<any>{
-    debugger
     return this.http.get<any>( 'http://localhost:8080/image/get/' + username);
   }
 
+  getAllOrders(username: string): Observable<OrderInput2[]>{
+    return this.http.get<OrderInput2[]>(this.userUrl + username+ '/allOrders');
+  }
 }

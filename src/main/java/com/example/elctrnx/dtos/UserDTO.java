@@ -24,4 +24,5 @@ public class UserDTO implements Serializable {
     private List<CartDTO> cart;
     private List<FavoritesDTO> favorites;
     private Image image;
+    private AddressDTO addressDTO;
 }

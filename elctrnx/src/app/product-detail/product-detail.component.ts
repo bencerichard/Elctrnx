@@ -4,9 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../Product";
 import {AuthenticationService} from "../Authentication.service";
 import {Observable} from "rxjs";
-import {User} from "../User";
+import {Cart, User} from "../User";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-product-detail',
@@ -19,6 +20,8 @@ export class ProductDetailComponent implements OnInit {
   clientName: string;
   user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   private readonly notifier: NotifierService;
+  cart: Cart[] = [];
+  listOfProducts: Product[] = [];
 
   constructor(
     private router: Router,
@@ -26,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private authenticationService: AuthenticationService,
     private userService: UserService,
+    private location: Location,
     private notifierService: NotifierService) {
     this.notifier = notifierService
   }
@@ -47,6 +51,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.prepareClientName();
+    this.getUserCart(localStorage.getItem('username'));
   }
 
   logout(): void {
@@ -80,5 +85,39 @@ export class ProductDetailComponent implements OnInit {
     });
     product.isFavorite = false;
     this.notifier.notify("default", "Product removed from favorites");
+  }
+
+  addToCart() : void{
+
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => {
+      this.cart = user.cart;
+      let ok = 0;
+      this.cart.find(elem => {
+        if (elem.productId === id) {
+          elem.quantity++;
+          ok = 1;
+        }
+      });
+      if (!ok && this.cart != null) {
+        this.cart.push({productId: id, quantity: 1});
+      }
+      this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe(() => this.location.back());
+    });
+  }
+
+
+  getUserCart(username: string) {
+    this.userService.getUserByUsername(username).subscribe(user => {
+        this.cart = user.cart;
+        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'), prod.productId).subscribe(a => {
+          this.listOfProducts.push(a);
+        }));
+      }
+    );
+  }
+
+  getNumberOfItemsInCart() {
+    return this.listOfProducts.length;
   }
 }

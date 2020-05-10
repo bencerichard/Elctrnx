@@ -40,4 +40,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Image image;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 }

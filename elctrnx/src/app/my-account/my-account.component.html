@@ -12,7 +12,7 @@
           </div>
           <div *ngIf="displayMessage">
             <span id="photoName"> <p> {{this.selectedFile.name}} </p> </span>
-            <button  *ngIf="this.selectedFile !=null" (click)="uploadImage()" id="checkPhoto" class="fas fa-check fa-sm" data-toggle="tooltip" data-placement="top" ></button>
+            <button  *ngIf="this.selectedFile !=null" (click)="uploadImage()" id="checkPhoto" class="fas fa-check fa-sm" data-toggle="tooltip" data-placement="top" title="Upload image" ></button>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
         <div class="profile-work">
           <h5 class="mt-2 mb-3">DETAILS</h5>
 
-          <div class="mb-2"><a href="" class="mb-2">My account</a><br/></div>
+          <div class="mb-2"><a (click)="modalFunction();" class="mb-2">My account</a><br/></div>
           <div class="mb-2"><a href="" class="mb-2">My orders</a><br/></div>
           <div class="mb-2"><a href="listing-products-favorites" class="mb-2">Favorites</a></div>
         </div>
@@ -108,13 +108,13 @@
                 <label>Address</label>
               </div>
               <div class="col-md-6">
-                <input *ngIf="isEditingEnabled" class="inputs" formControlName="fullName">
-                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="fullName">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="addressDTO">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="addressDTO">
               </div>
             </div>
 
             <span class="pl-2" *ngIf="isEditingEnabled"
-                  [hidden]="!findInvalidControls('address')"> Address must contain at least 4 characters </span>
+                  [hidden]="!findInvalidControls('addressDTO')"> Please enter your address (exemple: "USA, New York, Avenue") </span>
 
             <div *ngIf="isEditingEnabled" class="row mt-2">
               <div class="col-md-6">
@@ -150,3 +150,65 @@
   </form>
 </div>
 
+<!--MODAL-->
+
+<div class="modal bd-example-modal-lg d-block polaroid" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body mt-4">
+
+        <!-- Shopping cart table -->
+        <div class="table-responsive">
+          <table class="table border-0">
+            <thead>
+            <tr>
+              <th scope="col" class="border-0 bg-light">
+                <div class="p-2 px-3 text-uppercase">Product</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Price</div>
+              </th>
+              <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase cantitate">Quantity</div>
+              </th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let ord of orderList" style="border-bottom: 1px solid red" >
+
+              <th *ngFor="let cart of ord.productsList" scope="row" class="border-0">
+                <div class="p-2">
+
+                  <p> {{cart.productId}} , {{cart.quantity}}</p>
+
+<!--                  <img src={{getProduct(cart.id}}.image alt="" width="70" class="img-fluid rounded shadow-sm">-->
+
+
+                  <div class="ml-3 d-inline-block align-middle">
+
+                  </div>
+
+                </div>
+
+              </th>
+
+<!--              <td class="border-0 align-middle"><strong>{{product.price}}</strong></td>-->
+<!--              <td class="border-0 align-middle cantitate"><strong>{{getQuantity(product.id)}}</strong></td>-->
+
+              <p> {{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}} </p>
+              <p> {{ord.orderTimestamp | date: 'medium'}}</p>
+            </tr>
+            </tbody>
+
+
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

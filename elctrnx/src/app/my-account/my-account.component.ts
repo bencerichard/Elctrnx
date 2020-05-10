@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Image, User} from "../User";
+import {Cart, Image, OrderInput2, User} from "../User";
 import {UserService} from "../User.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -8,6 +8,7 @@ import {Observable} from "rxjs";
 import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
 import {NotifierService} from "angular-notifier";
+import {ProductService} from "../Product.service";
 
 @Component({
   selector: 'app-my-account',
@@ -21,11 +22,11 @@ export class MyAccountComponent implements OnInit {
   userNav: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
   clientName: string;
   isEditingEnabled = false;
-  isAdmin : boolean;
+  isAdmin: boolean;
   private readonly notifier: NotifierService;
   users: User[] = [];
   user: User;
-  allUsernames : string[];
+  allUsernames: string[];
   selectedFile: File;
   retrievedImage: any;
   base64Data: any;
@@ -33,6 +34,10 @@ export class MyAccountComponent implements OnInit {
   hoar: number;
   image: Image;
   displayMessage = false;
+  showModal = false;
+  orderList: OrderInput2[] = [];
+  userPass: string;
+  userAddress: string;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -41,13 +46,24 @@ export class MyAccountComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private notifierService: NotifierService,
               private router: Router,
+              private productService: ProductService
   ) {
     this.notifier = notifierService;
   }
 
-  prepareForUpload(): boolean{
+  prepareForUpload(): boolean {
     this.displayMessage = true;
     return true;
+  }
+
+  cart: Cart[];
+
+  getAllOrders() {
+    this.userService.getAllOrders(localStorage.getItem('username')).subscribe(
+      orders => {
+        this.orderList = orders;
+      }
+    )
   }
 
   prepareClientName() {
@@ -55,10 +71,10 @@ export class MyAccountComponent implements OnInit {
       let userArray = user.fullName.split(" ", 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
       this.isAdmin = user.role.roleName === 'Admin';
-    } );
+    });
   }
 
-  accountEditForm   = new FormGroup({
+  accountEditForm = new FormGroup({
     username: new FormControl('',
       [
         Validators.required,
@@ -71,19 +87,19 @@ export class MyAccountComponent implements OnInit {
       ]),
     email: new FormControl('',
       [
-      Validators.required,
-      Validators
-        .pattern(
-          /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
-    ]),
-    address: new FormControl('',
+        Validators.required,
+        Validators
+          .pattern(
+            /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
+      ]),
+    addressDTO: new FormControl('',
       [
-      Validators.required,
-      Validators.minLength(4)
-    ]),
+        Validators.required,
+        Validators.pattern(/^[A-Z][a-z]+, [A-Z][a-z]+, [A-Z][a-z]+$/)
+      ]),
     password: new FormControl('',
       [
-      Validators.required,
+        Validators.required,
         Validators.minLength(3)
       ]),
     confirmPassword: new FormControl('',
@@ -111,12 +127,11 @@ export class MyAccountComponent implements OnInit {
   }
 
   getUser(username: string): void {
-    debugger
     this.userService.getUserByUsername(username).subscribe(
       user => {
         this.user = user;
         this.image = user.image;
-        if(user.image!=null)
+        if (user.image != null)
           this.getImage();
       }
     )
@@ -124,6 +139,11 @@ export class MyAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(data => {
+
+      this.userAddress = this.editedData.addressDTO.value.split(", ", 3);
+
+      this.userPass = localStorage.getItem('pass');
+
       this.accountEditForm = new FormGroup({
         username: new FormControl(
           data.username,
@@ -145,17 +165,18 @@ export class MyAccountComponent implements OnInit {
               .pattern(
                 /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
           ]),
-        address: new FormControl(data.fullName,
+        addressDTO: new FormControl(data.addressDTO.addressCountry + ', '+data.addressDTO.addressCity+', '+
+          data.addressDTO.addressStreet,
           [
             Validators.required,
-            Validators.minLength(4)
+            Validators.pattern(/^[A-Z][a-z]+, [A-Z][a-z]+, [A-Z][a-z]+$/)
           ]),
-        password: new FormControl(data.password,
+        password: new FormControl(this.userPass,
           [
             Validators.required,
             Validators.minLength(3)
           ]),
-        passwordConfirm: new FormControl(data.password,
+        passwordConfirm: new FormControl(this.userPass,
           [
             Validators.required,
             Validators.minLength(3)
@@ -174,42 +195,51 @@ export class MyAccountComponent implements OnInit {
     );
 
     this.getAllUsernames();
+    this.getAllOrders();
   }
 
-  getAllUsernames(){
+  getAllUsernames() {
     this.userService.getAllUsernames(localStorage.getItem('username')).subscribe(
       usernames => this.allUsernames = usernames
-    ) ;
+    );
 
   }
 
   updateUser(): void {
 
-    let ok=1;
+    let ok = 1;
 
     this.allUsernames.forEach(
       username => {
-        if(username === this.editedData.username.value) {
+        if (username === this.editedData.username.value) {
           this.notifier.notify("error", "This username is taken");
           ok = 0;
         }
       }
     );
 
-      if ( ok === 1 && this.editedData.password.value === this.editedData.passwordConfirm.value
+    if (ok === 1 && this.editedData.password.value === this.editedData.passwordConfirm.value
       && this.editedData.username.value != '' && this.editedData.password.value != '') {
-      this.userService.updateUser(localStorage.getItem('username'),{
+
+      this.userAddress = this.editedData.addressDTO.value.split(", ", 3);
+
+      this.userService.updateUser(localStorage.getItem('username'), {
         username: this.editedData.username.value,
         password: this.editedData.password.value,
         confirmPassword: this.editedData.passwordConfirm.value,
         fullName: this.editedData.fullName.value,
         emailAddress: this.editedData.email.value,
+        addressDTO: {
+          addressCountry: this.userAddress[0],
+          addressCity: this.userAddress[1],
+          addressStreet: this.userAddress[2]
+        },
         role: this.isAdmin === true ? {roleName: 'Admin'} : {roleName: 'Client'},
         cart: [],
         favorites: []
       } as User).pipe(first()).subscribe(
         data => {
-          localStorage.setItem('username',this.editedData.username.value);
+          localStorage.setItem('username', this.editedData.username.value);
           location.reload();
           this.notifier.notify("info", "Account updated with success");
         },
@@ -227,7 +257,7 @@ export class MyAccountComponent implements OnInit {
       } else {
         if (this.editedData.password.value === '' || this.editedData.passwordConfirm.value === '' && ok === 1) {
           this.notifier.notify("error", "Enter password");
-        } else if(ok === 1) {
+        } else if (ok === 1) {
           this.notifier.notify("error", "Password doesn't match confirm Password");
         }
       }
@@ -238,15 +268,15 @@ export class MyAccountComponent implements OnInit {
     return this.accountEditForm.controls;
   }
 
-  enableEdit(){
+  enableEdit() {
     this.isEditingEnabled = true;
   }
 
-  disableEdit(){
+  disableEdit() {
     this.isEditingEnabled = false;
   }
 
-   findInvalidControls(name: string) {
+  findInvalidControls(name: string) {
     if (this.accountEditForm.get(name).invalid) {
       return true;
     }
@@ -264,21 +294,25 @@ export class MyAccountComponent implements OnInit {
   uploadImage() {
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.userService.postImage(uploadImageData,localStorage.getItem('username')).subscribe(() => {
+    this.userService.postImage(uploadImageData, localStorage.getItem('username')).subscribe(() => {
     });
     location.reload();
   }
 
-  getImage(): void{
+  getImage(): void {
 
-      this.userService.getImage(localStorage.getItem('username'))
-        .subscribe(
-          res => {
-            this.retrieveResonse = res;
-            this.base64Data = this.retrieveResonse.picByte;
-            this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-          }
-        );
+    this.userService.getImage(localStorage.getItem('username'))
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
 
+  }
+
+  modalFunction() {
+    this.showModal = !this.showModal;
   }
 }
