@@ -22,6 +22,8 @@ export class ProductDetailComponent implements OnInit {
   private readonly notifier: NotifierService;
   cart: Cart[] = [];
   listOfProducts: Product[] = [];
+  isAdmin = false;
+  showModal = false;
 
   constructor(
     private router: Router,
@@ -48,6 +50,14 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
+  deleteProduct(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.location.back();
+    });
+  }
+
+
   ngOnInit(): void {
     this.getProduct();
     this.prepareClientName();
@@ -65,7 +75,9 @@ export class ProductDetailComponent implements OnInit {
   prepareClientName() {
     this.user.subscribe(user => {
       let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      if (user.role.roleName.toLowerCase() === 'admin')
+        this.isAdmin = true;
     });
   }
 
@@ -85,6 +97,10 @@ export class ProductDetailComponent implements OnInit {
     });
     product.isFavorite = false;
     this.notifier.notify("default", "Product removed from favorites");
+  }
+
+  modalFunction() {
+    this.showModal = !this.showModal;
   }
 
   addToCart() : void{

@@ -61,16 +61,33 @@
       </div>
 
       <button class="mdc-button mdc-button--raised" (click)="addToCart()" id="addToCartButton"> ADD TO CART </button>
-
+      <button id="editButton" title="Edit" [hidden]="!isAdmin" ></button>
+      <button id="deleteButton" title="Delete" [hidden]="!isAdmin" (click)="modalFunction()"></button>
     </div>
   </div>
 
+    </div>
+
+
+    <div class="footer-copyright text-center py-3 mt-2" style="padding-bottom: 0!important;">© 2020 Copyright:
+      <a href=""> Elctrnx.com</a>
+    </div>
+
+
   </div>
 
-  <div class="footer-copyright text-center py-3 mt-2" style="padding-bottom: 0!important;">© 2020 Copyright:
-    <a href=""> Elctrnx.com</a>
+<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="showModal">
+  <div class="modal-dialog modal-dialog-centered" id="exampleModalCenter" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black;">
+        <h5 style="color: ghostwhite" class="modal-title" id="exampleModalLongTitle">Really delete this product?</h5>
+      </div>
+      <div class="modal-body">
+        <button (click)="modalFunction()" id="abortDelete">Abort</button>
+        <button (click)="deleteProduct()" id="confirmDelete">Confirm</button>
+      </div>
+    </div>
   </div>
-
 </div>
 
 
