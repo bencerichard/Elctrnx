@@ -25,7 +25,7 @@ values (4, 'Smart TV Android OLED Sony Bravia', 3,
         'See all your favorite entertainment as it was meant to be seen. Enter the world of 4K, where every show, season, and scene is upscaled with enhanced picture clarity. Plus, a smart guide lets you quickly find what you want to watch.',
         'Sony');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (5, 'Monitor Led Dell UltraSharp 23.8"', 3,
+values (9, 'Monitor Led Dell UltraSharp 23.8"', 3,
         'https://s12emagst.akamaized.net/products/15673/15672630/images/res_72f41df173850ce604177945ac95c645_450x450_r9dk.jpg',
         1400,
         'High Dynamic Range (HDR) and Cinema HDR Mode increase the overall dynamic range between true black and bright white to resemble what your eyes see in the natural world.',
@@ -92,7 +92,7 @@ values (19, 'Apple Watch 5', 6,
         'With a new Always-On Retina display, Apple Watch Series 5 is always there for you. To monitor your health, help you stay fit, and keep you connected.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (20, 'Apple Watch 5', 6,
+values (5, 'Apple Watch 5', 6,
         'https://s12emagst.akamaized.net/products/25343/25342164/images/res_851f4e9ebe839671c97f5e8ed60d68e6_450x450_73ck.jpg',
         2100,
         'With a new Always-On Retina display, Apple Watch Series 5 is always there for you. To monitor your health, help you stay fit, and keep you connected.',
@@ -128,7 +128,7 @@ values (25, 'MacBook Air 13", Retina Display', 1,
         'Intel® Core™ i5 1.6GHz, 8GB, 256GB SSD, Intel UHD Graphics 617, Silver, ROM KB',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (26, 'MacBook Pro 13", Touch Bar', 1,
+values (6, 'MacBook Pro 13", Touch Bar', 1,
         'https://s12emagst.akamaized.net/products/24264/24263494/images/res_88c0d524bc44fc3e5b38000e8d498bff_450x450_srm9.jpg',
         6800,
         'Intel® Core™ i5 1.4GHz, 8GB, 128GB SSD, Intel Iris Plus Graphics 645, Silver, INT KB',
@@ -350,7 +350,7 @@ values (62, 'Beats EP On-Ear Headphones', 4,
         'On-ear headphones that sound great, look good, and feel comfy. If you''re looking for the perfect headphones, the best on-ear headphones (also called supra-aural headphones) are a good middle ground option between bulky over-ear headphones and diminutive in-ear earphones.',
         'Beats');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (63, 'Beats Studio3 On-Ear Headphones', 4,
+values (8, 'Beats Studio3 On-Ear Headphones', 4,
         'https://s12emagst.akamaized.net/products/8985/8984965/images/res_e3b360ed2c86b723c61465e27cfb4bdf_450x450_nfbe.jpg',
         1700,
         'On-ear headphones that sound great, look good, and feel comfy. If you''re looking for the perfect headphones, the best on-ear headphones (also called supra-aural headphones) are a good middle ground option between bulky over-ear headphones and diminutive in-ear earphones.',
@@ -434,7 +434,7 @@ values (76, 'Samsung Galaxy Watch', 6,
         'Live a stronger, smarter life with Galaxy Watch at your wrist. Rest well, stay active and keep stress at bay with built in health tracking. Go for days without charging your watch. The Bluetooth connection keeps everything at your wrist. Compatible with select Bluetooth capable smartphones.',
         'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (77, 'Samsung Galaxy Watch Active 2', 6,
+values (10, 'Samsung Galaxy Watch Active 2', 6,
         'https://s12emagst.akamaized.net/products/25066/25065643/images/res_0be58012b9bf10c3bb14f188394401ec_450x450_dha3.jpg',
         1550,
         'Live a stronger, smarter life with Galaxy Watch at your wrist. Rest well, stay active and keep stress at bay with built in health tracking. Go for days without charging your watch. The Bluetooth connection keeps everything at your wrist. Compatible with select Bluetooth capable smartphones.',
@@ -518,7 +518,7 @@ values (90, 'Apple iPad Pro (2018), 256GB', 8,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (91, 'Apple iPad Pro (2018), 512GB', 8,
+values (7, 'Apple iPad Pro (2018), 512GB', 8,
         'https://s12emagst.akamaized.net/products/18296/18295782/images/res_955b8853033ac73acf34d344c5e8db2d_450x450_7sit.jpg',
         7000,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',

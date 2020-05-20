@@ -228,8 +228,42 @@
   transform: translate(-50%, -50%);
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-
+  text-align: center;
 }
+
+.modal-title{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  height: 200px;
+  width: 1000px;
+}
+
+.modal-footer{
+  position: relative;
+  right: 155px;
+  border-top:none;
+}
+
+.btn-secondary{
+  background-color: black;
+  outline: none;
+  border: none;
+  margin-left: 10px;
+}
+
+.btn-secondary:hover{
+  background-color: #2AB64B;
+}
+
+.btn-primary{
+  border: none;
+  outline: none;
+  background-color: #5A6268;
+}
+.btn-primary:hover{
+  background-color: red;
+  }
 
 .modal-header {
   padding: 5px !important;

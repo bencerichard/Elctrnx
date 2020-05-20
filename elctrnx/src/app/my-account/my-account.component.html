@@ -54,8 +54,8 @@
         <div class="profile-work">
           <h5 class="mt-2 mb-3">DETAILS</h5>
 
-          <div class="mb-2"><a (click)="modalFunction();" class="mb-2">My account</a><br/></div>
-          <div class="mb-2"><a href="" class="mb-2">My orders</a><br/></div>
+          <div class="mb-2"><a class="mb-2">My account</a><br/></div>
+          <div class="mb-2"><a style="cursor: pointer" (click)="modalFunction()" class="mb-2">My orders</a><br/></div>
           <div class="mb-2"><a href="listing-products-favorites" class="mb-2">Favorites</a></div>
         </div>
       </div>
@@ -152,63 +152,113 @@
 
 <!--MODAL-->
 
-<div class="modal bd-example-modal-lg d-block polaroid" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+<!--<div class="modal bd-example-modal-lg d-block polaroid" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">-->
+<!--  <div class="modal-dialog modal-lg">-->
+<!--    <div class="modal-content">-->
 
-      <div class="modal-body mt-4">
+<!--      <div class="modal-body mt-4">-->
 
-        <!-- Shopping cart table -->
-        <div class="table-responsive">
-          <table class="table border-0">
-            <thead>
-            <tr>
-              <th scope="col" class="border-0 bg-light">
-                <div class="p-2 px-3 text-uppercase">Product</div>
-              </th>
-              <th scope="col" class="border-0 bg-light">
-                <div class="py-2 text-uppercase">Price</div>
-              </th>
-              <th scope="col" class="border-0 bg-light">
-                <div class="py-2 text-uppercase cantitate">Quantity</div>
-              </th>
+<!--        &lt;!&ndash; Shopping cart table &ndash;&gt;-->
+<!--        <div class="table-responsive">-->
+<!--          <table class="table border-0">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="p-2 px-3 text-uppercase">Product</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase">Price</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase cantitate">Quantity</div>-->
+<!--              </th>-->
 
-            </tr>
-            </thead>
+<!--            </tr>-->
+<!--            </thead>-->
 
-            <tbody>
-            <tr *ngFor="let ord of orderList" style="border-bottom: 1px solid red" >
+<!--            <tbody>-->
+<!--            <tr *ngFor="let ord of orderList" style="border-bottom: 1px solid red" >-->
 
-              <th *ngFor="let cart of ord.productsList" scope="row" class="border-0">
-                <div class="p-2">
+<!--              <th *ngFor="let cart of ord.productsList" scope="row" class="border-0">-->
+<!--                <div class="p-2">-->
 
-                  <p> {{cart.productId}} , {{cart.quantity}}</p>
+<!--                  <p> {{cart.productId}} , {{cart.quantity}}</p>-->
 
-<!--                  <img src={{getProduct(cart.id}}.image alt="" width="70" class="img-fluid rounded shadow-sm">-->
-
-
-                  <div class="ml-3 d-inline-block align-middle">
-
-                  </div>
-
-                </div>
-
-              </th>
-
-<!--              <td class="border-0 align-middle"><strong>{{product.price}}</strong></td>-->
-<!--              <td class="border-0 align-middle cantitate"><strong>{{getQuantity(product.id)}}</strong></td>-->
-
-              <p> {{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}} </p>
-              <p> {{ord.orderTimestamp | date: 'medium'}}</p>
-            </tr>
-            </tbody>
+<!--&lt;!&ndash;                  <img src={{getProduct(cart.id}}.image alt="" width="70" class="img-fluid rounded shadow-sm">&ndash;&gt;-->
 
 
-          </table>
-        </div>
+<!--                  <div class="ml-3 d-inline-block align-middle">-->
 
-      </div>
+<!--                  </div>-->
 
-    </div>
-  </div>
-</div>
+<!--                </div>-->
+
+<!--              </th>-->
+
+<!--              <td  *ngFor="let cart1 of ord.productsList" class="border-0 align-middle"><strong>{{getProduct(cart1.productId).price}}</strong></td>-->
+<!--              <td *ngFor="let cart1 of ord.productsList" class="border-0 align-middle cantitate"><strong>{{cart1.quantity}}</strong></td>-->
+
+<!--              <p> {{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}} </p>-->
+<!--              <p> {{ord.orderTimestamp | date: 'medium'}}</p>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+
+
+<!--          </table>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="modal bd-example-modal-lg d-block" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">-->
+<!--  <div class="modal-dialog modal-lg">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title ml-1" id="exampleModalLongTitle">Your orders</h5>-->
+<!--        <button type="button"  (click)="modalFunction();" class="close" data-dismiss="modal" aria-label="Close">  <span aria-hidden="true">&times;</span> </button>-->
+<!--      </div>-->
+
+<!--      <div class="modal-body mt-4">-->
+
+<!--        &lt;!&ndash; Shopping cart table &ndash;&gt;-->
+<!--        <div class="table-responsive">-->
+<!--          <table class="table border-0">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="p-2 px-3 text-uppercase">Product</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase">Address</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase cantitate">Date</div>-->
+<!--              </th>-->
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let ord of orderList" style="border-top: 1px solid black" >-->
+<!--              <th scope="row" class="border-0">-->
+<!--                <div *ngFor="let cart1 of cart1" class="p-2">-->
+<!--                  <img src={{getProduct(cart1.productId).image}} alt="" width="70" class="img-fluid rounded shadow-sm">-->
+<!--                  <div class="ml-3 d-inline-block align-middle">-->
+<!--                    <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">-->
+<!--                      {{getProduct(cart1.productId).productName}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: {{getProduct(cart1.productId).categoryName}}</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </th>-->
+<!--              <td class="border-0 align-middle"><strong>{{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}}</strong></td>-->
+<!--              <td class="border-0 align-middle cantitate"><strong>{{ord.orderTimestamp | date: 'short'}}</strong></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

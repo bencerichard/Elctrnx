@@ -342,3 +342,7 @@ body {
 .inputLabel:active{
   outline: none;
 }
+
+.modal{
+  min-width: 1000px;
+}

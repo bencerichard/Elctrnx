@@ -76,18 +76,37 @@
 
   </div>
 
-<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="showModal">
-  <div class="modal-dialog modal-dialog-centered" id="exampleModalCenter" role="document">
+<!--<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="false">-->
+<!--  <div class="modal-dialog modal-dialog-centered" id="exampleModalCenter" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header" style="background-color: black;">-->
+<!--        <h5 style="color: ghostwhite" class="modal-title" id="exampleModalLongTitle">Really delete this product?</h5>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <button (click)="modalFunction()" id="abortDelete">Abort</button>-->
+<!--        <button (click)="deleteProduct()" id="confirmDelete">Confirm</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="modal" tabindex="-1" role="dialog" *ngIf="showModal">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: black;">
-        <h5 style="color: ghostwhite" class="modal-title" id="exampleModalLongTitle">Really delete this product?</h5>
+      <div class="modal-header">
+        <h5 class="modal-title">{{product.productName}}</h5>
+        <button (click)="modalFunction()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-        <button (click)="modalFunction()" id="abortDelete">Abort</button>
-        <button (click)="deleteProduct()" id="confirmDelete">Confirm</button>
+        <p>Are you sure you want to <i style="color: red; font-style: normal!important;">delete</i> this product?</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="deleteProduct()" type="button" class="btn btn-primary">Delete</button>
+        <button (click)="modalFunction()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
 

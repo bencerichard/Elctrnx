@@ -248,7 +248,7 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  bottom: 50px;
+  bottom: 40px;
   z-index: 1;
   overflow: hidden;
   -webkit-transition: all 0.5s ease-in-out;
@@ -272,11 +272,11 @@
 
 .dropup-content a:hover {
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .dropup:hover .dropup-content {
   display: block;
-
 }
 
 .dropup:hover .dropbtn {

@@ -57,7 +57,7 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts(localStorage.getItem('username')).subscribe(
       products => {
         this.products = products;
-        this.products2 = products;
+        this.products2 = products.filter(p => p.id>5);
       }
     );
   }

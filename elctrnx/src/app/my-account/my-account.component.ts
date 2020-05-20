@@ -9,6 +9,7 @@ import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
 import {NotifierService} from "angular-notifier";
 import {ProductService} from "../Product.service";
+import {Product} from "../Product";
 
 @Component({
   selector: 'app-my-account',
@@ -38,6 +39,9 @@ export class MyAccountComponent implements OnInit {
   orderList: OrderInput2[] = [];
   userPass: string;
   userAddress: string;
+  product: Product;
+  cart: Cart[];
+
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -56,7 +60,6 @@ export class MyAccountComponent implements OnInit {
     return true;
   }
 
-  cart: Cart[];
 
   getAllOrders() {
     this.userService.getAllOrders(localStorage.getItem('username')).subscribe(
@@ -314,5 +317,19 @@ export class MyAccountComponent implements OnInit {
 
   modalFunction() {
     this.showModal = !this.showModal;
+  }
+
+  getProduct(id: number): Product {
+    this.productService.getSingleProduct(localStorage.getItem('username'), id)
+      .subscribe(product => {
+          this.product = product;
+          // @ts-ignore
+          this.product.price = product.price.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&.');
+          // @ts-ignore
+          this.product.price = this.product.price.toString().substring(0, this.product.price.toString().length - 2);
+        }
+      );
+
+    return this.product;
   }
 }
