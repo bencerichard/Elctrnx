@@ -10,6 +10,7 @@ import {ScrollComponent} from "./scroll/scroll.component";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
 import {AuthGuardService} from "./guards/auth-guard.service";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
+import {ProductEditComponent} from "./product-edit/product-edit.component";
 
 const routes: Routes = [
   {path: 'products', component: ProductsComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'listing-products-smartphones', component: ListingProductsComponent},
   {path: 'listing-products-favorites', component: ListingProductsComponent},
   {path: 'scroll', component: ScrollComponent},
+  {path: 'edit/:id',component: ProductEditComponent, canActivate:[AuthGuardService]},
   {path: 'detail/:id', component: ProductDetailComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},

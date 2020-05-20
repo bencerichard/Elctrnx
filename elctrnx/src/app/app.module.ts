@@ -20,6 +20,7 @@ import {ScrollComponent } from './scroll/scroll.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ScrollComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,
