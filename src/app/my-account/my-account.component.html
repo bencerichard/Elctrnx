@@ -1,0 +1,265 @@
+<div class="container emp-profile polaroid">
+
+  <form [formGroup]="accountEditForm" style="margin-top: 4.5%">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img *ngIf="user.image === null" src="/assets/img/no_profile_picture.png" alt="no_profile " height="230" width="230"/>
+          <img *ngIf="user.image != null" [src]="retrievedImage" alt="no_profile " height="230" width="230"/>
+          <div (click)="prepareForUpload()" class="file btn btn-lg btn-primary">
+            Change Photo
+            <input type="file" (change)="onFileChanged($event)" name="file"/>
+          </div>
+          <div *ngIf="displayMessage">
+            <span id="photoName"> <p> {{this.selectedFile.name}} </p> </span>
+            <button  *ngIf="this.selectedFile !=null" (click)="uploadImage()" id="checkPhoto" class="fas fa-check fa-sm" data-toggle="tooltip" data-placement="top" title="Upload image" ></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="profile-head">
+          <div style="display: inline-flex; min-width: 250px">
+            <h4 style="margin-top: -0.1em">
+              Your account data
+            </h4>
+            <button type="button"  class="btn btn-edit-profile" style="margin-top: -2%; outline: none;"><i
+              class="fas fa-user-edit fa-lg"></i></button>
+
+          </div>
+
+          <h6 *ngIf="!isAdmin" class="mt-2">Client</h6>
+          <h6 *ngIf="isAdmin" class="mt-2">Administrator</h6>
+          <p class="proile-rating" *ngIf="hoar > 1">Thank you for being our customer for : <span>{{hoar}} days</span></p>
+          <p class="proile-rating" *ngIf="hoar === 1">Thank you for being our customer for : <span>{{hoar}} day</span></p>
+
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" (click)="disableEdit()" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                 aria-selected="true">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" (click)="enableEdit()" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                 aria-selected="false">Edit</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <a (click)="goBack()" style="cursor: pointer"> <img src="assets/img/back-button.png" class="profile-return-btn-btn ml-2"></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work">
+          <h5 class="mt-2 mb-3">DETAILS</h5>
+
+          <div class="mb-2"><a class="mb-2">My account</a><br/></div>
+          <div class="mb-2"><a style="cursor: pointer" (click)="conditionalRoute()" class="mb-2">Add product</a><br/></div>
+          <div class="mb-2"><a href="listing-products-favorites" class="mb-2">Favorites</a></div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label>Username</label>
+              </div>
+              <div class="col-md-6">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="username">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="username">
+              </div>
+            </div>
+
+            <span class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('username')"> Username must contain at least 3 characters </span>
+
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label>Full Name</label>
+              </div>
+              <div class="col-md-6">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="fullName">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="fullName">
+              </div>
+            </div>
+
+            <span class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('fullName')"> Please enter your full name (exemple: "John Doe") </span>
+
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="email">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="email">
+              </div>
+            </div>
+
+            <span class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('email')"> Email must contain the @ character </span>
+
+            <span class="pl-2" *ngIf="isEditingEnabled" style=""
+                  [hidden]="!findInvalidControls('addressDTO')"> Please enter your address (exemple: "USA, New York, Avenue") </span>
+
+            <div *ngIf="isEditingEnabled" class="row mt-2">
+              <div class="col-md-6">
+                <label>Password</label>
+              </div>
+              <div class="col-md-6">
+                <input class="inputs"  type="password" formControlName="password" value="">
+               </div>
+            </div>
+            <span class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('password')"> Password must contain at least 2 characters </span>
+
+
+            <div *ngIf="isEditingEnabled" class="row mt-2">
+              <div class="col-md-6">
+                <label>Confirm password</label>
+              </div>
+              <div class="col-md-6">
+                <input class="inputs" type="password" formControlName="passwordConfirm">
+              </div>
+            </div>
+
+            <span id="spanNonValid" class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('passwordConfirm')"> Password must contain at least 2 characters </span>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label>Address</label>
+            </div>
+            <div class="col-md-6">
+              <input style="min-width: 230px" *ngIf="isEditingEnabled" class="inputs" formControlName="addressDTO">
+              <input style="min-width: 230px" *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="addressDTO">
+            </div>
+          </div>
+
+
+          <div *ngIf="isEditingEnabled;">
+             <button [disabled]="!accountEditForm.valid" (click)="updateUser()" id="check" class="fas fa-check fa-2x" data-toggle="tooltip" data-placement="top" title="Save changes"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>
+
+<!--MODAL-->
+
+<!--<div class="modal bd-example-modal-lg d-block polaroid" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">-->
+<!--  <div class="modal-dialog modal-lg">-->
+<!--    <div class="modal-content">-->
+
+<!--      <div class="modal-body mt-4">-->
+
+<!--        &lt;!&ndash; Shopping cart table &ndash;&gt;-->
+<!--        <div class="table-responsive">-->
+<!--          <table class="table border-0">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="p-2 px-3 text-uppercase">Product</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase">Price</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase cantitate">Quantity</div>-->
+<!--              </th>-->
+
+<!--            </tr>-->
+<!--            </thead>-->
+
+<!--            <tbody>-->
+<!--            <tr *ngFor="let ord of orderList" style="border-bottom: 1px solid red" >-->
+
+<!--              <th *ngFor="let cart of ord.productsList" scope="row" class="border-0">-->
+<!--                <div class="p-2">-->
+
+<!--                  <p> {{cart.productId}} , {{cart.quantity}}</p>-->
+
+<!--&lt;!&ndash;                  <img src={{getProduct(cart.id}}.image alt="" width="70" class="img-fluid rounded shadow-sm">&ndash;&gt;-->
+
+
+<!--                  <div class="ml-3 d-inline-block align-middle">-->
+
+<!--                  </div>-->
+
+<!--                </div>-->
+
+<!--              </th>-->
+
+<!--              <td  *ngFor="let cart1 of ord.productsList" class="border-0 align-middle"><strong>{{getProduct(cart1.productId).price}}</strong></td>-->
+<!--              <td *ngFor="let cart1 of ord.productsList" class="border-0 align-middle cantitate"><strong>{{cart1.quantity}}</strong></td>-->
+
+<!--              <p> {{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}} </p>-->
+<!--              <p> {{ord.orderTimestamp | date: 'medium'}}</p>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+
+
+<!--          </table>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="modal bd-example-modal-lg d-block" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" *ngIf="showModal">-->
+<!--  <div class="modal-dialog modal-lg">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title ml-1" id="exampleModalLongTitle">Your orders</h5>-->
+<!--        <button type="button"  (click)="modalFunction();" class="close" data-dismiss="modal" aria-label="Close">  <span aria-hidden="true">&times;</span> </button>-->
+<!--      </div>-->
+
+<!--      <div class="modal-body mt-4">-->
+
+<!--        &lt;!&ndash; Shopping cart table &ndash;&gt;-->
+<!--        <div class="table-responsive">-->
+<!--          <table class="table border-0">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="p-2 px-3 text-uppercase">Product</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase">Address</div>-->
+<!--              </th>-->
+<!--              <th scope="col" class="border-0 bg-light">-->
+<!--                <div class="py-2 text-uppercase cantitate">Date</div>-->
+<!--              </th>-->
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr *ngFor="let ord of orderList" style="border-top: 1px solid black" >-->
+<!--              <th scope="row" class="border-0">-->
+<!--                <div *ngFor="let cart1 of cart1" class="p-2">-->
+<!--                  <img src={{getProduct(cart1.productId).image}} alt="" width="70" class="img-fluid rounded shadow-sm">-->
+<!--                  <div class="ml-3 d-inline-block align-middle">-->
+<!--                    <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">-->
+<!--                      {{getProduct(cart1.productId).productName}}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: {{getProduct(cart1.productId).categoryName}}</span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </th>-->
+<!--              <td class="border-0 align-middle"><strong>{{ord.deliveryLocation.addressCity}}, {{ord.deliveryLocation.addressCountry}}, {{ord.deliveryLocation.addressStreet}}</strong></td>-->
+<!--              <td class="border-0 align-middle cantitate"><strong>{{ord.orderTimestamp | date: 'short'}}</strong></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

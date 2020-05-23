@@ -1,0 +1,212 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm bg-light justify-content-center sticky-top container">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+      </li>
+      <li class="nav-item">
+        <a class="contulMeuButon" href="my-account"><i class="ion-ios-arrow-down"></i>{{clientName}}</a>
+      </li>
+
+      <li class="nav-item">
+        <span class="contulMeu ml-2"> <a href="my-account"
+                                         style="color: black;text-decoration: none">My Account</a></span>
+      </li>
+
+      <li class="nav-item">
+        <a href="/log-in" (click)="logout()"> <img src="assets/img/logout.png" class="shoppingCart"></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="navbar-brand" href="/products"> <strong>ELCTRNX</strong></a>
+      </li>
+
+      <span matBadge="{{getNumberOfItemsInCart()}}" matBadgeSize="small" matBadgeColor="" style="position: absolute; top: 25px; left: 815px">  </span>
+
+      <li class="nav-item">
+        <a href="/shopping-cart"> <img src="assets/img/supermarket.png" class="shoppingCart"></a>
+      </li>
+
+      <li class="nav-item">
+        <a (click)="favorites()"> <img src="assets/img/heart.png" class="shoppingCart"></a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="carouselExampleIndicators" class="carousel slide container mt-3 slider polaroid"
+       data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="detail/3"> <img class="d-block carusel" src="assets/img/asus.PNG" alt="First slide"> </a>
+      </div>
+      <div class="carousel-item">
+        <a href="detail/1"> <img class="d-block carusel" src="assets/img/iphone11Pro.PNG" alt="Second slide"> </a>
+      </div>
+
+      <div class="carousel-item">
+        <a href="detail/2"> <img class="d-block carusel" src="assets/img/Samsung3.png" alt="Third slide"> </a>
+      </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div style="display: inline-flex; border: none;" class="topBrands polaroid slider mt-5 mb-5">
+    <a>
+      <div class="card justify-content-center">
+        <img class="cardImage " src="assets/img/appleLogo.png" alt="Card image cap" (click)="searchApple()">
+      </div>
+    </a>
+    <a>
+      <div class="card justify-content-center">
+        <img class="cardImage justify-content-center" src="assets/img/sonyLogo.png" alt="Card image cap" (click)="searchSony()">
+      </div>
+    </a>
+    <a>
+      <div class="card justify-content-center">
+        <img class="asusImage justify-content-center" src="assets/img/asusLogo.jpg" alt="Card image cap" (click)="searchAsus()">
+      </div>
+    </a>
+    <a>
+      <div class="card justify-content-center">
+        <img class="samsungImage justify-content-center" src="assets/img/samsungLogo.png" alt="Card image cap" (click)="searchSamsung()">
+      </div>
+    </a>
+    <a>
+      <div class="card justify-content-center">
+        <img class="dellImage justify-content-center" src="assets/img/dellLogo.png" alt="Card image cap" (click)="searchDell()">
+      </div>
+    </a>
+  </div>
+
+
+  <div id="carouselExampleIndicators1" class="carousel slide container mt-3 mb-5 slider polaroid"
+       data-ride="carousel" data-interval="10000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="column" *ngFor="let product of products">
+            <div class="cardP mb-5 polaroid">
+              <button (click)="addToFavorites(product)" *ngIf="isFavorite(product) === false" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="deleteFromFavorites(product)" *ngIf="isFavorite(product) === true" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
+              <div class="card-body">
+                <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
+                     alt="Card image">
+                <h4 class="card-text mt-2" style="font-size: 15px; text-align: center;min-height: 40px; color: black">
+                  <strong>{{product.productName}}</strong></h4>
+                <p class="card-text" style="text-align: center; color: green; font-size: 20px">{{product.price}} Lei</p>
+              </div>
+              <button class="detailButton" routerLink="/detail/{{product.id}}"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row">
+          <div class="column" *ngFor="let product of products2">
+            <div class="cardP mb-5 polaroid">
+              <button (click)="addToFavorites(product)" *ngIf="isFavorite(product) === false" class="notFavorit" data-toggle="tooltip" data-placement="bottom" title="Add to favorites"></button>
+              <button (click)="deleteFromFavorites(product)" *ngIf="isFavorite(product) === true" class="favorit" data-toggle="tooltip" data-placement="bottom" title="Remove from favorites"></button>
+              <div class="card-body">
+                <img class="card-img-top mb-2" style="max-height: 140px; min-width: 86px;" src="{{product.image}}"
+                     alt="Card image">
+                <h4 class="card-text mt-2" style="font-size: 15px; text-align: center;min-height: 40px;">
+                  <strong>{{product.productName}}</strong></h4>
+                <p class="card-text" style="text-align: center; color: green; font-size: 20px">{{product.price}} Lei</p>
+              </div>
+              <button class="detailButton" routerLink="/detail/{{product.id}}"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol  class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+    </ol>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <div id="carouselExampleIndicators2" class="carousel slide container mt-3 mb-4 slider polaroid" data-ride="carousel">
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div id="main" style="width: 1110px" class="polaroid">
+
+          <div id="left" style="width: 300px; height: 350px; background-color: #F4F8FB; float: left">
+            <ul style="list-style: none; margin-left: -5px">
+
+              <li id="firstLi" style="color:black;; font-size: 16px"> TV, Audio-Video
+                <ul style="list-style: none">
+                  <a (click)="tvs()"> <li>TV</li> </a>
+                  <a (click)="headphones()"> <li>Headphones</li> </a>
+                  <a (click)="speakers()"> <li>Speakers</li> </a>
+                </ul>
+              </li>
+
+              <li id="secondLi" style="color: black;font-size: 16px">Gadgets
+                <ul style="list-style: none">
+                 <a (click)="smartWatches()"> <li>Smartwatches</li> </a>
+                 <a (click)="smartHome()"> <li>Smart Home Kits</li> </a>
+                </ul>
+              </li>
+
+              <li id="thirdLi" style="color: black;font-size: 16px">Devices
+                <ul style="list-style: none">
+                 <a (click)="smartphones()"> <li>Smartphones</li> </a>
+                 <a (click)="tablets()"> <li>Tablets</li> </a>
+                 <a (click)="laptops()"> <li>Laptops</li> </a>
+                </ul>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div id="middle" style="float:left ;width: 300px; height: 350px; background-color: white">
+            <ul style="list-style: none">
+              <li> <a (click)="searchBeats()">Beats</a></li>
+              <li> <a (click)="searchBose()">Bose</a></li>
+              <li> <a (click)="searchJbl()">JBL</a></li>
+              <li> <a (click)="searchLg()">LG</a></li>
+              <li> <a (click)="searchSamsung()">Samsung</a></li>
+              <li> <a (click)="searchApple()">Apple</a></li>
+              <li> <a (click)="searchDell()">Dell</a></li>
+            </ul>
+          </div>
+
+          <div id="right"  style="float: left ;width: 510px; height: 350px">
+            <img class="card-img-top mb-2" style="max-height: 350px; max-width: 510px; min-height: 350px"
+                 src="../../assets/img/sonyBjpg.jpg"
+                 alt="Card image">
+          </div>
+        </div>
+
+       </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href=""> Elctrnx.com</a>
+  </div>
+
+</div>
