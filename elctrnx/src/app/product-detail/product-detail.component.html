@@ -37,7 +37,10 @@
 
   <div id="parent" class="mt-5">
 
-  <div id="left"> <img id="photo" src="{{product.image}}" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 430px;"> </div>
+<!--    <img  [hidden]="isProductAvailable()" class="pozaStock"-->
+<!--          src="../../assets/img/sold-out.png">-->
+
+    <div id="left"> <img id="photo" src="{{product.image}}" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 430px;"> </div>
 
   <div id="right">
 
@@ -61,18 +64,16 @@
       </div>
 
       <button class="mdc-button mdc-button--raised" (click)="addToCart()" id="addToCartButton"> ADD TO CART </button>
-      <button id="editButton" title="Edit" [hidden]="!isAdmin" ></button>
+      <button id="editButton" routerLink="/edit/{{product.id}}" title="Edit" [hidden]="!isAdmin" ></button>
       <button id="deleteButton" title="Delete" [hidden]="!isAdmin" (click)="modalFunction()"></button>
     </div>
   </div>
 
     </div>
 
-
     <div class="footer-copyright text-center py-3 mt-2" style="padding-bottom: 0!important;">© 2020 Copyright:
       <a href=""> Elctrnx.com</a>
     </div>
-
 
   </div>
 

@@ -237,7 +237,7 @@
 }
 
 .dropup {
-  position: absolute;
+  position: fixed;
   display: inline-block;
   right: 10.6%;
   bottom: 8%;

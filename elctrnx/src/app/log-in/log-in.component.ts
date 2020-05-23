@@ -70,6 +70,4 @@ export class LogInComponent implements OnInit {
           this.loginForm.reset();
         });
   }
-
-
 }

@@ -8,6 +8,8 @@ import {Cart, User} from "../User";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
 import {Location} from "@angular/common";
+import {Stock} from "../Stock";
+import {StockService} from "../stock.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -24,6 +26,8 @@ export class ProductDetailComponent implements OnInit {
   listOfProducts: Product[] = [];
   isAdmin = false;
   showModal = false;
+  stocks: Stock[] = [];
+  isAvb = false;
 
   constructor(
     private router: Router,
@@ -32,6 +36,7 @@ export class ProductDetailComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private location: Location,
+    private stockService: StockService,
     private notifierService: NotifierService) {
     this.notifier = notifierService
   }
@@ -62,6 +67,7 @@ export class ProductDetailComponent implements OnInit {
     this.getProduct();
     this.prepareClientName();
     this.getUserCart(localStorage.getItem('username'));
+    this.getStocks();
   }
 
   logout(): void {
@@ -115,7 +121,7 @@ export class ProductDetailComponent implements OnInit {
           ok = 1;
         }
       });
-      if (!ok && this.cart != null) {
+       if (!ok && this.cart != null) {
         this.cart.push({productId: id, quantity: 1});
       }
       this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe(() => this.location.back());
@@ -136,4 +142,19 @@ export class ProductDetailComponent implements OnInit {
   getNumberOfItemsInCart() {
     return this.listOfProducts.length;
   }
+
+  isProductAvailable(): boolean {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.stocks.forEach(stock => {
+      if (stock.productID === id && stock.quantity > 0) {
+        this.isAvb = true;
+      }
+    });
+    return this.isAvb;
+  }
+
+  getStocks(): void {
+    this.stockService.getStocks().subscribe(stock => this.stocks = stock);
+  }
+
 }

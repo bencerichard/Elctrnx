@@ -319,6 +319,10 @@ body {
   color: #0056B3;
 }
 
+#inputAddress{
+  min-width: 250px;
+}
+
 .inputsNonEdit{
   position: absolute;
   outline: none;

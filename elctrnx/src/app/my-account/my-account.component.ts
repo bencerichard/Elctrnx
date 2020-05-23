@@ -285,6 +285,13 @@ export class MyAccountComponent implements OnInit {
     }
   }
 
+  conditionalRoute(){
+    if(this.isAdmin)
+      this.router.navigate(['/add']);
+      else
+      this.router.navigate(['/listing-products-apple']);
+  }
+
   goBack(): void {
     this.authenticationService.isLoggedIn = true;
     this.location.back();

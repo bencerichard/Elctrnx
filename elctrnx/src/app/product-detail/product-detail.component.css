@@ -321,6 +321,17 @@
   cursor: pointer;
 }
 
+.pozaStock {
+  display: block;
+  width: 120px;
+  height: 120px;
+  top: -10px;
+  left: -55px;
+  position: absolute;
+  z-index: 99;
+  transform: rotateZ(20deg);
+}
+
 ::-webkit-scrollbar {
   position: absolute;
   margin-left: 10px;
