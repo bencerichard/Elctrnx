@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/orders")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://elctrnx-angular.herokuapp.com")
 public class OrderController {
 
     private final OrderService orderService;
