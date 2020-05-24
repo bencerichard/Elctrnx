@@ -18,7 +18,7 @@ import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
 @RestController
-@CrossOrigin(origins = "https://elctrnx-angular.herokuapp.com")
+@CrossOrigin(origins = "https://elctrnx-angular.web.app")
 @RequestMapping(value = "/image")
 public class ImageController {
 

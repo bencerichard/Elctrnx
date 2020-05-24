@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "https://elctrnx-angular.herokuapp.com")
+@CrossOrigin(origins = "https://elctrnx-angular.web.app")
 @RequestMapping(value = "/favorites")
 public class FavoritesController {
 

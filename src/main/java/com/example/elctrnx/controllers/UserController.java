@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://elctrnx-angular.herokuapp.com")
+@CrossOrigin(origins = "https://elctrnx-angular.web.app")
 @RequestMapping(value = "/users")
 public class UserController {
 

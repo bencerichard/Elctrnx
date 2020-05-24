@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://elctrnx-angular.herokuapp.com")
+@CrossOrigin(origins = "https://elctrnx-angular.web.app")
 @RequestMapping(value = "/cart")
 public class CartController {
 
