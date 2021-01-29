@@ -19,9 +19,6 @@ export class AgmMarkerService {
   }
 
   getAgmMarkers(): Observable<AgmMarkerModel[]> {
-    this.http.get<AgmMarkerModel[]>(this.agmMarkersUrl);
-    console.log(this.http.get<AgmMarkerModel[]>(this.agmMarkersUrl));
-    debugger
    return  this.http.get<AgmMarkerModel[]>(this.agmMarkersUrl);
   }
 

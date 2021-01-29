@@ -1,0 +1,88 @@
+.poza {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  color: black;
+  margin-left: 100px;
+  display: inline-flex;
+  font-family: 'anurati';
+  letter-spacing: 4px;
+}
+
+.navbar {
+  border-width: medium;
+  border-bottom: solid grey;
+}
+
+.bg-light {
+  background: #ffffff !important;
+}
+
+.contulMeuButon {
+  display: inline-flex;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black;
+  margin-top: 40%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.contulMeu {
+  display: inline-block;
+  margin-top: 15%;
+}
+
+.shoppingCart {
+  margin-left: 100px;
+  margin-top: 12%;
+}
+
+a,
+a label {
+  cursor: pointer;
+}
+
+.mat-badge-content {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(117, 0, 0, 1) 50%, rgba(246, 0, 0, 1) 100%);
+}
+
+.donationImageDiv {
+  position: absolute;
+  max-width: 1110px;
+  height: 400px;
+  background-color: grey;
+}
+
+.donationImage{
+  position: absolute;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  left: 0!important;
+  right: 0!important;
+}
+
+agm-map{
+  height: 400px;
+}
+
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
