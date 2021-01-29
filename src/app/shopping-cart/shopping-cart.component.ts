@@ -1,14 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthenticationService} from "../Authentication.service";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {Cart, DeliveryLocations, OrderInput, User} from "../User";
-import {UserService} from "../User.service";
-import {NotifierService} from "angular-notifier";
-import {Product} from "../Product";
-import {ProductService} from "../Product.service";
-import {filter} from "rxjs/operators";
-import {Location} from "@angular/common";
+import {AuthenticationService} from '../Authentication.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Cart, DeliveryLocations, OrderInput, User} from '../User';
+import {UserService} from '../User.service';
+import {NotifierService} from 'angular-notifier';
+import {Product} from '../Product';
+import {ProductService} from '../Product.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -37,19 +36,18 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.notifier = notifierService;
   }
 
-  getNumberOfItemsInCart(): number{
+  getNumberOfItemsInCart(): number {
     return this.listOfProducts.length;
   }
 
 
-
-  prepareClientName (){
-    this.user.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
+  prepareClientName() {
+    this.user.subscribe(user => {
+      let userArray = user.fullName.split(' ', 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
       debugger
       this.userAddress = user.addressDTO;
-    } );
+    });
   }
 
   ngOnInit(): void {
@@ -83,13 +81,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.orderInput.deliveryLocation = this.userAddress;
     debugger
     this.productService.postOrder(this.orderInput).subscribe(() => {
-      this.location.back()
+      this.location.back();
     });
     this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe();
     this.productService.deleteCartAfterCheckout(localStorage.getItem('username')).subscribe();
     this.modalFunction();
   }
-
 
 
   backToProductsList() {
@@ -101,7 +98,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   getUserCart(username: string) {
     this.userService.getUserByUsername(username).subscribe(user => {
         this.cart = user.cart;
-        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'),prod.productId).subscribe(a => {
+        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'), prod.productId).subscribe(a => {
           this.listOfProducts.push(a);
           this.showList = true;
         }));
@@ -163,9 +160,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   productsCost(id: number) {
     let sum = 0;
-    this.listOfProducts.filter( product => product.id === id).forEach( cart => sum = cart.price * this.getQuantity(cart.id) );
+    this.listOfProducts.filter(product => product.id === id).forEach(cart => sum = cart.price * this.getQuantity(cart.id));
     sum.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&.');
-    sum.toString().substring(0,sum.toString().length-2);
+    sum.toString().substring(0, sum.toString().length - 2);
     return sum;
   }
 

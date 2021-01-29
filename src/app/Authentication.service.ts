@@ -11,7 +11,8 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
   public currentUser: Observable<User>;
   private currentUserSubject: BehaviorSubject<User>;
-  private loginUrl = 'https://elctrnx-spring.herokuapp.com/login';
+  // private loginUrl = 'https://elctrnx-spring.herokuapp.com/login';
+  private loginUrl = 'http://localhost:8080/login';
   isLoggedIn = false;
 
   constructor(private http: HttpClient, private router: Router) {

@@ -68,12 +68,14 @@ body {
   font-size: 14px;
   color: #818182;
   margin-top: 5%;
+  z-index: -1;
 }
 
 .proile-rating span {
   color: #495057;
   font-size: 15px;
   font-weight: 600;
+  z-index: -1;
 }
 
 .profile-head .nav-tabs {
@@ -349,4 +351,23 @@ body {
 
 .modal{
   min-width: 1000px;
+}
+
+.congratulation{
+  position: relative;
+  width: 800px;
+  height: 80px;
+  left: 0;
+  right: 0;
+  top: 7vh;
+  margin: auto;
+}
+
+.congratulationText{
+  position: relative;
+  text-align: center;
+  font-size: 30px;
+  left: 0;
+  right: 0;
+  margin: auto;
 }

@@ -7,7 +7,8 @@ import {Cart, OrderInput, User} from "./User";
 @Injectable({providedIn: 'root'})
 export class ProductService {
 
-  private productsUrl = 'https://elctrnx-spring.herokuapp.com/products/';
+  // private productsUrl = 'https://elctrnx-spring.herokuapp.com/products/';
+  private productsUrl = 'http://localhost:8080/products/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -37,7 +38,8 @@ export class ProductService {
     return this.http.delete<Product>(this.productsUrl + id);
   }
 
-  private apiUrl = 'https://elctrnx-spring.herokuapp.com/';
+  // private apiUrl = 'https://elctrnx-spring.herokuapp.com/';
+  private apiUrl = 'http://localhost:8080/';
 
   postOrder(orderInput: OrderInput) {
     return this.http.post(this.apiUrl + 'orders', orderInput, this.httpOptions);

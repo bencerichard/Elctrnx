@@ -11,10 +11,13 @@ import {ProductDetailComponent} from "./product-detail/product-detail.component"
 import {AuthGuardService} from "./guards/auth-guard.service";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {ProductEditComponent} from "./product-edit/product-edit.component";
+import {TestComponent} from "./test/test.component";
+import {DonationComponent} from "./donation/donation.component";
 
 const routes: Routes = [
   {path: 'products', component: ProductsComponent},
   // {path: 'products', component: ProductsComponent,canActivate: [AuthGuardService]},
+  {path: 'donate', component: DonationComponent},
   {path: 'log-in', component: LogInComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
@@ -42,6 +45,7 @@ const routes: Routes = [
   {path: 'edit/:id',component: ProductEditComponent},
   {path: 'add',component: ProductEditComponent},
   {path: 'detail/:id', component: ProductDetailComponent},
+  {path: 'test', component: TestComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent},
 ];

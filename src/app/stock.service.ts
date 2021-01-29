@@ -10,8 +10,10 @@ export class StockService {
   constructor(private http: HttpClient) {
   }
 
-  private apiUrl = 'https://elctrnx-spring.herokuapp.com/stocks';
-  private emailUrl = 'https://elctrnx-spring.herokuapp.com/email';
+  // private apiUrl = 'https://elctrnx-spring.herokuapp.com/stocks';
+  private apiUrl = 'http://localhost:8080/stocks';
+  // private emailUrl = 'https://elctrnx-spring.herokuapp.com/email';
+  private emailUrl = 'http://localhost:8080/email';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

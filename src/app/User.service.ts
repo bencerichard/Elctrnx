@@ -6,8 +6,9 @@ import {OrderInput2, User} from "./User";
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  private userUrl = 'https://elctrnx-spring.herokuapp.com/users/';
-
+  // private userUrl = 'https://elctrnx-spring.herokuapp.com/users/';
+  private userUrl = 'http://localhost:8080/users/';
+https
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };

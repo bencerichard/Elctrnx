@@ -39,7 +39,9 @@
               "src/assets/myjs/vid1.js",
               "src/assets/myjs/vid2.js",
               "src/assets/myjs/vid3.js",
-              "src/assets/myjs/vid4.js"
+              "src/assets/myjs/vid4.js",
+              "src/assets/myjs/bunVenit.js",
+              "src/assets/myjs/centerMap.js"
             ]
           },
           "configurations": {
