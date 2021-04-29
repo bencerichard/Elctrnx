@@ -348,3 +348,81 @@ a label {
   background: rgb(0,0,0);
   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(117,0,0,1) 50%, rgba(246,0,0,1) 100%);
 }
+
+#takeMeToDonationsPage{
+  display: block;
+  width: 350px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid #333;
+  transition: all .35s;
+}
+
+.wrapper{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 75px;
+}
+
+.link_wrapper{
+  position: relative;
+}
+
+.icon{
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  position: absolute;
+  transform: rotate(45deg);
+  right: 0;
+  top: 0;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.icon svg{
+  width: 30px;
+  position: relative;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  transform: rotate(-45deg);
+  fill: #2ecc71;
+  transition: all .35s;
+}
+
+#takeMeToDonationsPage:hover{
+  width: 325px;
+  border: 3px solid #2ecc71;
+  background: transparent;
+  color: #2ecc71;
+}
+
+#takeMeToDonationsPage:hover + .icon{
+  border: 3px solid #2ecc71;
+  right: -25%;
+}
+
+.parentDonationNav{
+  position: relative;
+  width: 100%;
+}
+
+.leftDonationNav{
+  position: absolute;
+  width: 50%;
+  left: 0;
+}
+
+.rightDonationNav{
+  position: absolute;
+  width: 50%;
+  left: 50%;
+}

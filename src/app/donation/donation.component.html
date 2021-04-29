@@ -34,31 +34,148 @@
     </ul>
   </nav>
 
-  <div class="donationImageDiv container mt-5">
+  <div class="mapDiv container mt-5">
     <agm-map [scrollwheel]="true" [zoom]="6" [latitude]="lat" [longitude]="lng" id="map" class="donationImage"
              (mapClick)="onChoseLocation($event)">
 
       <div *ngFor="let agmInfo of agmMarkers">
         <agm-marker [openInfoWindow]="true" [latitude]=agmInfo.lat [longitude]=agmInfo.lng>
-          <agm-info-window>
-            <p style="font-weight: bold; font-size: 20px; text-align: center"> Fam. {{agmInfo.name}}</p>
-            <p style="font-weight: bold; font-size: 16px; text-align: center"> {{agmInfo.numberOfDonations}}/12 </p>
-            <div class="progress" style="width: 100%">
-              <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                   [style.width]="getPercentageById(agmInfo.agmInfoId)"
-                   aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+             <agm-info-window>
+              <div style="margin-bottom: 8px;">
+               <p style="font-weight: bold; font-size: 20px; text-align: center; margin-bottom: 8px"> Fam. {{agmInfo.name}}</p>
+               <a [hidden]="!hasDonationsResponsibleRole" (click)="openDialogDeleteAgmMarker(agmInfo.name, agmInfo.agmInfoId)" data-toggle="tooltip" data-placement="right" title="Delete family"
+                  style="position: relative; left: 45%; transform: translate(-50%);"><i class="fas fa-trash"></i></a>
               </div>
-            </div>
-            <button style="position: relative; left: 52%; transform: translate(-50%,0%)" type="button"
-                    class="btn btn-success btn-sm mt-3">Doneaza
-            </button>
-          </agm-info-window>
+                <p style="font-weight: bold; font-size: 16px; text-align: center"> {{agmInfo.numberOfDonations}}/12 </p>
+              <div class="progress" style="width: 100%">
+                <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                     [style.width]="getPercentageById(agmInfo.agmInfoId)"
+                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                </div>
+              </div>
+              <button
+                (click)="modalFunction(); setLastVisitedAgmNumberOfDonationsAndId(agmInfo.numberOfDonations, agmInfo.agmInfoId, agmInfo.name)"
+                style="position: relative; left: 52%; transform: translate(-50%,0%)" type="button"
+                class="btn btn-success btn-sm mt-3" [disabled]="agmInfo.numberOfDonations===12">Doneaza
+              </button>
+             </agm-info-window>
         </agm-marker>
       </div>
     </agm-map>
   </div>
+</div>
 
+<!--<h2 style="text-align: center; top: 69vh; position: relative; font-family: 'Montserrat', sans-serif;"> Donația ta poate-->
+<!--  ajuta...</h2>-->
 
-  <div class="donationBoxes"></div>
+<h2 class="donationText">
+  Este regretabil
+  ca in prezent, in Romania, exista zeci de mii de oameni care sufera de foame. Intr-o societate responsabila, orice
+  persoana, printr-un gest simplu, poate sa acorde un ajutor celor dezavantajati, care nu isi pot procura singuri
+  hrana. <a style="color:#28A745; font-weight: bold; cursor: context-menu">Doneaza</a> acum si ajuta una sau mai multe
+  familii si vei primi o <a
+  style="color: #139CE0; font-weight: bold; cursor: context-menu">reducere</a> direct proportionala cu suma <a
+  style="color: #28A745; font-weight: bold; cursor: context-menu">donata</a></h2>
+
+<div class="container donationBoxes">
+
+  <div id="stanga">
+    <h3 class="donationBoxesTextAmount">300 Lei</h3>
+    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">o luna</a>, iar donatia ta iti aduce o reducere de <a
+      style="color: #E10006; font-weight: bold; cursor: context-menu">3%</a> la toate produsele comandate</p>
+  </div>
+  <div id="mijloc">
+    <h3 class="donationBoxesTextAmount">1800 Lei</h3>
+    <!--    <p class="donationBoxesText">Fii ingerul pazitor al unei familii timp de sase luni</p>-->
+    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">6 luni</a>, iar donatia ta iti aduce o reducere de <a
+      style="color: #E10006; font-weight: bold; cursor: context-menu">10%</a> la toate produsele comandate</p>
+  </div>
+  <div id="dreapta">
+    <h3 class="donationBoxesTextAmount">3600 Lei</h3>
+    <!--    <p class="donationBoxesText">Fii ingerul pazitor al unei familii timp de un an</p>-->
+    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">un an</a>, iar donatia ta iti aduce o reducere de <a
+      style="color: #E10006; font-weight: bold; cursor: context-menu">20%</a> la toate produsele comandate</p>
+  </div>
 
 </div>
+
+<h2 style="text-align: center; top: 82vh; position: relative; font-family: 'Montserrat', sans-serif;"> Donația ta
+  ajută...</h2>
+
+<div class="donationImageDiv container mt-5">
+  <!--    <div id="donationImageLeft">-->
+  <!--      <img style="max-width: 100%; max-height: 100%; min-width: 100%; min-height: 100%" src="../../assets/img/hunger.jpg">-->
+
+  <img style="max-width: 100%; max-height: 100%!important; min-width: 100%; min-height: 100%"
+       src="../../assets/img/providence-doucet-5za6niH4qpw-unsplash.jpg">
+
+  <!--    </div>-->
+  <!--    <div id="donationImageRight">-->
+  <img style="max-width: 100%; max-height: 100%; min-width: 100%"
+       src="../../assets/img/front-view-volunteers-thanking-you-donating-food-day.jpg">
+  <!--  <img style="max-width: 100%; max-height: 100%; min-width: 100%" src="../../assets/img/yannis-h-uaPaEM7MiQQ-unsplash.jpg">-->
+  <!--    </div>-->
+</div>
+
+<div id="footer" class="container">
+  <h2 class="mt-5" style="text-align: center;  font-family: 'Montserrat', sans-serif;">Niciodata nu a fost mai usor sa
+    ajuti</h2>
+
+  <h2 class="detailsText mt-5">
+    Fiecare indicator de pe harta reprezinta o familie care are nevoie de ajutorul tau!
+    Prin alegerea unui indicator de pe harta vei putea vizualiza detaliile unei familii nevoiase.
+    <!--    <br /><br />-->
+    Detaliile constau in numele familiei si numarul de luni in care aceasta a fost ajutata sa invinga foamea in decursul
+    anului. </h2>
+    <br/>
+    <h2 style="color: red; text-align: justify; font-family: 'Montserrat', sans-serif; font-size: 22px; cursor: auto"> Obiectivul este ca fiecare familie sa ajunga la 12 luni in
+      care a fost ajutata (12/12 pe indicator). </h2> <br/>
+  <h2 class="detailsText mb-5">
+    Poti alege sa ajuti o familie timp de o luna, 6 luni sau chiar un an intreg.
+    <!--    <br /><br />-->
+    Poti dona pentru o familie specifica accesand indicatorul de pe harta sau poti opta pentru donatia la o familie
+    aleasa aleator din cele care au nevoie de ajutor
+  </h2>
+</div>
+
+<div id="footerTwo" class="container"></div>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+<div id="myModal" class="modal" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="showModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 style="position: absolute; color: black; left: 50%; transform: translate(-50%)" class="modal-title"
+            id="exampleModalLongTitle">Alege optiunea dorita</h4>
+        <button class="close" (click)="modalFunction();"><i class="far fa fa-times pt-1"></i></button>
+      </div>
+      <div class="modal-body" id="outer">
+        <div class="inner">
+          <button (click)="modalFunction(); openDialogSubmitDonation(300)"
+                  [disabled]="isDonationPossible(1)" type="button" class="btn btn-success btn mt-3">300Lei (1 luna)
+          </button>
+        </div>
+        <div class="inner">
+          <button (click)="modalFunction(); openDialogSubmitDonation(1800)"
+                  [disabled]="isDonationPossible(6)" type="button" class="btn btn-success btn mt-3">1800Lei (6 luni)
+          </button>
+        </div>
+        <div class="inner">
+          <button (click)="modalFunction(); openDialogSubmitDonation(3600)"
+                  [disabled]="isDonationPossible(12)" type="button" class="btn btn-success btn mt-3">3600Lei (1 an)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button [hidden]="!hasDonationsResponsibleRole" (click)="openDialog()" data-toggle="tooltip" data-placement="bottom"
+        title="Add Family" id="butonAdaugare"
+        style="position: absolute; top: 150px; right: 76px"><i class="fa fa-plus fa-3x" aria-hidden="true"></i></button>

@@ -1,13 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../Product';
+import {Product} from '../models/Product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../Authentication.service';
 import {Observable} from 'rxjs';
-import {AgmMarkerModel, Cart, User} from '../User';
+import {AgmMarkerModel, Cart, User} from '../models/User';
 import {NotifierService} from 'angular-notifier';
 import {ProductService} from '../Product.service';
 import {UserService} from '../User.service';
 import {AgmMarkerService} from '../agm-marker.service';
+import {RoleEnum} from '../enums/RoleEnum';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../dialog/dialog.component';
+import {Address} from '../models/Address';
+import {GeocodeService} from '../geocode.service';
+import {DonationSubmitDialogComponent} from '../donation-submit-dialog/donation-submit-dialog.component';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {DonationService} from '../donation.service';
+import {Donation} from '../models/Donation';
+import {MatIconModule} from '@angular/material/icon';
+import {DeleteAgmMarkerComponent} from '../delete-agm-marker/delete-agm-marker.component';
 
 @Component({
   selector: 'app-donation',
@@ -25,6 +36,11 @@ export class DonationComponent implements OnInit {
   cart: Cart[] = [];
   agmMarkers: AgmMarkerModel[] = [];
   currentAgmMarker: AgmMarkerModel;
+  showModal = false;
+  lastVisitedAgmNumberOfDonations: number;
+  lastVisitedAgmId: number;
+  lastVisitedAgmName: string;
+  hasDonationsResponsibleRole: boolean;
 
   agmInfoWindowHelper: AgmMarkerModel[] = [
     {
@@ -59,7 +75,11 @@ export class DonationComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private userService: UserService,
               private notifierService: NotifierService,
-              private donationService: AgmMarkerService
+              private agmMarkerService: AgmMarkerService,
+              private geocodeService: GeocodeService,
+              public dialog: MatDialog,
+              private _snackBar: MatSnackBar,
+              private donationService: DonationService,
   ) {
     this.notifier = notifierService;
   }
@@ -78,10 +98,45 @@ export class DonationComponent implements OnInit {
     );
   }
 
+  // addToCart(donationAmount: number): void {
+  //   localStorage.setItem('donationAmount', donationAmount.toString());
+  //   localStorage.setItem('agmMarkerId', this.lastVisitedAgmId.toString());
+  //
+  //   let id: number;
+  //
+  //   switch (donationAmount) {
+  //     case 300: {
+  //       id = 100;
+  //       break;
+  //     }
+  //     case 1800: {
+  //       id = 101;
+  //       break;
+  //     }
+  //     case 3600: {
+  //       id = 102;
+  //       break;
+  //     }
+  //   }
+  //
+  //   this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => {
+  //     this.cart = user.cart;
+  //     this.cart.find(elem => {
+  //       if (elem.productId === 100 || elem.productId === 101 || elem.productId === 102) {
+  //         elem.productId = id;
+  //       }
+  //     });
+  //     this.cart.push({productId: id, quantity: 1});
+  //     this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe(() => {
+  //     });
+  //   });
+  // }
+
   prepareClientName() {
     this.user.subscribe(user => {
       const userArray = user.fullName.split(' ', 2);
       this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      this.hasDonationsResponsibleRole = user.role.roleName === RoleEnum.DONATIONS_RESPONSIBLE;
     });
   }
 
@@ -104,13 +159,13 @@ export class DonationComponent implements OnInit {
   }
 
   getAgmMarkers() {
-    this.donationService.getAgmMarkers().subscribe(agmMaker => {
+    this.agmMarkerService.getAgmMarkers().subscribe(agmMaker => {
       this.agmMarkers = agmMaker;
     });
   }
 
   getAgmMarkerById(markerId: number): AgmMarkerModel {
-    this.donationService.getAgmMarkerById(markerId).subscribe(agmMaker => {
+    this.agmMarkerService.getAgmMarkerById(markerId).subscribe(agmMaker => {
       this.currentAgmMarker = agmMaker;
     });
     return this.currentAgmMarker;
@@ -119,6 +174,107 @@ export class DonationComponent implements OnInit {
   getPercentageById(markerId: number) {
     // const percentage = this.getAgmMarkerById(markerId).numberOfDonations / 0.12;
     const percentage = this.agmMarkers.find(marker => marker.agmInfoId === markerId);
-    return percentage.numberOfDonations/ 0.12 + '%';
+    return percentage.numberOfDonations / 0.12 + '%';
+  }
+
+  modalFunction() {
+    this.showModal = !this.showModal;
+  }
+
+  setLastVisitedAgmNumberOfDonationsAndId(numberOfDonations: number, agmMarkerId: number, name: string) {
+    this.lastVisitedAgmNumberOfDonations = numberOfDonations;
+    this.lastVisitedAgmId = agmMarkerId;
+    this.lastVisitedAgmName = name;
+  }
+
+  isDonationPossible(numberOfAvailableDonations): boolean {
+    return !(12 - this.lastVisitedAgmNumberOfDonations >= numberOfAvailableDonations);
+  }
+
+  convertAddressToAgmMarker(address: Address, surname: string) {
+    return new Promise(((resolve) => {
+      this.geocodeService.getGeocode(address)
+        .subscribe(result => {
+            const newAgm =
+              {
+                lat: result.results[0].geometry.location.lat,
+                lng: result.results[0].geometry.location.lng,
+                numberOfDonations: 0,
+                name: surname,
+              } as AgmMarkerModel;
+            console.log('4');
+            this.createNewAgm(newAgm);
+            console.log('5');
+            resolve();
+            console.log('6');
+          }
+        );
+    }));
+  }
+
+  createNewAgm(agmMarkerModel: AgmMarkerModel) {
+    this.agmMarkerService.createAgmMarker(agmMarkerModel).subscribe();
+  }
+
+  deleteAgmMarker(agmMarkerId: number){
+    this.agmMarkerService.deleteAgmMarker(agmMarkerId).subscribe();
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogComponent, {
+      data: `Are you sure you want to delete?`
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.convertAddressToAgmMarker(res.data.address, res.data.surname).then(() => {
+        location.reload();
+      });
+    });
+  }
+
+  openDialogDeleteAgmMarker(name: string, agmMarkerId: number) {
+    let dialogRef = this.dialog.open(DeleteAgmMarkerComponent, {
+      data: {name: name}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if(res){
+        this.deleteAgmMarker(agmMarkerId);
+        location.reload();
+      }
+    });
+  }
+
+   openDialogSubmitDonation(amount: number) {
+    let dialogRef = this.dialog.open(DonationSubmitDialogComponent, {
+      data: {name: this.lastVisitedAgmName, amount: amount}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.openSnackBar('Multumim pentru donatia efectuata!');
+        this.donationService.createDonation({
+          familyName: this.lastVisitedAgmName,
+          amount: amount,
+          userDTO: {username: localStorage.getItem('username')},
+          wasRedeemed: false
+        } as Donation).subscribe(() => {
+        });
+        this.agmMarkerService.updateAgmMarker(this.lastVisitedAgmId, amount / 300).subscribe(() => {
+          setTimeout(() => {
+            location.reload();
+          }, 1500);
+        });
+      }
+    });
+  }
+
+  openSnackBar(message: string) {
+    let config = new MatSnackBarConfig();
+    config.panelClass = ['custom-class'];
+    this._snackBar.open(message, '✓', {
+      duration: 5000,
+      panelClass: ['custom-class']
+    });
   }
 }

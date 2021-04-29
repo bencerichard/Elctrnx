@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Product} from './Product';
-import {Stock} from './Stock';
+import {Product} from './models/Product';
+import {Stock} from './models/Stock';
 
 @Injectable({providedIn: 'root'})
 export class StockService {

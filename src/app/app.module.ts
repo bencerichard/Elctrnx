@@ -24,6 +24,16 @@ import {ProductEditComponent} from './product-edit/product-edit.component';
 import {TestComponent} from './test/test.component';
 import {DonationComponent} from './donation/donation.component';
 import {AgmCoreModule} from '@agm/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { DonationSubmitDialogComponent } from './donation-submit-dialog/donation-submit-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DeleteAgmMarkerComponent } from './delete-agm-marker/delete-agm-marker.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +50,14 @@ import {AgmCoreModule} from '@agm/core';
     ProductEditComponent,
     TestComponent,
     DonationComponent,
+    DialogComponent,
+    DonationSubmitDialogComponent,
+    DeleteAgmMarkerComponent,
+  ],
+  entryComponents: [
+    DialogComponent,
+    DonationSubmitDialogComponent,
+    DeleteAgmMarkerComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,10 +80,17 @@ import {AgmCoreModule} from '@agm/core';
     MatSliderModule,
     MatIconModule,
     MatBadgeModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     NgbModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatSnackBarModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
-    })
+      // apiKey: 'AIzaSyBPeAa7DpbD8bFMDNkH-RFQvAnr-mWtaNo'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

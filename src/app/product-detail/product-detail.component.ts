@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../Product.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "../Product";
+import {Product} from "../models/Product";
 import {AuthenticationService} from "../Authentication.service";
 import {Observable} from "rxjs";
-import {Cart, User} from "../User";
+import {Cart, User} from "../models/User";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
 import {Location} from "@angular/common";
-import {Stock} from "../Stock";
+import {Stock} from "../models/Stock";
 import {StockService} from "../stock.service";
 
 @Component({

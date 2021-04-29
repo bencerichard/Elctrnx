@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {Cart, User} from "../User";
+import {Cart, User} from "../models/User";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
 import {UserService} from "../User.service";
 import {NotifierService} from "angular-notifier";
 import {Location} from "@angular/common";
-import {Product} from "../Product";
+import {Product} from "../models/Product";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({

@@ -1,0 +1,82 @@
+.cancelButton {
+  margin-left: 350px !important;
+  background-color: grey;
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: black;
+}
+
+.cancelButton:focus {
+  outline: none;
+}
+
+.approveButton {
+  background-color: #139CE0;
+  color: white;
+}
+
+.approveButton:focus {
+  outline: none;
+}
+
+.approveButton:hover {
+  background-color: #28A745;
+}
+
+.approveButton:disabled {
+  color: grey;
+}
+
+.approveButton:disabled:hover {
+  background-color: #E5E3DF !important;
+}
+
+.example-button-row {
+  display: table-cell;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.donationImage {
+  max-width: 450px;
+  max-height: 300px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%)
+}
+
+.titleFirstRow {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 22px;
+  margin-bottom: 0 !important;
+}
+
+.titleSecondRow {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 22px;
+}
+
+.description {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  max-width: 500px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.image {
+  max-width: 450px;
+  max-height: 300px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%)
+}

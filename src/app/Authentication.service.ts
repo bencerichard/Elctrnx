@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
-import {User} from "./User";
+import {User} from "./models/User";
 import {Router} from "@angular/router";
 
 

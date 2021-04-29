@@ -2,10 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from '../Authentication.service';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Cart, DeliveryLocations, OrderInput, User} from '../User';
+import {Cart, DeliveryLocations, OrderInput, User} from '../models/User';
 import {UserService} from '../User.service';
 import {NotifierService} from 'angular-notifier';
-import {Product} from '../Product';
+import {Product} from '../models/Product';
 import {ProductService} from '../Product.service';
 import {Location} from '@angular/common';
 

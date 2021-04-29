@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {OrderInput2, User} from "./User";
+import {OrderInput2, User} from "./models/User";
 
 @Injectable({providedIn: 'root'})
 export class UserService {

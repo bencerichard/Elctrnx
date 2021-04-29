@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from '../Product';
+import {Product} from '../models/Product';
 import {ProductService} from "../Product.service";
 import {AuthenticationService} from "../Authentication.service";
-import {Cart, User} from "../User";
+import {Cart, User} from "../models/User";
 import {UserService} from "../User.service";
 import {Observable} from "rxjs";
 import {NotifierService} from "angular-notifier";
