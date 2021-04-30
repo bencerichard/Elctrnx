@@ -1,0 +1,251 @@
+.poza {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  color: black;
+  margin-left: 100px;
+  display: inline-flex;
+  font-family: 'anurati';
+  letter-spacing: 4px;
+}
+
+.navbar {
+  border-width: medium;
+  border-bottom: solid grey;
+}
+
+.bg-light {
+  background: #ffffff !important;
+}
+
+.contulMeuButon {
+  display: inline-flex;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black;
+  margin-top: 40%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.contulMeu {
+  display: inline-block;
+  margin-top: 15%;
+}
+
+.shoppingCart {
+  margin-left: 100px;
+  margin-top: 12%;
+}
+
+a,
+a label {
+  cursor: pointer;
+}
+
+.mat-badge-content {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(117, 0, 0, 1) 50%, rgba(246, 0, 0, 1) 100%);
+}
+
+.mapDiv {
+  position: absolute;
+  max-width: 1110px;
+  height: 400px;
+  background-color: grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.donationImage {
+  position: absolute;
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+agm-map {
+  height: 400px;
+}
+
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.donationBoxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 16.5rem);
+  grid-gap: 6rem;
+  justify-content: center;
+  position: relative;
+  top: 75vh;
+  min-height: 200px;
+  min-width: 400px;
+}
+
+#stanga {
+  height: 38vh;
+  background-color: #F6D889;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 25%;
+}
+
+#mijloc {
+  height: 38vh;
+  background-color: #F5F5F5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 25%;
+}
+
+#dreapta {
+  height: 38vh;
+  background-color: #CEEECE;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 25%;
+}
+
+.donationBoxesTextAmount {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  top: 15%;
+  color: #001A2B;
+}
+
+.donationBoxesText {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: initial;
+  font-size: 18px;
+  text-align: center;
+  position: relative;
+  top: 25%;
+}
+
+.donationText {
+  text-align: justify;
+  text-align-last: center;
+  top: 69vh;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  margin-left: 15%;
+  margin-right: 15%
+}
+
+.donationImageDiv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 50%);
+  justify-content: center;
+  position: relative;
+  top: 83vh;
+  max-width: 1110px;
+  height: 360px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0 !important;
+}
+
+#donationImageLeft {
+
+  /*position: absolute;*/
+  background-color: #F4F8FB;
+  /*width: 50%;*/
+  /*height: 100%;*/
+  margin-left: 0 !important;
+}
+
+#donationImageRight {
+  /*position: absolute;*/
+  background-color: gainsboro;
+  /*left: 50%;*/
+  /*width: 50%;*/
+  /*height: 100%;*/
+}
+
+.detailsText {
+  text-align: justify;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  text-align-last: center;
+}
+
+
+#footer {
+  position: relative;
+  top: 84vh;
+  height: 250px;
+  width: 100%;
+}
+
+#footerTwo {
+  position: relative;
+  top: 95vh;
+  height: 40px;
+  width: 100%;
+}
+
+.modal {
+  display: block;
+}
+
+.share-button {
+  display: inline-block;
+}
+
+#outer
+{
+  width:100%;
+  text-align: center;
+}
+
+#deleteOuter{
+  width:100%;
+  text-align: center;
+}
+
+.inner
+{
+  display: inline-block;
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+#butonAdaugare{
+  background-color: white!important;
+  border: none!important;
+  color: #28A745;
+}
+
+#butonAdaugare:focus{
+  outline: none!important;
+}
+
+::ng-deep snack-bar-container.custom-class {
+  background: #139CE0;
+}
+
+::ng-deep .custom-class .mat-simple-snackbar {
+  color: white;
+}
+
+::ng-deep .custom-class .mat-simple-snackbar-action button{
+  color: white;
+}

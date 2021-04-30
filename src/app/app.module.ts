@@ -21,6 +21,19 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { DeleteAgmMarkerComponent } from './delete-agm-marker/delete-agm-marker.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { DonationComponent } from './donation/donation.component';
+import { DonationSubmitDialogComponent } from './donation-submit-dialog/donation-submit-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {TestComponent} from './test/test.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatButtonModule} from '@angular/material/button';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -35,6 +48,16 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     ProductDetailComponent,
     ShoppingCartComponent,
     ProductEditComponent,
+    DeleteAgmMarkerComponent,
+    DialogComponent,
+    DonationComponent,
+    DonationSubmitDialogComponent,
+    TestComponent,
+  ],
+  entryComponents: [
+    DialogComponent,
+    DonationSubmitDialogComponent,
+    DeleteAgmMarkerComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +81,16 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     MatIconModule,
     MatBadgeModule,
     NgbModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBWpVIWGZ83v5Pj2On1q0F_1HD2foDaVAs'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

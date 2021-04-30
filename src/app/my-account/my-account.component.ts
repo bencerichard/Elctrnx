@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Cart, Image, OrderInput2, User} from "../User";
+import {Cart, Image, OrderInput2, User} from "../models/User";
 import {UserService} from "../User.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -9,7 +9,7 @@ import {Location} from "@angular/common";
 import {first} from "rxjs/operators";
 import {NotifierService} from "angular-notifier";
 import {ProductService} from "../Product.service";
-import {Product} from "../Product";
+import {Product} from "../models/Product";
 
 @Component({
   selector: 'app-my-account',

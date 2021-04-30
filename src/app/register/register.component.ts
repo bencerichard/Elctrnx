@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../User.service";
 import {first} from "rxjs/operators";
-import {Cart, DeliveryLocations, User} from "../User";
+import {Cart, DeliveryLocations, User} from "../models/User";
 import {NotifierService} from "angular-notifier";
 @Component({
   selector: 'app-register',

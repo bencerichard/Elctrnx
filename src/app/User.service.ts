@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {OrderInput2, User} from "./User";
+import {OrderInput2, User} from "./models/User";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  private userUrl = 'https://elctrnx-spring.herokuapp.com/users/';
+  // private userUrl = 'https://elctrnx-spring.herokuapp.com/users/';
+  private userUrl = 'http://localhost:8080/users/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

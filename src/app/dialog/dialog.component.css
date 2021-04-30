@@ -1,0 +1,102 @@
+.example-form {
+  min-width: 150px;
+  max-width: 350px;
+  width: 100%;
+}
+
+.example-form:first-child{
+  margin-top: 20px;
+}
+
+.example-full-width {
+  width: 95%;
+  margin-bottom: 15px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.cancelButton{
+  margin-left: 165px!important;
+  background-color: grey;
+  color: white;
+}
+
+.cancelButton:hover{
+  background-color: black;
+}
+
+.cancelButton:focus{
+  outline: none;
+}
+
+.approveButton{
+  background-color:  #139CE0;
+  color: white
+}
+
+.approveButton:hover{
+  background-color:  #28A745;
+}
+
+.approveButton:focus{
+  outline: none;
+}
+
+.approveButton:disabled{
+  color: grey;
+}
+
+.approveButton:disabled:hover{
+  background-color: #E5E3DF!important;
+}
+/*:host ::ng-deep .mat-form-field-underline {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :hover .mat-form-field-underline {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :focus .mat-form-field-underline {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :hover .mat-focused .mat-form-field-underline .mat-form-field-ripple {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :focus .mat-focused .mat-form-field-underline .mat-form-field-ripple {*/
+/*  background-color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep input {*/
+/*  color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :hover input {*/
+/*  color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep :focus input {*/
+/*  color: yellow !important;*/
+/*}*/
+/*:host ::ng-deep input {*/
+/*  color: yellow !important;*/
+/*}*/

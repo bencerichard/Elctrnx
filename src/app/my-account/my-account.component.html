@@ -1,5 +1,19 @@
 <div class="container emp-profile polaroid">
 
+  <div style="max-height: 100px; max-width: 100px" *ngIf="hoar%100 ===0">
+    <img style="max-width: 600px; max-height: 300px; position: absolute; left: 0"
+         src="../../assets/img/35875-confetti-on-transparent-background.gif" alt="Italian Trulli">
+  </div>
+
+  <div style="max-height: 100px; max-width: 100px" *ngIf="hoar%100 ===0">
+    <img style="max-width: 600px; max-height: 300px; position: absolute; right: 0;"
+         src="../../assets/img/35875-confetti-on-transparent-background.gif" alt="Italian Trulli">
+  </div>
+
+  <div class="congratulation">
+    <p class="congratulationText" *ngIf="hoar % 100 === 0">Congratulations on your: <span>{{hoar}}th anniversary</span></p>
+  </div>
+
   <form [formGroup]="accountEditForm" style="margin-top: 4.5%">
     <div class="row">
       <div class="col-md-4">
