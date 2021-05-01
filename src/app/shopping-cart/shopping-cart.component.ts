@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AuthenticationService} from "../Authentication.service";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {Cart, DeliveryLocations, OrderInput, User} from "../models/User";
-import {UserService} from "../User.service";
-import {NotifierService} from "angular-notifier";
-import {Product} from "../models/Product";
-import {ProductService} from "../Product.service";
-import {filter} from "rxjs/operators";
-import {Location} from "@angular/common";
+import {AuthenticationService} from '../Authentication.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Cart, DeliveryLocations, OrderInput, User} from '../models/User';
+import {UserService} from '../User.service';
+import {NotifierService} from 'angular-notifier';
+import {Product} from '../models/Product';
+import {ProductService} from '../Product.service';
+import {filter} from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -26,6 +26,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   cart: Cart[] = [];
   showList = true;
   userAddress: DeliveryLocations;
+  discount: number;
+  hideSale = true;
+  donationId : number;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -37,25 +40,31 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.notifier = notifierService;
   }
 
-  getNumberOfItemsInCart(): number{
+  getNumberOfItemsInCart(): number {
     return this.listOfProducts.length;
   }
 
 
-
-  prepareClientName (){
-    this.user.subscribe( user => {
-      let userArray = user.fullName.split(" ",2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
-      debugger
+  prepareClientName() {
+    this.user.subscribe(user => {
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
       this.userAddress = user.addressDTO;
-    } );
+    });
   }
 
   ngOnInit(): void {
     this.prepareClientName();
     this.getUserCart(localStorage.getItem('username'));
     this.emptyCart();
+    this.productsTotalCost();
+    setTimeout( () => {
+      this.productService.getNotRedeemedDonation(localStorage.getItem('username')).subscribe(donation => {
+        this.discount = donation.amount === 300 ?  0.97 : donation.amount === 1800 ?
+          0.9 : donation.amount === 3600 ? 0.8 : 1;
+          this.donationId = donation.donationId;
+          this.hideSale = false;
+      }, error => {});
+    },100);
   }
 
   logout(): void {
@@ -81,15 +90,14 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   createOrder() {
     this.orderInput.productsList = this.cart;
     this.orderInput.deliveryLocation = this.userAddress;
-    debugger
     this.productService.postOrder(this.orderInput).subscribe(() => {
-      this.location.back()
+      this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe();
+      this.productService.deleteCartAfterCheckout(localStorage.getItem('username')).subscribe();
+      this.modalFunction();
+      this.productService.setRedeemedToTrue(this.donationId).subscribe(() => {});
+      setTimeout(() => this.location.back(), 3000);
     });
-    this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe();
-    this.productService.deleteCartAfterCheckout(localStorage.getItem('username')).subscribe();
-    this.modalFunction();
   }
-
 
 
   backToProductsList() {
@@ -101,7 +109,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   getUserCart(username: string) {
     this.userService.getUserByUsername(username).subscribe(user => {
         this.cart = user.cart;
-        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'),prod.productId).subscribe(a => {
+        this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'), prod.productId).subscribe(a => {
           this.listOfProducts.push(a);
           this.showList = true;
         }));
@@ -161,11 +169,17 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     return sum;
   }
 
+  productTotalCostAfterSale(discount: number){
+    let sum = 0;
+    this.listOfProducts.forEach(cart => sum += cart.price * this.getQuantity(cart.id));
+    return sum*discount;
+  }
+
   productsCost(id: number) {
     let sum = 0;
-    this.listOfProducts.filter( product => product.id === id).forEach( cart => sum = cart.price * this.getQuantity(cart.id) );
+    this.listOfProducts.filter(product => product.id === id).forEach(cart => sum = cart.price * this.getQuantity(cart.id));
     sum.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&.');
-    sum.toString().substring(0,sum.toString().length-2);
+    sum.toString().substring(0, sum.toString().length - 2);
     return sum;
   }
 
@@ -174,7 +188,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   modalFunction() {
-    // this.notifier.notify('success','Placed order successfully');
+    this.notifier.notify('success', 'Your order has been placed successfully');
+    // this.showModal=true;
   }
 
 }

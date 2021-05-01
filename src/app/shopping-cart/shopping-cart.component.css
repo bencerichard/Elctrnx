@@ -120,7 +120,7 @@
 
 #checkOutButton{
    position: absolute;
-   top: 74%;
+   top: 83%;
    left: 50%;
    transform: translate(-50%);
    border: none;
@@ -149,6 +149,12 @@
 #pay{
   position: relative;
   top: 30%;
+  min-height: 350px;
+}
+
+#paySale{
+  position: relative;
+  top: 40%;
   min-height: 350px;
 }
 

@@ -246,3 +246,14 @@ div.form
   background: black;
 }
 
+/*input:invalid{*/
+/*  border-bottom: 1px solid red;*/
+/*}*/
+
+input.ng-invalid.ng-touched{
+  border-bottom: 1px solid red;
+}
+
+textarea.ng-invalid.ng-touched{
+  border-bottom: 1px solid red;
+}

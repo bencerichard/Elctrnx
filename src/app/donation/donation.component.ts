@@ -41,30 +41,8 @@ export class DonationComponent implements OnInit {
   lastVisitedAgmId: number;
   lastVisitedAgmName: string;
   hasDonationsResponsibleRole: boolean;
+  showInfoModal = false;
 
-  agmInfoWindowHelper: AgmMarkerModel[] = [
-    {
-      agmInfoId: 1,
-      lng: '21.42',
-      lat: '46.06',
-      numberOfDonations: 6,
-      name: 'Ionescu'
-    },
-    {
-      agmInfoId: 2,
-      lng: '26.166916932732576',
-      lat: '44.42771627091487',
-      numberOfDonations: 3,
-      name: 'Popescu'
-    },
-    {
-      agmInfoId: 3,
-      lng: '23.7',
-      lat: '47.6',
-      numberOfDonations: 9,
-      name: 'Meszaros'
-    },
-  ];
 
   lat = 45.938418;
   lng = 25.559007;
@@ -98,44 +76,10 @@ export class DonationComponent implements OnInit {
     );
   }
 
-  // addToCart(donationAmount: number): void {
-  //   localStorage.setItem('donationAmount', donationAmount.toString());
-  //   localStorage.setItem('agmMarkerId', this.lastVisitedAgmId.toString());
-  //
-  //   let id: number;
-  //
-  //   switch (donationAmount) {
-  //     case 300: {
-  //       id = 100;
-  //       break;
-  //     }
-  //     case 1800: {
-  //       id = 101;
-  //       break;
-  //     }
-  //     case 3600: {
-  //       id = 102;
-  //       break;
-  //     }
-  //   }
-  //
-  //   this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => {
-  //     this.cart = user.cart;
-  //     this.cart.find(elem => {
-  //       if (elem.productId === 100 || elem.productId === 101 || elem.productId === 102) {
-  //         elem.productId = id;
-  //       }
-  //     });
-  //     this.cart.push({productId: id, quantity: 1});
-  //     this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe(() => {
-  //     });
-  //   });
-  // }
 
   prepareClientName() {
     this.user.subscribe(user => {
-      const userArray = user.fullName.split(' ', 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
       this.hasDonationsResponsibleRole = user.role.roleName === RoleEnum.DONATIONS_RESPONSIBLE;
     });
   }
@@ -179,6 +123,10 @@ export class DonationComponent implements OnInit {
 
   modalFunction() {
     this.showModal = !this.showModal;
+  }
+
+  modalInfoFunction(){
+    this.showInfoModal = !this.showInfoModal;
   }
 
   setLastVisitedAgmNumberOfDonationsAndId(numberOfDonations: number, agmMarkerId: number, name: string) {
@@ -252,19 +200,19 @@ export class DonationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.openSnackBar('Multumim pentru donatia efectuata!');
         this.donationService.createDonation({
           familyName: this.lastVisitedAgmName,
           amount: amount,
           userDTO: {username: localStorage.getItem('username')},
           wasRedeemed: false
         } as Donation).subscribe(() => {
-        });
-        this.agmMarkerService.updateAgmMarker(this.lastVisitedAgmId, amount / 300).subscribe(() => {
-          setTimeout(() => {
-            location.reload();
-          }, 1500);
-        });
+          this.openSnackBar('Multumim pentru donatia efectuata!');
+          this.agmMarkerService.updateAgmMarker(this.lastVisitedAgmId, amount / 300).subscribe(() => {
+            setTimeout(() => {
+              location.reload();
+            }, 1500);
+          });
+        }, error => { this.modalInfoFunction(); this.showModal = false});
       }
     });
   }

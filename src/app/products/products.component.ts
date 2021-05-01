@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../models/Product';
-import {ProductService} from "../Product.service";
-import {AuthenticationService} from "../Authentication.service";
-import {Cart, User} from "../models/User";
-import {UserService} from "../User.service";
-import {Observable} from "rxjs";
-import {NotifierService} from "angular-notifier";
+import {ProductService} from '../Product.service';
+import {AuthenticationService} from '../Authentication.service';
+import {Cart, User} from '../models/User';
+import {UserService} from '../User.service';
+import {Observable} from 'rxjs';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
   product: Product;
   listOfProducts: Product[] = [];
   cart: Cart[] = [];
-
+  isAdmin = false;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute,
@@ -36,8 +36,10 @@ export class ProductsComponent implements OnInit {
   }
 
   getUserCart(username: string) {
+    debugger
     this.userService.getUserByUsername(username).subscribe(user => {
         this.cart = user.cart;
+        this.isAdmin = user.role.roleName === 'Admin';
         this.cart.forEach(prod => this.productService.getSingleProduct(localStorage.getItem('username'), prod.productId).subscribe(a => {
           this.listOfProducts.push(a);
         }));
@@ -48,8 +50,7 @@ export class ProductsComponent implements OnInit {
 
   prepareClientName() {
     this.user.subscribe(user => {
-      let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
     });
   }
 
@@ -57,23 +58,27 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts(localStorage.getItem('username')).subscribe(
       products => {
         this.products = products;
-        this.products2 = products.filter(p => p.id>5);
+        this.products2 = products.filter(p => p.id > 5);
       }
     );
+  }
+
+  navigateToProducts() {
+    this.router.navigate(['/products']);
   }
 
   addToFavorites(product: Product) {
     this.userService.addToFavorites(localStorage.getItem('username'), product.id).subscribe(() => {
     });
     product.isFavorite = true;
-    this.notifier.notify("success", "Product added to favorites");
+    this.notifier.notify('success', 'Product added to favorites');
   }
 
   deleteFromFavorites(product: Product) {
     this.userService.deleteFromFavorites(product.id, localStorage.getItem('username')).subscribe(() => {
     });
     product.isFavorite = false;
-    this.notifier.notify("default", "Product removed from favorites");
+    this.notifier.notify('default', 'Product removed from favorites');
   }
 
   getSingleProduct(): void {
@@ -82,7 +87,7 @@ export class ProductsComponent implements OnInit {
       product => {
         this.product = product;
       }
-    )
+    );
   }
 
   newProduct(categoryName: string, description: string, productName: string, price: number, image: string, producer: string): void {
@@ -99,7 +104,7 @@ export class ProductsComponent implements OnInit {
 
   updateProduct(categoryName: string, description: string, productName: string, price: number, image: string, producer: string): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.productService.updateProduct( {
+    this.productService.updateProduct({
       categoryName,
       description,
       productName,
@@ -194,6 +199,10 @@ export class ProductsComponent implements OnInit {
 
   favorites(): void {
     this.router.navigate(['/listing-products-favorites']);
+  }
+
+  addProductForm() {
+    this.router.navigate(['/add'])
   }
 
   logout(): void {

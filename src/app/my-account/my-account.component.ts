@@ -38,7 +38,6 @@ export class MyAccountComponent implements OnInit {
   showModal = false;
   orderList: OrderInput2[] = [];
   userPass: string;
-  userAddress: string;
   product: Product;
   cart: Cart[];
 
@@ -50,7 +49,7 @@ export class MyAccountComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private notifierService: NotifierService,
               private router: Router,
-              private productService: ProductService
+              private productService: ProductService,
   ) {
     this.notifier = notifierService;
   }
@@ -71,8 +70,8 @@ export class MyAccountComponent implements OnInit {
 
   prepareClientName() {
     this.userNav.subscribe(user => {
-      let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase())
+      debugger
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
       this.isAdmin = user.role.roleName === 'Admin';
     });
   }
@@ -83,10 +82,15 @@ export class MyAccountComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)
       ]),
-    fullName: new FormControl('',
+    firstName: new FormControl('',
       [
         Validators.required,
-        Validators.pattern(/^[A-Z][a-z]+ [A-Z][a-z]+$/)
+        Validators.pattern(/^[A-Z][a-z]+$/)
+      ]),
+    lastName: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Z][a-z]+$/)
       ]),
     email: new FormControl('',
       [
@@ -95,10 +99,20 @@ export class MyAccountComponent implements OnInit {
           .pattern(
             /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
       ]),
-    addressDTO: new FormControl('',
+    country: new FormControl('',
       [
         Validators.required,
-        Validators.pattern(/^[A-Z][a-z]+, [A-Z][a-z]+, [A-Z][a-z]+$/)
+        Validators.pattern(/^[A-Z][a-z]+$/)
+      ]),
+    city: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Z][a-z]+$/)
+      ]),
+    street: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Z][a-z]+$/)
       ]),
     password: new FormControl('',
       [
@@ -143,8 +157,6 @@ export class MyAccountComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(data => {
 
-      this.userAddress = this.editedData.addressDTO.value.split(", ", 3);
-
       this.userPass = localStorage.getItem('pass');
 
       this.accountEditForm = new FormGroup({
@@ -155,10 +167,16 @@ export class MyAccountComponent implements OnInit {
             Validators.minLength(3)
           ]
         ),
-        fullName: new FormControl(data.fullName,
+        firstName: new FormControl(data.firstName,
           [
             Validators.required,
-            Validators.pattern(/^[A-Z][a-z]+ [A-Z][a-z]+$/)
+            Validators.pattern(/^[A-Z][a-z]+$/)
+          ]
+        ),
+        lastName: new FormControl(data.lastName,
+          [
+            Validators.required,
+            Validators.pattern(/^[A-Z][a-z]+$/)
           ]
         ),
         email: new FormControl(data.emailAddress,
@@ -168,12 +186,24 @@ export class MyAccountComponent implements OnInit {
               .pattern(
                 /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/)
           ]),
-        addressDTO: new FormControl(data.addressDTO.addressCountry + ', '+data.addressDTO.addressCity+', '+
-          data.addressDTO.addressStreet,
+        country: new FormControl(data.addressDTO.addressCountry,
           [
             Validators.required,
-            Validators.pattern(/^[A-Z][a-z]+, [A-Z][a-z]+, [A-Z][a-z]+$/)
-          ]),
+            Validators.pattern(/^[A-Z][a-z]+$/)
+          ]
+        ),
+        city: new FormControl(data.addressDTO.addressCity,
+          [
+            Validators.required,
+            Validators.pattern(/^[A-Z][a-z]+$/)
+          ]
+        ),
+        street: new FormControl(data.addressDTO.addressStreet,
+          [
+            Validators.required,
+            Validators.pattern(/^[A-Za-z]/)
+          ]
+        ),
         password: new FormControl(this.userPass,
           [
             Validators.required,
@@ -224,18 +254,17 @@ export class MyAccountComponent implements OnInit {
     if (ok === 1 && this.editedData.password.value === this.editedData.passwordConfirm.value
       && this.editedData.username.value != '' && this.editedData.password.value != '') {
 
-      this.userAddress = this.editedData.addressDTO.value.split(", ", 3);
-
       this.userService.updateUser(localStorage.getItem('username'), {
         username: this.editedData.username.value,
         password: this.editedData.password.value,
         confirmPassword: this.editedData.passwordConfirm.value,
-        fullName: this.editedData.fullName.value,
+        firstName: this.editedData.firstName.value,
+        lastName: this.editedData.lastName.value,
         emailAddress: this.editedData.email.value,
         addressDTO: {
-          addressCountry: this.userAddress[0],
-          addressCity: this.userAddress[1],
-          addressStreet: this.userAddress[2]
+          addressCountry: this.editedData.country.value,
+          addressCity: this.editedData.city.value,
+          addressStreet: this.editedData.street.value
         },
         role: this.isAdmin === true ? {roleName: 'Admin'} : {roleName: 'Client'},
         cart: [],
@@ -288,8 +317,6 @@ export class MyAccountComponent implements OnInit {
   conditionalRoute(){
     if(this.isAdmin)
       this.router.navigate(['/add']);
-      else
-      this.router.navigate(['/listing-products-apple']);
   }
 
   goBack(): void {

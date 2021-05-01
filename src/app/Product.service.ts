@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "./models/Product";
 import {Cart, OrderInput, User} from "./models/User";
+import {Donation} from './models/Donation';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
@@ -43,6 +44,14 @@ export class ProductService {
 
   postOrder(orderInput: OrderInput) {
     return this.http.post(this.apiUrl + 'orders', orderInput, this.httpOptions);
+  }
+
+  getNotRedeemedDonation(username: string) {
+    return this.http.get<Donation>(this.apiUrl + 'donation/redeem/' + username)
+  }
+
+  setRedeemedToTrue(donationId: number) {
+    return this.http.put(this.apiUrl + 'donation/' + donationId , this.httpOptions)
   }
 
   postCart(username: string, cart: Cart[]) {

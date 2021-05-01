@@ -2,22 +2,22 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductsComponent} from './products/products.component';
 import {LogInComponent} from './log-in/log-in.component';
-import {RegisterComponent} from "./register/register.component";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {MyAccountComponent} from "./my-account/my-account.component";
-import {ListingProductsComponent} from "./listing-products/listing-products.component";
-import {ScrollComponent} from "./scroll/scroll.component";
-import {ProductDetailComponent} from "./product-detail/product-detail.component";
-import {AuthGuardService} from "./guards/auth-guard.service";
-import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
-import {ProductEditComponent} from "./product-edit/product-edit.component";
+import {RegisterComponent} from './register/register.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {MyAccountComponent} from './my-account/my-account.component';
+import {ListingProductsComponent} from './listing-products/listing-products.component';
+import {ScrollComponent} from './scroll/scroll.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {AuthGuardService} from './guards/auth-guard.service';
+import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
+import {ProductEditComponent} from './product-edit/product-edit.component';
 import {DonationComponent} from './donation/donation.component';
 import {TestComponent} from './test/test.component';
 
 const routes: Routes = [
-  {path: 'products', component: ProductsComponent},
+  // {path: 'products', component: ProductsComponent},
   {path: 'donate', component: DonationComponent},
-  // {path: 'products', component: ProductsComponent,canActivate: [AuthGuardService]},
+  {path: 'products', component: ProductsComponent},
   {path: 'log-in', component: LogInComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
@@ -42,8 +42,8 @@ const routes: Routes = [
   {path: 'listing-products-smartphones', component: ListingProductsComponent},
   {path: 'listing-products-favorites', component: ListingProductsComponent},
   {path: 'scroll', component: ScrollComponent},
-  {path: 'edit/:id',component: ProductEditComponent},
-  {path: 'add',component: ProductEditComponent},
+  {path: 'edit/:id', component: ProductEditComponent},
+  {path: 'add', component: ProductEditComponent},
   {path: 'detail/:id', component: ProductDetailComponent},
   {path: '', redirectTo: '/log-in', pathMatch: 'full'},
   {path: 'test', component: TestComponent},

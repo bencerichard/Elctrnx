@@ -69,7 +69,7 @@
           <h5 class="mt-2 mb-3">DETAILS</h5>
 
           <div class="mb-2"><a class="mb-2">My account</a><br/></div>
-          <div class="mb-2"><a style="cursor: pointer" (click)="conditionalRoute()" class="mb-2">Add product</a><br/></div>
+          <div class="mb-2"><a style="cursor: pointer" href="/shopping-cart"  class="mb-2">Shopping Cart</a><br/></div>
           <div class="mb-2"><a href="listing-products-favorites" class="mb-2">Favorites</a></div>
         </div>
       </div>
@@ -93,16 +93,29 @@
 
             <div class="row mt-2">
               <div class="col-md-6">
-                <label>Full Name</label>
+                <label>First Name</label>
               </div>
               <div class="col-md-6">
-                <input *ngIf="isEditingEnabled" class="inputs" formControlName="fullName">
-                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="fullName">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="firstName">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="firstName">
               </div>
             </div>
 
             <span class="pl-2" *ngIf="isEditingEnabled"
-                  [hidden]="!findInvalidControls('fullName')"> Please enter your full name (exemple: "John Doe") </span>
+                  [hidden]="!findInvalidControls('firstName')"> Please enter only letters (exemple: "John") </span>
+
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div class="col-md-6">
+                <input *ngIf="isEditingEnabled" class="inputs" formControlName="lastName">
+                <input *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="lastName">
+              </div>
+            </div>
+
+            <span class="pl-2" *ngIf="isEditingEnabled"
+                  [hidden]="!findInvalidControls('lastName')"> Please enter only letters (exemple: "Joe") </span>
 
             <div class="row mt-2">
               <div class="col-md-6">
@@ -116,9 +129,6 @@
 
             <span class="pl-2" *ngIf="isEditingEnabled"
                   [hidden]="!findInvalidControls('email')"> Email must contain the @ character </span>
-
-            <span class="pl-2" *ngIf="isEditingEnabled" style=""
-                  [hidden]="!findInvalidControls('addressDTO')"> Please enter your address (exemple: "USA, New York, Avenue") </span>
 
             <div *ngIf="isEditingEnabled" class="row mt-2">
               <div class="col-md-6">
@@ -147,14 +157,43 @@
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label>Address</label>
+              <label>Country</label>
             </div>
             <div class="col-md-6">
-              <input style="min-width: 230px" *ngIf="isEditingEnabled" class="inputs" formControlName="addressDTO">
-              <input style="min-width: 230px" *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="addressDTO">
+              <input style="min-width: 230px" *ngIf="isEditingEnabled" class="inputs" formControlName="country">
+              <input style="min-width: 230px" *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="country">
             </div>
           </div>
 
+          <span class="pl-2" *ngIf="isEditingEnabled" style=""
+                [hidden]="!findInvalidControls('country')"> Please enter your country name (exemple: "Spain") </span>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label>City</label>
+            </div>
+            <div class="col-md-6">
+              <input style="min-width: 230px" *ngIf="isEditingEnabled" class="inputs" formControlName="city">
+              <input style="min-width: 230px" *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="city">
+            </div>
+          </div>
+
+
+          <span class="pl-2" *ngIf="isEditingEnabled" style=""
+                [hidden]="!findInvalidControls('city')"> Please enter your city name (exemple: "Barcelona") </span>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label>Street</label>
+            </div>
+            <div class="col-md-6">
+              <input style="min-width: 230px" *ngIf="isEditingEnabled" class="inputs" formControlName="street">
+              <input style="min-width: 230px" *ngIf="!isEditingEnabled" readonly="true" class="inputsNonEdit" formControlName="street">
+            </div>
+          </div>
+
+          <span class="pl-2" *ngIf="isEditingEnabled" style=""
+                [hidden]="!findInvalidControls('street')"> Please enter your street name (exemple: "Rambla 25") </span>
 
           <div *ngIf="isEditingEnabled;">
              <button [disabled]="!accountEditForm.valid" (click)="updateUser()" id="check" class="fas fa-check fa-2x" data-toggle="tooltip" data-placement="top" title="Save changes"></button>

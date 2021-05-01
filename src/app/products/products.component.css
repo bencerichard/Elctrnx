@@ -106,7 +106,7 @@
   border: none;
 }
 
-.favorit{
+.favorit {
   margin-left: 92%;
   color: grey;
   height: 20px;
@@ -157,7 +157,7 @@
   max-height: 365px;
 }
 
-.topBrands{
+.topBrands {
   width: 100%;
 }
 
@@ -167,7 +167,8 @@
     display: block;
     margin-bottom: 20px;
   }
-  .topBrands{
+
+  .topBrands {
     width: 75%;
   }
 }
@@ -192,7 +193,7 @@
   bottom: -14%;
 }
 
-.carousel2{
+.carousel2 {
   margin-top: 10px;
 }
 
@@ -243,74 +244,74 @@
   width: 32px;
 }
 
-#left{
+#left {
   padding-top: 25px;
 }
 
 
-#left #firstLi li{
+#left #firstLi li {
   padding-top: 4px;
   margin-left: -25px;
   color: #678098;
   font-size: 14px;
 }
 
-#left #firstLi li:first-child{
+#left #firstLi li:first-child {
   padding-top: 5px;
 }
 
- #firstLi a:hover{
-  text-decoration: underline;
-   text-decoration-color: #678098;
-}
-
- #secondLi{
-   padding-top: 10px;
- }
-
-#left #secondLi li{
-  padding-top: 4px;
-  margin-left: -25px;
-  color: #678098;
-  font-size: 14px;
-}
-
-#secondLi a:hover{
+#firstLi a:hover {
   text-decoration: underline;
   text-decoration-color: #678098;
 }
 
-#left #secondLi li:first-child{
-  padding-top: 5px;
-}
-
-#left #thirdLi li{
-  padding-top: 4px;
-  margin-left: -25px;
-  color: #678098;
-  font-size: 14px;
-}
-
-
-#left #thirdLi li:first-child{
-  padding-top: 5px;
-}
-
-
-#thirdLi a:hover{
-  text-decoration: underline;
-  text-decoration-color: #678098;
-}
-
-#thirdLi{
+#secondLi {
   padding-top: 10px;
 }
 
-#middle{
-  border-right: 1px solid #F1F1F1 ;
+#left #secondLi li {
+  padding-top: 4px;
+  margin-left: -25px;
+  color: #678098;
+  font-size: 14px;
 }
 
-#middle li{
+#secondLi a:hover {
+  text-decoration: underline;
+  text-decoration-color: #678098;
+}
+
+#left #secondLi li:first-child {
+  padding-top: 5px;
+}
+
+#left #thirdLi li {
+  padding-top: 4px;
+  margin-left: -25px;
+  color: #678098;
+  font-size: 14px;
+}
+
+
+#left #thirdLi li:first-child {
+  padding-top: 5px;
+}
+
+
+#thirdLi a:hover {
+  text-decoration: underline;
+  text-decoration-color: #678098;
+}
+
+#thirdLi {
+  padding-top: 10px;
+}
+
+#middle {
+  border-right: 1px solid #F1F1F1;
+}
+
+#middle li {
   text-align: left;
   font-size: 16px;
   padding-top: 10px;
@@ -319,23 +320,23 @@
   width: 90%;
 }
 
-#middle li:last-child{
+#middle li:last-child {
   border: none;
 }
 
-#middle li:first-child{
+#middle li:first-child {
   margin-top: 15px;
 }
 
-#middle a{
+#middle a {
   color: #678098;
 }
 
-#middle a:hover{
+#middle a:hover {
   text-decoration: underline;
 }
 
-#right{
+#right {
   background-color: white;
 }
 
@@ -344,12 +345,12 @@ a label {
   cursor: pointer;
 }
 
-.mat-badge-content{
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(117,0,0,1) 50%, rgba(246,0,0,1) 100%);
+.mat-badge-content {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(117, 0, 0, 1) 50%, rgba(246, 0, 0, 1) 100%);
 }
 
-#takeMeToDonationsPage{
+#takeMeToDonationsPage {
   display: block;
   width: 350px;
   height: 50px;
@@ -365,18 +366,18 @@ a label {
   transition: all .35s;
 }
 
-.wrapper{
+.wrapper {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
   margin-top: 75px;
 }
 
-.link_wrapper{
+.link_wrapper {
   position: relative;
 }
 
-.icon{
+.icon {
   width: 50px;
   height: 50px;
   border: 3px solid transparent;
@@ -388,7 +389,7 @@ a label {
   transition: all .35s;
 }
 
-.icon svg{
+.icon svg {
   width: 30px;
   position: relative;
   top: calc(50% - 15px);
@@ -398,32 +399,79 @@ a label {
   transition: all .35s;
 }
 
-#takeMeToDonationsPage:hover{
+#takeMeToDonationsPage:hover {
   width: 325px;
   border: 3px solid #2ecc71;
   background: transparent;
   color: #2ecc71;
 }
 
-#takeMeToDonationsPage:hover + .icon{
+#takeMeToDonationsPage:hover + .icon {
   border: 3px solid #2ecc71;
   right: -25%;
 }
 
-.parentDonationNav{
+.parentDonationNav {
   position: relative;
   width: 100%;
 }
 
-.leftDonationNav{
+.leftDonationNav {
   position: absolute;
   width: 50%;
   left: 0;
 }
 
-.rightDonationNav{
+.rightDonationNav {
   position: absolute;
   width: 50%;
   left: 50%;
 }
 
+.goToDonationsPageButton {
+  width: 299px;
+  height: 45px;
+  position: absolute;
+  bottom: 56px;
+  left: 58.8%;
+  /*border: 2px solid #897573;*/
+  border: 2px solid #8D8175;
+  background-color: #364765;
+  /*color: #897573;*/
+  color: #8D8175;
+  font-size: 18px;
+}
+
+.goToDonationsPageButton:focus{
+  outline: none;
+}
+
+.goToDonationsPageButton:hover{
+  border-color: #6D7A98;
+  color: whitesmoke;
+}
+
+.dropup {
+  position: fixed;
+  display: inline-block;
+  right: 10.6%;
+  bottom: 8%;
+}
+
+#circularFilter {
+  position: fixed;
+  border: none;
+  background: none;
+  bottom: 6%;
+  right: 3%;
+  width: 54px;
+  height: 54px;
+  background-image: url("../../assets/img/AddNewProductWhite.jpeg");
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-size: 55px;
+  background-position: center;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}

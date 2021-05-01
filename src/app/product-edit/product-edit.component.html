@@ -37,24 +37,35 @@
   <div class="form" style="overflow-x: hidden">
     <form class="polaroid form" [formGroup]="productForm">
       <div style="margin-left: 118px;">
-      <div class="group mt-5">
-        <input type="text" required="required" formControlName="productName"/><span class="highlight"></span><span
-        class="bar"></span><label>Product Name</label></div>
-      <div class="group">
-        <input type="text" required="required" formControlName="categoryName"/><span class="highlight"></span><span
-        class="bar"></span><label>Category</label></div>
-      <div class="group">
-        <input type="text" required="required" formControlName="image"/><span class="highlight"></span><span
-        class="bar"></span><label>Image</label></div>
-      <div class="group">
-        <input type="text" required="required" formControlName="price"/><span class="highlight"></span><span
-        class="bar"></span><label>Price</label></div>
-      <div class="group"><textarea class="mt-3" type="textarea" rows="5" required="required" formControlName="description" ></textarea><span
-        class="highlight"></span><span class="bar"></span><label>Description</label></div>
+        <div class="group mt-5">
+          <input type="text" required="required" formControlName="productName"/><span class="highlight"></span><span
+          class="bar"></span><label style="color: black">Product Name</label></div>
+        <span class="pl-2" style=""
+              [hidden]="!findInvalidControls('productName')"> Product name must have at least 4 characters </span>
+        <div class="group">
+          <input type="text" required="required" formControlName="categoryName"/><span class="highlight"></span><span
+          class="bar"></span><label style="color: black">Category</label></div>
+        <span class="pl-2" style=""
+              [hidden]="!findInvalidControls('categoryName')"> Category name must have at least 2 characters </span>
+        <div class="group">
+          <input type="text" required="required" formControlName="image"/><span class="highlight"></span><span
+          class="bar"></span><label style="color: black">Image</label></div>
+        <span class="pl-2" style=""
+              [hidden]="!findInvalidControls('image')"> Image address must have at least 10 characters </span>
+        <div class="group">
+          <input type="text" required="required" formControlName="price"/><span class="highlight"></span><span
+          class="bar"></span><label style="color: black">Price</label></div>
+        <span class="pl-2" style=""
+              [hidden]="!findInvalidControls('price')"> Price must contain only digits </span>
+        <div class="group"><textarea class="mt-3" type="textarea" rows="5" required="required"
+                                     formControlName="description"></textarea><span
+          class="highlight"></span><span class="bar"></span><label style="color: black">Description</label></div>
+        <span class="pl-2" style=""
+              [hidden]="!findInvalidControls('description')"> Product description must have at least 10 characters </span>
       </div>
       <div class="btn-box">
         <button class="btn btn-cancel" (click)="goBack()" type="button">cancel</button>
-        <button class="btn btn-submit" (click)="save()" type="submit">submit</button>
+        <button class="btn btn-submit" [disabled]="!productForm.valid" (click)="save()" type="submit">submit</button>
       </div>
     </form>
   </div>

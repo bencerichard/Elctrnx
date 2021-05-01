@@ -1,19 +1,31 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthenticationService} from "../Authentication.service";
+import {User} from '../models/User';
+import {UserService} from '../User.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardService implements CanActivate {
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
   }
+
+  user: Observable<User> = this.userService.getUserByUsername(localStorage.getItem('username'));
+  isAdmin = this.userService.getUserByUsername(localStorage.getItem('username')).subscribe(user => {
+    return user.role.roleName === 'Admin';
+  }, error => {
+    return false;
+  });
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    debugger;
-    if (this.authenticationService.isLoggedIn) {
+    setTimeout(() => {
+    }, 5000);
+
+    if (this.isAdmin) {
       return true;
     }
-    this.router.navigate(['/log-in']);
+    this.router.navigate(['/not-found']);
     return false;
   }
 }

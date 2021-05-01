@@ -4,7 +4,8 @@ export class User {
   username: string;
   password: string;
   confirmPassword: string;
-  fullName: string;
+  firstName: string;
+  lastName: string;
   emailAddress: string;
   role: Role;
   cart: Cart[];

@@ -36,20 +36,20 @@ export class RegisterComponent implements OnInit {
     if (this.registrationData.password.value === this.registrationData.confirmPassword.value
       && this.registrationData.username.value != '' && this.registrationData.password.value != '') {
 
-      this.userAddress = this.registrationData.addressDTO.value.split(", ",3);
-
+      debugger;
       this.userService.newUser({
         username: this.registrationData.username.value,
         password: this.registrationData.password.value,
         confirmPassword: this.registrationData.confirmPassword.value,
-        fullName: this.registrationData.fullName.value,
+        firstName: this.registrationData.firstName.value,
+        lastName: this.registrationData.lastName.value,
         emailAddress: this.registrationData.emailAddress.value,
         role: {roleName: 'Client'},
         cart: this.cart,
         addressDTO: {
-          addressCountry:this.userAddress[0],
-          addressCity:this.userAddress[1],
-          addressStreet:this.userAddress[2]
+          addressCountry: this.registrationData.country.value,
+          addressCity:this.registrationData.city.value,
+          addressStreet:this.registrationData.street.value
           },
         favorites: []
       } as User).pipe(first()).subscribe(
@@ -81,12 +81,15 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     // this.authenticationService.logout();
     this.registerForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       emailAddress: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      addressDTO: ['', Validators.required]
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      street: ['', Validators.required]
     });
 
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';

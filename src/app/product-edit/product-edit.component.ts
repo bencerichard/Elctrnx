@@ -118,8 +118,7 @@ export class ProductEditComponent implements OnInit {
 
   prepareClientName() {
     this.user.subscribe(user => {
-      let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
     });
   }
 
@@ -152,6 +151,12 @@ export class ProductEditComponent implements OnInit {
     } else if (this.route.snapshot.url.toString().includes('add')) {
 
       this.productService.newProduct(this.productForm.value).subscribe(() => this.goBack());
+    }
+  }
+
+  findInvalidControls(name: string) {
+    if (this.productForm.get(name).invalid && this.productForm.get(name).touched) {
+      return true;
     }
   }
 

@@ -16,7 +16,6 @@ export class DonationService {
   }
 
   createDonation(donation: Donation): Observable<Donation> {
-    //TODO AICI NU E BINE USERDTO UL E NULL, INVESTIGATIE
     return this.http.post<Donation>(this.donationsUrl, donation, this.httpOptions);
   }
 

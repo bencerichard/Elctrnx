@@ -228,6 +228,23 @@ body {
   margin-top: 0;
 }
 
+.innerInfo
+{
+ position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.iUnderstandButton{
+  background-color: #139CE0;
+  color: white;
+}
+
+.iUnderstandButton:hover{
+  background-color: #28A745;
+}
+
 #butonAdaugare{
   background-color: white!important;
   border: none!important;

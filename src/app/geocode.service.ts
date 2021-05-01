@@ -7,7 +7,7 @@ import {Address} from './models/Address';
 export class GeocodeService {
 
   private geocodeApiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
-  private apiKey = 'AIzaSyBWpVIWGZ83v5Pj2On1q0F_1HD2foDaVAs';
+  private apiKey = 'a';
 
   constructor(private http: HttpClient) {
   }

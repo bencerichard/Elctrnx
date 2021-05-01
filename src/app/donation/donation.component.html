@@ -183,6 +183,24 @@
   </div>
 </div>
 
+<div id="myInfoModal" class="modal" id="exampleInfoModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="showInfoModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div style="min-height: 150px; min-width: 200px" class="modal-content">
+      <div class="modal-body" id="infoOuter" style="position: relative">
+<!--        <h4 style="position: absolute; color: black; left: 50%; transform: translate(-50%); font-size: large; min-width: 80%" class="modal-title"-->
+        <h4 style="font-size: large; min-width: 80%; text-align: center" class="modal-title"
+            id="exampleInfoModalLongTitle">O noua donatie va fi posibila doar dupa ce veti plasa o noua comanda</h4>
+        <div class="innerInfo">
+          <button (click)="modalInfoFunction();"
+                  type="button" class="btn iUnderstandButton btn mt-3">Am luat la cunostinta
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <button [hidden]="!hasDonationsResponsibleRole" (click)="openDialog()" data-toggle="tooltip" data-placement="bottom"
         title="Add Family" id="butonAdaugare"
         style="position: absolute; top: 150px; right: 76px"><i class="fa fa-plus fa-3x" aria-hidden="true"></i></button>

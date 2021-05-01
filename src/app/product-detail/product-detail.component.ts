@@ -80,8 +80,7 @@ export class ProductDetailComponent implements OnInit {
 
   prepareClientName() {
     this.user.subscribe(user => {
-      let userArray = user.fullName.split(" ", 2);
-      this.clientName = userArray[1].charAt(0).toUpperCase().concat(userArray[0].charAt(0).toUpperCase());
+      this.clientName = user.firstName.charAt(0).toUpperCase().concat(user.lastName.charAt(0).toUpperCase());
       if (user.role.roleName.toLowerCase() === 'admin')
         this.isAdmin = true;
     });

@@ -34,6 +34,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonModule} from '@angular/material/button';
 import {AgmCoreModule} from '@agm/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -87,9 +88,10 @@ import {AgmCoreModule} from '@agm/core';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatGridListModule,
     MatSnackBarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBWpVIWGZ83v5Pj2On1q0F_1HD2foDaVAs'
+      apiKey: 'a'
     }),
   ],
   providers: [],
