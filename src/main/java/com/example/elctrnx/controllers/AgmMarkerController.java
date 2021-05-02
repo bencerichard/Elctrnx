@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/agmMarker")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class AgmMarkerController {
 
     private final AgmMarkerService agmMarkerService;
@@ -26,6 +27,14 @@ public class AgmMarkerController {
         return new ResponseEntity<>(
                 AgmMarkerMapper.INSTANCE.agmMarkerToAgmMarkerDto(agmMarkerService.createAgmMarker(agmMarkerDto)),
                 HttpStatus.CREATED
+        );
+    }
+
+    @PutMapping("/{agmMarkerId}/{numberOfMonths}")
+    public ResponseEntity<AgmMarkerDto> updateAgmMarker(@PathVariable Integer agmMarkerId, @PathVariable Integer numberOfMonths) {
+        return new ResponseEntity<>(
+                AgmMarkerMapper.INSTANCE.agmMarkerToAgmMarkerDto(agmMarkerService.updateAgmMarker(agmMarkerId, numberOfMonths)),
+                HttpStatus.ACCEPTED
         );
     }
 
@@ -46,5 +55,10 @@ public class AgmMarkerController {
         return agmMarker.map(value -> new ResponseEntity<>(
                 AgmMarkerMapper.INSTANCE.agmMarkerToAgmMarkerDto(value), HttpStatus.FOUND))
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{agmMarkerId}")
+    public void deleteAgmMarkerById(@PathVariable Integer agmMarkerId) {
+        agmMarkerService.deleteAgmMarker(agmMarkerId);
     }
 }

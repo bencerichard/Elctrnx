@@ -54,15 +54,14 @@ public class UserService {
 
     public UserDTO save(UserDTO newUser) {
         if (!userRepository.findUserByUsername(newUser.getUsername()).isPresent()) {
-            String[] splitName = splitNames(newUser.getFullName());
 
             Roles role = rolesService.getRoleByName(newUser.getRole().getRoleName());
             User user = User.builder()
                     .emailAddress(newUser.getEmailAddress())
                     .registrationDate(LocalDateTime.now())
                     .username(newUser.getUsername())
-                    .fistName(splitName[0])
-                    .lastName(splitName[1])
+                    .fistName(newUser.getFirstName())
+                    .lastName(newUser.getLastName())
                     .password(UserService.getMd5(newUser.getPassword()))
                     .role(role)
                     .address(orderService.testAddressExistence(newUser.getAddressDTO().getAddressCountry(),
@@ -83,16 +82,14 @@ public class UserService {
     }
 
     public UserDTO update(String username, UserDTO userToUpdate) {
-        String[] splitName = splitNames(userToUpdate.getFullName());
-
         Roles role = rolesService.getRoleByName(userToUpdate.getRole().getRoleName());
 
         if (userRepository.findUserByUsername(username).isPresent()) {
             User existingUser = userRepository.findUserByUsername(username).get();
             existingUser.setUsername(userToUpdate.getUsername());
             existingUser.setEmailAddress(userToUpdate.getEmailAddress());
-            existingUser.setFistName(splitName[0]);
-            existingUser.setLastName(splitName[1]);
+            existingUser.setFistName(userToUpdate.getFirstName());
+            existingUser.setLastName(userToUpdate.getLastName());
             existingUser.setPassword(UserService.getMd5(userToUpdate.getPassword()));
             existingUser.setRole(role);
             existingUser.setAddress(orderService.testAddressExistence(userToUpdate.getAddressDTO().getAddressCountry(),
