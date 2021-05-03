@@ -10,8 +10,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "https://elctrnx-angular.web.app")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 @RequestMapping(value = "/products")
 public class ProductController {
 

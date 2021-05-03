@@ -19,7 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/donation")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 public class DonationController {
 
     private final DonationService donationService;
