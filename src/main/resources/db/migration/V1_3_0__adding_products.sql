@@ -523,3 +523,117 @@ values (7, 'Apple iPad Pro (2018), 512GB', 8,
         7000,
         'With the A12Z Bionic chip, iPad Pro is so fast it outpaces most PC laptops available today. It makes everything you do fast and fluid, from your everyday tasks to graphics-intensive workflows.',
         'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (91, 'Iphone 12 mini 64 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33600/33599400/images/res_74258793b8c715e0430cfa842033e789.jpg?width=450&height=450&hash=2C0E606EDA3F299D68C3C95D23B98475',
+        3250,
+        'The iPhone 12 Mini features a 5.4-inch (14 cm) display with the same technology at a resolution of 2340×1080 pixels and a pixel density of about 476 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (92, 'Iphone 12 mini 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33600/33599400/images/res_74258793b8c715e0430cfa842033e789.jpg?width=450&height=450&hash=2C0E606EDA3F299D68C3C95D23B98475',
+        3600,
+        'The iPhone 12 Mini features a 5.4-inch (14 cm) display with the same technology at a resolution of 2340×1080 pixels and a pixel density of about 476 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (93, 'Iphone 12 mini 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33600/33599400/images/res_74258793b8c715e0430cfa842033e789.jpg?width=450&height=450&hash=2C0E606EDA3F299D68C3C95D23B98475',
+        4400,
+        'The iPhone 12 Mini features a 5.4-inch (14 cm) display with the same technology at a resolution of 2340×1080 pixels and a pixel density of about 476 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (94, 'Iphone 12 64 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381515/images/res_0c16b5665926e53927f3ebc2ce49c253.jpg?width=450&height=450&hash=F04C301E6695F15B2A7F59FD715E6032',
+        4200,
+        'The iPhone 12 features a 6.1-inch (15 cm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (95, 'Iphone 12 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381516/images/res_294b830c405c5c956b96885fa0333a32.jpg?width=450&height=450&hash=9C103F22914E08CC6029C62CED904A3C',
+        4400,
+        'The iPhone 12 features a 6.1-inch (15 cm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (96, 'Iphone 12 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381513/images/res_9c502e664bde724a8f8e180bbe1582c9.jpg?width=450&height=450&hash=B5A412328A8BC51D19BCDA6A18A27080',
+        5500,
+        'The iPhone 12 features a 6.1-inch (15 cm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 ppi.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (97, 'Iphone 12 Pro Max 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33600/33599418/images/res_35048c7ee49082e741662d0813577152.jpg?width=450&height=450&hash=61D1AA2483085A3EAB306CF6155691C4',
+        5700,
+        'iPhone 12 Pro Max smartphone comes with a 6.70-inch touchscreen display with a resolution of 1284x2778 pixels at a pixel density of 458 pixels per inch (ppi). The iPhone 12 Pro Max supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (98, 'Iphone 12 Pro Max 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381522/images/res_6bbf3c7c1c492452666e279724988be5.jpg?width=450&height=450&hash=3567E6CCFEEA31697B125E03633EE8FE',
+        6300,
+        'iPhone 12 Pro Max smartphone comes with a 6.70-inch touchscreen display with a resolution of 1284x2778 pixels at a pixel density of 458 pixels per inch (ppi). The iPhone 12 Pro Max supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (99, 'Iphone 12 Pro Max 512 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33600/33599418/images/res_35048c7ee49082e741662d0813577152.jpg?width=450&height=450&hash=61D1AA2483085A3EAB306CF6155691C4',
+        7200,
+        'iPhone 12 Pro Max smartphone comes with a 6.70-inch touchscreen display with a resolution of 1284x2778 pixels at a pixel density of 458 pixels per inch (ppi). The iPhone 12 Pro Max supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (100, 'Iphone 12 Pro 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381519/images/res_a40457d533d5f7a229cf370e39a691a2.jpg?width=450&height=450&hash=76A3F3CE2BFB77CAE80826C102A5F751',
+        5200,
+        'iPhone 12 Pro smartphone comes with a 6.10-inch touchscreen display with a resolution of 1170x2532 pixels at a pixel density of 460 pixels per inch (ppi). The iPhone 12 Pro supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (101, 'Iphone 12 Pro 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381519/images/res_a40457d533d5f7a229cf370e39a691a2.jpg?width=450&height=450&hash=76A3F3CE2BFB77CAE80826C102A5F751',
+        5600,
+        'iPhone 12 Pro smartphone comes with a 6.10-inch touchscreen display with a resolution of 1170x2532 pixels at a pixel density of 460 pixels per inch (ppi). The iPhone 12 Pro supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (102, 'Iphone 12 Pro 512 Gb', 2,
+        'https://s13emagst.akamaized.net/products/33382/33381521/images/res_b1c97d42b212d121891e436413a67a40.jpg?width=450&height=450&hash=B4A925928D5091274E44FC47B6ADD5E7',
+        6600,
+        'iPhone 12 Pro smartphone comes with a 6.10-inch touchscreen display with a resolution of 1170x2532 pixels at a pixel density of 460 pixels per inch (ppi). The iPhone 12 Pro supports wireless charging, as well as proprietary fast charging.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (103, 'Samsung Galaxy S21 Dual sim 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407349/images/res_ed4c615d84380e82ef6829ea95b5cb64.jpg?width=450&height=450&hash=493E162771F038A87675FC37DE78258A',
+        3600,
+        'The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (104, 'Samsung Galaxy S21 Dual sim 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407349/images/res_ed4c615d84380e82ef6829ea95b5cb64.jpg?width=450&height=450&hash=493E162771F038A87675FC37DE78258A',
+        3800,
+        'The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (105, 'Samsung Galaxy S21 Plus 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407354/images/res_83ac4e77611e3172b00395c149883fcf.jpg?width=450&height=450&hash=2503F69F3D1CB20DCBD329C57B29B7D2',
+        4100,
+        'Samsung Galaxy S21 Plus 5G The dimension of the smartphone is 161.5 x 75.6 x 7.8 mm and it weighs 200 grams. The smartphone is pack with 8 GB RAM with 128 GB and 256 GB internal storage options. It is powered by Exynos 2100 and Qualcomm SM8350 Snapdragon 888 processor.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (106, 'Samsung Galaxy S21 Plus 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407354/images/res_83ac4e77611e3172b00395c149883fcf.jpg?width=450&height=450&hash=2503F69F3D1CB20DCBD329C57B29B7D2',
+        4500,
+        'Samsung Galaxy S21 Plus 5G The dimension of the smartphone is 161.5 x 75.6 x 7.8 mm and it weighs 200 grams. The smartphone is pack with 8 GB RAM with 128 GB and 256 GB internal storage options. It is powered by Exynos 2100 and Qualcomm SM8350 Snapdragon 888 processor.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (107, 'Samsung Galaxy S21 Ultra 128 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
+        5600,
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (108, 'Samsung Galaxy S21 Ultra 256 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
+        5900,
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'Apple');
+insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
+values (109, 'Samsung Galaxy S21 Ultra 512 Gb', 2,
+        'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
+        6300,
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'Apple');
