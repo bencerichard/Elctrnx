@@ -22,7 +22,7 @@ public class Product {
     private String producer;
     private Boolean isFavorite;
 
-    @Column(length = 500)
+    @Column(length = 1000)
     private String description;
     private String image;
 
