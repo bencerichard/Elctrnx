@@ -600,40 +600,40 @@ values (103, 'Samsung Galaxy S21 Dual sim 128 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407349/images/res_ed4c615d84380e82ef6829ea95b5cb64.jpg?width=450&height=450&hash=493E162771F038A87675FC37DE78258A',
         3600,
         'The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (104, 'Samsung Galaxy S21 Dual sim 256 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407349/images/res_ed4c615d84380e82ef6829ea95b5cb64.jpg?width=450&height=450&hash=493E162771F038A87675FC37DE78258A',
         3800,
         'The Samsung Galaxy S21 specs are top-notch including a Snapdragon 888 chipset, 5G capability, 8GB RAM coupled with 128/256GB storage, and a 4000mAh battery. The phone sports a 6.2-inch Dynamic AMOLED display with an adaptive 120Hz refresh rate. In the camera department, a triple-sensor setup is presented.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (105, 'Samsung Galaxy S21 Plus 128 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407354/images/res_83ac4e77611e3172b00395c149883fcf.jpg?width=450&height=450&hash=2503F69F3D1CB20DCBD329C57B29B7D2',
         4100,
         'Samsung Galaxy S21 Plus 5G The dimension of the smartphone is 161.5 x 75.6 x 7.8 mm and it weighs 200 grams. The smartphone is pack with 8 GB RAM with 128 GB and 256 GB internal storage options. It is powered by Exynos 2100 and Qualcomm SM8350 Snapdragon 888 processor.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (106, 'Samsung Galaxy S21 Plus 256 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407354/images/res_83ac4e77611e3172b00395c149883fcf.jpg?width=450&height=450&hash=2503F69F3D1CB20DCBD329C57B29B7D2',
         4500,
         'Samsung Galaxy S21 Plus 5G The dimension of the smartphone is 161.5 x 75.6 x 7.8 mm and it weighs 200 grams. The smartphone is pack with 8 GB RAM with 128 GB and 256 GB internal storage options. It is powered by Exynos 2100 and Qualcomm SM8350 Snapdragon 888 processor.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (107, 'Samsung Galaxy S21 Ultra 128 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         5600,
         'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (108, 'Samsung Galaxy S21 Ultra 256 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         5900,
         'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
-        'Apple');
+        'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (109, 'Samsung Galaxy S21 Ultra 512 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         6300,
         'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
-        'Apple');
+        'Samsung');

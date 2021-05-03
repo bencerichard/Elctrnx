@@ -51,7 +51,7 @@ public class OrderService {
         List<StockDTO> orderedProducts = deliveryStrategyInterface.doAlgorithm(orderDTO.getProductsList());
         User user = userService.findUserByUsername(orderDTO.getUserId());
         Order order = Order.builder()
-                .deliveryLocation(this.testLocationExistence(orderDTO.getUserId()+ "'s location", orderDTO.getDeliveryLocation()))
+                .deliveryLocation(this.testLocationExistence(orderDTO.getUserId() + "'s location", orderDTO.getDeliveryLocation()))
                 .createdAt(LocalDateTime.now())
                 .user(user)
                 .orderDetail(orderDetailMapper.mapOrderDetailListDtoToOrderDetailList(orderDTO.getProductsList()))
@@ -71,10 +71,11 @@ public class OrderService {
         if (addressOptional.isPresent()) {
             address = addressOptional.get();
         } else {
-            address = new Address();
-            address.setCountry(country);
-            address.setCity(city);
-            address.setStreet(street);
+            address = Address.builder()
+                    .country(country)
+                    .city(city)
+                    .street(street)
+                    .build();
             addressRepository.save(address);
         }
         return address;
@@ -104,7 +105,7 @@ public class OrderService {
         return orderDTOS;
     }
 
-    public List<Order> getOrdersForUser(String username){
+    public List<Order> getOrdersForUser(String username) {
         User user = userService.findUserByUsername(username);
         return orderRepository.findAllByUser(user);
     }
