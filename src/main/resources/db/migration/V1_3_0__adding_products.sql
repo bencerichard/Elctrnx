@@ -623,17 +623,17 @@ insert into product (product_id, name, product_category_product_category_id, ima
 values (107, 'Samsung Galaxy S21 Ultra 128 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         5600,
-        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (108, 'Samsung Galaxy S21 Ultra 256 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         5900,
-        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
 values (109, 'Samsung Galaxy S21 Ultra 512 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         6300,
-        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system. Specification. Processor. CPU Speed. 2.9GHz, 2.8GHz, 2.2GHz. Display. Size (Main_Display) 158.4mm (6.2") Camera. Rear Camera - Resolution (Multiple) 12.0 MP + 64.0 MP + 12.0 MP. Memory. RAM_Size (GB) ROM Size (GB) Network/Bearer. Number of SIM. Dual-SIM. Connectivity. USB Interface. USB Type-C. OS. Android.',
+        'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
         'Apple');
