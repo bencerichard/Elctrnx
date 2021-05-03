@@ -13,7 +13,7 @@ drop table if exists agm_marker;
 drop table if exists image;
 drop table if exists donation;
 create table address_ (id integer not null, city varchar(255), country varchar(255), street varchar(255), street_number integer, primary key (id)) engine=InnoDB;
-create table category (product_category_id integer not null, description varchar(1024), name varchar(255), primary key (product_category_id)) engine=InnoDB;
+create table category (product_category_id integer not null, description varchar(4028), name varchar(255), primary key (product_category_id)) engine=InnoDB;
 create table location (id integer not null, name varchar(255), address_id integer, primary key (id)) engine=InnoDB;
 create table order_ (id integer not null, created_at datetime, delivery_location_id integer, shipped_from_id integer, user_user_id integer, primary key (id)) engine=InnoDB;
 create table order_detail (id integer not null, product_id integer, quantity integer, order_id integer, primary key (id)) engine=InnoDB;
