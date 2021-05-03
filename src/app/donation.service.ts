@@ -6,7 +6,7 @@ import {Donation} from './models/Donation';
 @Injectable({providedIn: 'root'})
 export class DonationService {
 
-  private donationsUrl = 'http://localhost:8080/donation/';
+  private donationsUrl = 'https://elctrnx-backend.herokuapp.com/donation/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

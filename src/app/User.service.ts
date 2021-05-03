@@ -6,8 +6,8 @@ import {OrderInput2, User} from "./models/User";
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  // private userUrl = 'https://elctrnx-spring.herokuapp.com/users/';
-  private userUrl = 'http://localhost:8080/users/';
+  private userUrl = 'https://elctrnx-backend.herokuapp.com/users/';
+  // private userUrl = 'http://localhost:8080/users/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -49,7 +49,7 @@ export class UserService {
   }
 
   deleteFromFavorites(id: number, username: string) {
-    return this.http.delete("http://localhost:8080/favorites/" + id + "/" + username);
+    return this.http.delete("https://elctrnx-backend.herokuapp.com/favorites/" + id + "/" + username);
   }
 
   getCustomerHoar(username: string):Observable<number> {
@@ -58,11 +58,11 @@ export class UserService {
 
 
   postImage(uploadImageData :FormData, username: string): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/image/upload/' +username, uploadImageData)
+    return this.http.post<any>('https://elctrnx-backend.herokuapp.com/image/upload/' +username, uploadImageData)
   }
 
   getImage(username: string): Observable<any>{
-    return this.http.get<any>( 'http://localhost:8080/image/get/' + username);
+    return this.http.get<any>( 'https://elctrnx-backend.herokuapp.com/image/get/' + username);
   }
 
   getAllOrders(username: string): Observable<OrderInput2[]>{

@@ -6,8 +6,8 @@ import {AgmMarkerModel} from './models/User';
 @Injectable({providedIn: 'root'})
 export class AgmMarkerService {
 
-  // private agmMarkersUrl = 'https://elctrnx-spring.herokuapp.com/agmMarker/';
-  private agmMarkersUrl = 'http://localhost:8080/agmMarker/';
+  private agmMarkersUrl = 'https://elctrnx-backend.herokuapp.com/agmMarker/';
+  // private agmMarkersUrl = 'http://localhost:8080/agmMarker/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
