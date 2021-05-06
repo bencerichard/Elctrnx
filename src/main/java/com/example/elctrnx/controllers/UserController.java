@@ -13,8 +13,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "*")
-//@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 @RequestMapping(value = "/users")
 public class UserController {
 

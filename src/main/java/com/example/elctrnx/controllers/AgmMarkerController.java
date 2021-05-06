@@ -17,9 +17,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/agmMarker")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 //@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 public class AgmMarkerController {
 
     private final AgmMarkerService agmMarkerService;
