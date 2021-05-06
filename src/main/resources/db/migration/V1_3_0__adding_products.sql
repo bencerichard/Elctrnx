@@ -1,19 +1,19 @@
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (1, 'Iphone 11 Pro 256 Gb', 2,
+values (109, 'Iphone 11 Pro 256 Gb', 2,
         'https://s13emagst.akamaized.net/products/25344/25343964/images/res_078b9a9407015da56782daa40ae21486.jpg?width=450&height=450&hash=93F2D33C5136C49D1E84E029C52A0E9B',
         6800,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
         the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (2, 'Samsung Galaxy S20 64 Gb', 2,
+values (110, 'Samsung Galaxy S20 64 Gb', 2,
         'https://s13emagst.akamaized.net/products/28451/28450677/images/res_ab94b57b0d840ba6cbfc830c9944843c.jpg?width=450&height=450&hash=095604F645976398AC1002044FF5383C',
         4000,
         'Meet Galaxy S20. With revolutionary 8K Video Snap changing how you capture not just video but photography. Add in Samsung Knox security,
          an intelligent battery, powerful processor and massive storage — and the Galaxy S20 unveils a whole new world for mobile.',
         'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (3, 'Asus ZenBook Pro Duo', 1,
+values (111, 'Asus ZenBook Pro Duo', 1,
         'https://s13emagst.akamaized.net/products/34871/34870499/images/res_726ff351c716c3600a3b778f4441ee81.jpg?width=450&height=450&hash=2BC86961E6C2C4733B9EB12F457DCA4C',
         18000,
         'Ultraportable ASUS ZenBook Pro Duo UX581GV with Intel® Core™ i9-9980HK up to 5.00 GHz Coffee Lake, 15.6", 4K, 32GB, 1TB SSD M.2, NVIDIA GeForce RTX 2060 6GB, Windows 10 Pro, Celestial Blue',
@@ -44,7 +44,7 @@ values (12, 'Iphone 11 128 Gb', 2,
         'Meet iPhone 11. All-new dual-camera system with Ultra Wide and Night mode.All-day battery. Six new colors. And the A13 Bionic, our fastest chip ever.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (13, 'Iphone 11 Pro 64 Gb', 2,
+values (10, 'Iphone 11 Pro 64 Gb', 2,
         'https://s13emagst.akamaized.net/products/25344/25343968/images/res_ba5ab105acb7b08cf67af51f5868a942.jpg?width=450&height=450&hash=D6ECA6AE73B1F9C8ED243BA0EFEA11AA',
         5200,
         'A transformative triple‑camera system that adds tons of capability without complexity. An unprecedent­ed leap in battery life. And a mind‑blowing chip that elevates machine learning and pushes
@@ -434,7 +434,7 @@ values (76, 'Samsung Galaxy Watch', 6,
         'Live a stronger, smarter life with Galaxy Watch at your wrist. Rest well, stay active and keep stress at bay with built in health tracking. Go for days without charging your watch. The Bluetooth connection keeps everything at your wrist. Compatible with select Bluetooth capable smartphones.',
         'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (10, 'Samsung Galaxy Watch Active 2', 6,
+values (13, 'Samsung Galaxy Watch Active 2', 6,
         'https://s13emagst.akamaized.net/products/25066/25065644/images/res_cab3edc524b14e525735f1202449e263.jpg?width=450&height=450&hash=693CBFA11B640E16A8E7032278D03B88',
         1550,
         'Live a stronger, smarter life with Galaxy Watch at your wrist. Rest well, stay active and keep stress at bay with built in health tracking. Go for days without charging your watch. The Bluetooth connection keeps everything at your wrist. Compatible with select Bluetooth capable smartphones.',
@@ -548,7 +548,7 @@ values (94, 'Iphone 12 64 Gb', 2,
         'The iPhone 12 features a 6.1-inch (15 cm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 ppi.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (95, 'Iphone 12 128 Gb', 2,
+values (3, 'Iphone 12 128 Gb', 2,
         'https://s13emagst.akamaized.net/products/33382/33381516/images/res_294b830c405c5c956b96885fa0333a32.jpg?width=450&height=450&hash=9C103F22914E08CC6029C62CED904A3C',
         4400,
         'The iPhone 12 features a 6.1-inch (15 cm) display with Super Retina XDR OLED technology at a resolution of 2532×1170 pixels and a pixel density of about 460 ppi.',
@@ -572,7 +572,7 @@ values (98, 'Iphone 12 Pro Max 256 Gb', 2,
         'iPhone 12 Pro Max smartphone comes with a 6.70-inch touchscreen display with a resolution of 1284x2778 pixels at a pixel density of 458 pixels per inch (ppi). The iPhone 12 Pro Max supports wireless charging, as well as proprietary fast charging.',
         'Apple');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (99, 'Iphone 12 Pro Max 512 Gb', 2,
+values (1, 'Iphone 12 Pro Max 512 Gb', 2,
         'https://s13emagst.akamaized.net/products/33600/33599418/images/res_35048c7ee49082e741662d0813577152.jpg?width=450&height=450&hash=61D1AA2483085A3EAB306CF6155691C4',
         7200,
         'iPhone 12 Pro Max smartphone comes with a 6.70-inch touchscreen display with a resolution of 1284x2778 pixels at a pixel density of 458 pixels per inch (ppi). The iPhone 12 Pro Max supports wireless charging, as well as proprietary fast charging.',
@@ -632,7 +632,7 @@ values (108, 'Samsung Galaxy S21 Ultra 256 Gb', 2,
         'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',
         'Samsung');
 insert into product (product_id, name, product_category_product_category_id, image, price, description, producer)
-values (109, 'Samsung Galaxy S21 Ultra 512 Gb', 2,
+values (2, 'Samsung Galaxy S21 Ultra 512 Gb', 2,
         'https://s13emagst.akamaized.net/products/34408/34407359/images/res_3df3d94cf9f07117708b0b885ea9123e.jpg?width=450&height=450&hash=5C9BE2D4C2D5C3D8976D02CE52EE6243',
         6300,
         'The Galaxy S21 Ultra has an even larger screen size than Galaxy S21, battery, and a host of other improvements over the other ... fast performance, long-lasting battery life and the general improvements to the camera system.',

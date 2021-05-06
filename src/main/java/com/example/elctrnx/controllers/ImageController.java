@@ -1,5 +1,6 @@
 package com.example.elctrnx.controllers;
 
+import com.example.elctrnx.data_transfers.agm_markers.mapper.DonationMapper;
 import com.example.elctrnx.entities.Image;
 import com.example.elctrnx.entities.User;
 import com.example.elctrnx.services.ImageService;
@@ -32,26 +33,34 @@ public class ImageController {
     private UserService userService;
 
     @PostMapping("/upload/{username}")
-    public RequestEntity.BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file, @PathVariable String username) throws IOException {
+    public ResponseEntity<Object> uplaodImage(@RequestParam("imageFile") MultipartFile file, @PathVariable String username) throws IOException {
 
         User user = userService.findUserByUsername(username);
-
+        try {
         Image img = Image.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .picByte(compressBytes(file.getBytes()))
                 .build();
 
-        imageService.save(img);
+            imageService.save(img);
 
-        user.setImage(img);
-        userService.setUserImage(username,img);
-
-        return (RequestEntity.BodyBuilder) ResponseEntity.status(HttpStatus.OK);
+            user.setImage(img);
+            userService.setUserImage(username, img);
+            return new ResponseEntity<>(
+                    null,
+                    HttpStatus.CREATED
+            );
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    null,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
-    @GetMapping(path = { "/get/{username}" })
-    public Image getImage(@PathVariable("username")String username) throws IOException {
+    @GetMapping(path = {"/get/{username}"})
+    public Image getImage(@PathVariable("username") String username) throws IOException {
 
         User user = userService.findUserByUsername(username);
 
