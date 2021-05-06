@@ -20,7 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping(path = "/donation")
 @RequiredArgsConstructor
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 public class DonationController {
 
     private final DonationService donationService;

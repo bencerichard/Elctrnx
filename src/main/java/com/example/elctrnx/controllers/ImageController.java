@@ -19,8 +19,9 @@ import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
 @RestController
-@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+//@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
 //@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/image")
 public class ImageController {
 

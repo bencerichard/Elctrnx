@@ -11,7 +11,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+//@CrossOrigin(origins = "https://elctrnx-webapp.web.app")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/stocks")
 public class StockController {
 
