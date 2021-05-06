@@ -205,6 +205,10 @@ body {
   display: block;
 }
 
+.modal-content {
+  min-width: 550px;
+}
+
 .share-button {
   display: inline-block;
 }

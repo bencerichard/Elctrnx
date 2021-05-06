@@ -4,12 +4,12 @@ import {Observable} from "rxjs";
 import {Product} from "./models/Product";
 import {Cart, OrderInput, User} from "./models/User";
 import {Donation} from './models/Donation';
+import {environment} from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
 
-  private productsUrl = 'https://elctrnx-backend.herokuapp.com/products/';
-  // private productsUrl = 'http://localhost:8080/products/';
+  private productsUrl = environment.API_URL + '/products/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -39,8 +39,7 @@ export class ProductService {
     return this.http.delete<Product>(this.productsUrl + id);
   }
 
-  private apiUrl = 'https://elctrnx-backend.herokuapp.com/';
-  // private apiUrl = 'http://localhost:8080/';
+  private apiUrl = environment.API_URL + '/';
 
   postOrder(orderInput: OrderInput) {
     return this.http.post(this.apiUrl + 'orders', orderInput, this.httpOptions);

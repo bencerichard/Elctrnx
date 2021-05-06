@@ -59,7 +59,7 @@
             <button
               (click)="modalFunction(); setLastVisitedAgmNumberOfDonationsAndId(agmInfo.numberOfDonations, agmInfo.agmInfoId, agmInfo.name)"
               style="position: relative; left: 52%; transform: translate(-50%,0%)" type="button"
-              class="btn btn-success btn-sm mt-3" [disabled]="agmInfo.numberOfDonations===12">Doneaza
+              class="btn btn-success btn-sm mt-3" [disabled]="agmInfo.numberOfDonations===12">Donate
             </button>
           </agm-info-window>
         </agm-marker>
@@ -71,45 +71,48 @@
 <!--<h2 style="text-align: center; top: 69vh; position: relative; font-family: 'Montserrat', sans-serif;"> Donația ta poate-->
 <!--  ajuta...</h2>-->
 
+<!--<h2 class="donationText">-->
+<!--  Este regretabil-->
+<!--  ca in prezent, in Romania, exista zeci de mii de oameni care sufera de foame. Intr-o societate responsabila, orice-->
+<!--  persoana, printr-un gest simplu, poate sa acorde un ajutor celor dezavantajati, care nu isi pot procura singuri-->
+<!--  hrana. <a style="color:#28A745; font-weight: bold; cursor: context-menu">Doneaza</a> acum si ajuta una sau mai multe-->
+<!--  familii si vei primi o <a-->
+<!--  style="color: #139CE0; font-weight: bold; cursor: context-menu">reducere</a> direct proportionala cu suma <a-->
+<!--  style="color: #28A745; font-weight: bold; cursor: context-menu">donata</a></h2>-->
+
 <h2 class="donationText">
-  Este regretabil
-  ca in prezent, in Romania, exista zeci de mii de oameni care sufera de foame. Intr-o societate responsabila, orice
-  persoana, printr-un gest simplu, poate sa acorde un ajutor celor dezavantajati, care nu isi pot procura singuri
-  hrana. <a style="color:#28A745; font-weight: bold; cursor: context-menu">Doneaza</a> acum si ajuta una sau mai multe
-  familii si vei primi o <a
-  style="color: #139CE0; font-weight: bold; cursor: context-menu">reducere</a> direct proportionala cu suma <a
-  style="color: #28A745; font-weight: bold; cursor: context-menu">donata</a></h2>
+  It is unfortunate that there are currently tens of thousands of people suffering from hunger in Romania. In a responsible society, any person, with a simple gesture, can
+  help the disadvantaged, who are unable to feed themselves. <a style="color:#28A745; font-weight: bold; cursor: context-menu"> Donate </a>
+  now and help one or more families and you will receive a proportional <a style="color: #139CE0; font-weight: bold; cursor: context-menu"> discount </a> to the
+  <a style="color: #28A745; font-weight: bold; cursor: context-menu"> donated </a> amount.
+</h2>
 
 <div class="container donationBoxes">
 
   <div id="stanga">
     <h3 class="donationBoxesTextAmount">300 Lei</h3>
-    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
-      style="font-weight: bolder; color: #E10006; cursor: context-menu">o luna</a>, iar donatia ta iti aduce o reducere
-      de <a
-        style="color: #E10006; font-weight: bold; cursor: context-menu">3%</a> la toate produsele comandate</p>
+    <p class="donationBoxesText">Help a family to overcome hunger for <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">a month</a>, and your donation will get you a discount of <a
+        style="color: #E10006; font-weight: bold; cursor: context-menu">3%</a> on all ordered products</p>
   </div>
   <div id="mijloc">
     <h3 class="donationBoxesTextAmount">1800 Lei</h3>
     <!--    <p class="donationBoxesText">Fii ingerul pazitor al unei familii timp de sase luni</p>-->
-    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
-      style="font-weight: bolder; color: #E10006; cursor: context-menu">6 luni</a>, iar donatia ta iti aduce o reducere
-      de <a
-        style="color: #E10006; font-weight: bold; cursor: context-menu">10%</a> la toate produsele comandate</p>
+    <p class="donationBoxesText">Help a family to overcome hunger for <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">6 months</a>, and your donation will get you a discount of <a
+      style="color: #E10006; font-weight: bold; cursor: context-menu">10%</a> on all ordered products</p>
   </div>
   <div id="dreapta">
     <h3 class="donationBoxesTextAmount">3600 Lei</h3>
     <!--    <p class="donationBoxesText">Fii ingerul pazitor al unei familii timp de un an</p>-->
-    <p class="donationBoxesText">Ajuta o familie sa invinga foamea timp de <a
-      style="font-weight: bolder; color: #E10006; cursor: context-menu">un an</a>, iar donatia ta iti aduce o reducere
-      de <a
-        style="color: #E10006; font-weight: bold; cursor: context-menu">20%</a> la toate produsele comandate</p>
+    <p class="donationBoxesText">Help a family to overcome hunger for <a
+      style="font-weight: bolder; color: #E10006; cursor: context-menu">one year</a>, and your donation will get you a discount of <a
+      style="color: #E10006; font-weight: bold; cursor: context-menu">20%</a> on all ordered products</p>
   </div>
 
 </div>
 
-<h2 style="text-align: center; top: 82vh; position: relative; font-family: 'Montserrat', sans-serif;"> Donația ta
-  ajută...</h2>
+<h2 style="text-align: center; top: 82vh; position: relative; font-family: 'Montserrat', sans-serif;"> Your donation makes the difference...</h2>
 
 <div class="donationImageDiv container mt-5">
   <!--    <div id="donationImageLeft">-->
@@ -126,25 +129,19 @@
   <!--    </div>-->
 </div>
 
-<div id="footer" class="container">
-  <h2 class="mt-5" style="text-align: center;  font-family: 'Montserrat', sans-serif;">Niciodata nu a fost mai usor sa
-    ajuti</h2>
+<div id="footer" class="container mb-5" >
+  <h2 class="mt-5" style="text-align: center;  font-family: 'Montserrat', sans-serif;">It's never been easier to help</h2>
 
   <h2 class="detailsText mt-5">
-    Fiecare indicator de pe harta reprezinta o familie care are nevoie de ajutorul tau!
-    Prin alegerea unui indicator de pe harta vei putea vizualiza detaliile unei familii nevoiase.
-    <!--    <br /><br />-->
-    Detaliile constau in numele familiei si numarul de luni in care aceasta a fost ajutata sa invinga foamea in decursul
-    anului. </h2>
+    Each checkmark on the map represents a family that needs your help! By choosing a checkmark on the map you will be able to see the details of a family in need.
+    The details consist of the name of the family and the number of months they have been helped to overcome hunger during the year.
+  </h2>
   <br/>
-  <h2 style="color: red; text-align: justify; font-family: 'Montserrat', sans-serif; font-size: 22px; cursor: auto">
-    Obiectivul este ca fiecare familie sa ajunga la 12 luni in
-    care a fost ajutata (12/12 pe indicator). </h2> <br/>
+  <h2 style="color: red; text-align-last: center; text-align: justify; font-family: 'Montserrat', sans-serif; font-size: 22px; cursor: auto">
+    The objective is for each family to reach 12 months in which they have been helped (12/12 per checkmark). </h2> <br/>
   <h2 class="detailsText mb-5">
-    Poti alege sa ajuti o familie timp de o luna, 6 luni sau chiar un an intreg.
-    <!--    <br /><br />-->
-    Poti dona pentru o familie specifica accesand indicatorul de pe harta sau poti opta pentru donatia la o familie
-    aleasa aleator din cele care au nevoie de ajutor
+    You can choose to help a family for one month, 6 months or even a whole year. You can donate to a specific family by clicking on the indicator on the map
+    or you can choose to donate to a randomly selected family from those who need help.
   </h2>
 </div>
 
@@ -159,23 +156,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 style="position: absolute; color: black; left: 50%; transform: translate(-50%)" class="modal-title"
-            id="exampleModalLongTitle">Alege optiunea dorita</h4>
+            id="exampleModalLongTitle">Choose your option</h4>
         <button class="close" (click)="modalFunction();"><i class="far fa fa-times pt-1"></i></button>
       </div>
       <div class="modal-body" id="outer">
         <div class="inner">
           <button (click)="modalFunction(); openDialogSubmitDonation(300)"
-                  [disabled]="isDonationPossible(1)" type="button" class="btn btn-success btn mt-3">300Lei (1 luna)
+                  [disabled]="isDonationPossible(1)" type="button" class="btn btn-success btn mt-3">300Lei (1 month)
           </button>
         </div>
         <div class="inner">
           <button (click)="modalFunction(); openDialogSubmitDonation(1800)"
-                  [disabled]="isDonationPossible(6)" type="button" class="btn btn-success btn mt-3">1800Lei (6 luni)
+                  [disabled]="isDonationPossible(6)" type="button" class="btn btn-success btn mt-3">1800Lei (6 months)
           </button>
         </div>
         <div class="inner">
           <button (click)="modalFunction(); openDialogSubmitDonation(3600)"
-                  [disabled]="isDonationPossible(12)" type="button" class="btn btn-success btn mt-3">3600Lei (1 an)
+                  [disabled]="isDonationPossible(12)" type="button" class="btn btn-success btn mt-3">3600Lei (1 year)
           </button>
         </div>
       </div>
@@ -190,10 +187,10 @@
       <div class="modal-body" id="infoOuter" style="position: relative">
 <!--        <h4 style="position: absolute; color: black; left: 50%; transform: translate(-50%); font-size: large; min-width: 80%" class="modal-title"-->
         <h4 style="font-size: large; min-width: 80%; text-align: center" class="modal-title"
-            id="exampleInfoModalLongTitle">O noua donatie va fi posibila doar dupa ce veti plasa o noua comanda</h4>
+            id="exampleInfoModalLongTitle">A new donation will be possible only after you place a new order</h4>
         <div class="innerInfo">
           <button (click)="modalInfoFunction();"
-                  type="button" class="btn iUnderstandButton btn mt-3">Am luat la cunostinta
+                  type="button" class="btn iUnderstandButton btn mt-3">I understand
           </button>
         </div>
       </div>

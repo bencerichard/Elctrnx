@@ -12,12 +12,6 @@ export class DialogComponent implements OnInit {
 
   addressForm: FormGroup;
 
-  // countries: any[] = [
-  //   {value: 'Romania', viewValue: 'Romania'},
-  //   {value: 'Anglia', viewValue: 'Anglia'},
-  //   {value: 'Germania', viewValue: 'Germania'},
-  // ];
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { Address, surname: string },
     private dialogRef: MatDialogRef<DialogComponent>,
@@ -58,5 +52,15 @@ export class DialogComponent implements OnInit {
   confirm() {
     let data = this.mapInputToAddress();
     this.dialogRef.close({data: data});
+  }
+
+  findInvalidControls(name: string) {
+    if (this.addressForm.get(name).invalid) {
+      return true;
+    }
+  }
+
+  getErrorMessage() {
+    return 'This field is required';
   }
 }

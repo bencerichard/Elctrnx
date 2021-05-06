@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './models/Product';
 import {Stock} from './models/Stock';
+import {environment} from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class StockService {
@@ -10,10 +11,8 @@ export class StockService {
   constructor(private http: HttpClient) {
   }
 
-  private apiUrl = 'https://elctrnx-backend.herokuapp.com/stocks';
-  // private apiUrl = 'http://localhost:8080/stocks';
-  private emailUrl = 'https://elctrnx-backend.herokuapp.com/email';
-  // private emailUrl = 'http://localhost:8080/email';
+  private apiUrl = environment.API_URL + '/stocks';
+  private emailUrl = environment.API_URL + '/email';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

@@ -5,14 +5,14 @@ import {map} from "rxjs/operators";
 
 import {User} from "./models/User";
 import {Router} from "@angular/router";
+import {environment} from '../environments/environment';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
   public currentUser: Observable<User>;
   private currentUserSubject: BehaviorSubject<User>;
-  private loginUrl = 'https://elctrnx-backend.herokuapp.com/login';
-  // private loginUrl = 'http://localhost:8080/login';
+  private loginUrl = environment.API_URL + '/login';
   isLoggedIn = false;
 
   constructor(private http: HttpClient, private router: Router) {

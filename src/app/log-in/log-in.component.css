@@ -109,4 +109,21 @@ body {
   margin-left: 57%;
 }
 
+.example-full-width {
+  width: 100%;
+  margin-bottom: 15px;
+  position: relative;
+  left: 60%;
+  transform: translate(-50%);
+}
+
+.loginButton{
+  background-color: black;
+  color: white;
+  position: absolute;
+}
+
+.loginButton:hover{
+  background-color: #0d8aee;
+}
 

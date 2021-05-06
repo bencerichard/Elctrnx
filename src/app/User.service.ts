@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {OrderInput2, User} from "./models/User";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {OrderInput2, User} from './models/User';
+import {environment} from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  private userUrl = 'https://elctrnx-backend.herokuapp.com/users/';
-  // private userUrl = 'http://localhost:8080/users/';
+  private userUrl = environment.API_URL + '/users/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -28,8 +28,8 @@ export class UserService {
     return this.http.get<User>(this.userUrl + username);
   }
 
-  getAllUsernames(username: string):Observable<string[]>{
-    return this.http.get<string[]>(this.userUrl+'/getUsernames/'+username);
+  getAllUsernames(username: string): Observable<string[]> {
+    return this.http.get<string[]>(this.userUrl + '/getUsernames/' + username);
   }
 
   newUser(user: User): Observable<User> {
@@ -49,23 +49,23 @@ export class UserService {
   }
 
   deleteFromFavorites(id: number, username: string) {
-    return this.http.delete("https://elctrnx-backend.herokuapp.com/favorites/" + id + "/" + username);
+    return this.http.delete(environment.API_URL + '/favorites/' + id + '/' + username);
   }
 
-  getCustomerHoar(username: string):Observable<number> {
-    return this.http.get<number>(this.userUrl + username + "/hoar");
+  getCustomerHoar(username: string): Observable<number> {
+    return this.http.get<number>(this.userUrl + username + '/hoar');
   }
 
 
-  postImage(uploadImageData :FormData, username: string): Observable<any> {
-    return this.http.post<any>('https://elctrnx-backend.herokuapp.com/image/upload/' +username, uploadImageData)
+  postImage(uploadImageData: FormData, username: string): Observable<any> {
+    return this.http.post<any>(environment.API_URL + '/image/upload/' + username, uploadImageData);
   }
 
-  getImage(username: string): Observable<any>{
-    return this.http.get<any>( 'https://elctrnx-backend.herokuapp.com/image/get/' + username);
+  getImage(username: string): Observable<any> {
+    return this.http.get<any>(environment.API_URL + '/image/get/' + username);
   }
 
-  getAllOrders(username: string): Observable<OrderInput2[]>{
-    return this.http.get<OrderInput2[]>(this.userUrl + username+ '/allOrders');
+  getAllOrders(username: string): Observable<OrderInput2[]> {
+    return this.http.get<OrderInput2[]>(this.userUrl + username + '/allOrders');
   }
 }

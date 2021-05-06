@@ -40,7 +40,7 @@ export class MyAccountComponent implements OnInit {
   userPass: string;
   product: Product;
   cart: Cart[];
-
+  showErrorLabel= false;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -332,8 +332,9 @@ export class MyAccountComponent implements OnInit {
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     this.userService.postImage(uploadImageData, localStorage.getItem('username')).subscribe(() => {
-    });
-    location.reload();
+      this.showErrorLabel = false;
+      location.reload();
+      }, error => { debugger; this.showErrorLabel = false; setTimeout( () => {this.showErrorLabel = true}, 500 ); });
   }
 
   getImage(): void {
@@ -344,7 +345,7 @@ export class MyAccountComponent implements OnInit {
           this.retrieveResonse = res;
           this.base64Data = this.retrieveResonse.picByte;
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
+        },
       );
 
   }

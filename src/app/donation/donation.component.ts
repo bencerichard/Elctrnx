@@ -206,7 +206,7 @@ export class DonationComponent implements OnInit {
           userDTO: {username: localStorage.getItem('username')},
           wasRedeemed: false
         } as Donation).subscribe(() => {
-          this.openSnackBar('Multumim pentru donatia efectuata!');
+          this.openSnackBar('Thank you for your donation!');
           this.agmMarkerService.updateAgmMarker(this.lastVisitedAgmId, amount / 300).subscribe(() => {
             setTimeout(() => {
               location.reload();

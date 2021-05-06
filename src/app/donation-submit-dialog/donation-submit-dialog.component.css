@@ -12,25 +12,25 @@
   outline: none;
 }
 
-.approveButton {
-  background-color: #139CE0;
-  color: white;
+.approveButton{
+  background-color:  #139CE0;
+  color: white
 }
 
-.approveButton:focus {
+.approveButton:hover{
+  background-color:  #28A745;
+}
+
+.approveButton:focus{
   outline: none;
 }
 
-.approveButton:hover {
-  background-color: #28A745;
-}
-
-.approveButton:disabled {
+.approveButton:disabled{
   color: grey;
 }
 
-.approveButton:disabled:hover {
-  background-color: #E5E3DF !important;
+.approveButton:disabled:hover{
+  background-color: #E5E3DF!important;
 }
 
 .example-button-row {

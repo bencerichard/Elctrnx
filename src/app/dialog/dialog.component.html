@@ -1,30 +1,35 @@
 <form [formGroup]="addressForm" id="addressForm" class="example-form mt-3">
-  <h1 mat-dialog-title style="text-align: center; margin-top: 80px">Introduceti adresa familiei</h1>
+  <h1 mat-dialog-title style="text-align: center; margin-top: 80px">Fill in the family address</h1>
   <mat-form-field class="example-full-width" appearance="standard">
-    <mat-label>Numele de familie</mat-label>
+    <mat-label>Last name</mat-label>
     <input formControlName="surname" matInput placeholder="Ex. Popescu" value="" autocomplete="off" required>
+    <mat-error style="font-size: 13px" *ngIf="findInvalidControls('surname')">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="standard">
-    <mat-label>Tara</mat-label>
+    <mat-label>Country</mat-label>
     <input formControlName="country" matInput placeholder="Ex. Romania" value="" autocomplete="off" required>
+    <mat-error style="font-size: 13px" *ngIf="findInvalidControls('country')">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="standard">
-    <mat-label>Orasul</mat-label>
+    <mat-label>City</mat-label>
     <input formControlName="city" matInput placeholder="Ex. Sibiu" value="" autocomplete="off" required>
+    <mat-error style="font-size: 13px" *ngIf="findInvalidControls('city')">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="standard">
-    <mat-label>Strada</mat-label>
+    <mat-label>Street</mat-label>
     <input formControlName="street" matInput placeholder="Ex. Cerbului" value="" autocomplete="off" required>
+    <mat-error style="font-size: 13px" *ngIf="findInvalidControls('street')">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field class="example-full-width" appearance="standard">
-    <mat-label>Numarul</mat-label>
+    <mat-label>Number</mat-label>
     <input formControlName="number" matInput placeholder="Ex. 45" value="" autocomplete="off" required>
+    <mat-error style="font-size: 13px" *ngIf="findInvalidControls('number')">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
 
   <section>
     <div class="example-button-row">
-      <button mat-raised-button class="cancelButton" (click)="cancel()">Renunta</button>
-      <button [disabled]="addressForm.invalid" mat-raised-button class="approveButton" (click)="confirm()">Adauga
+      <button mat-raised-button class="cancelButton" (click)="cancel()">Cancel</button>
+      <button [disabled]="addressForm.invalid" mat-raised-button class="approveButton" (click)="confirm()">Add
       </button>
     </div>
   </section>

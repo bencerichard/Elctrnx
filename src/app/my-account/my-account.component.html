@@ -28,6 +28,7 @@
             <span id="photoName"> <p> {{this.selectedFile.name}} </p> </span>
             <button  *ngIf="this.selectedFile !=null" (click)="uploadImage()" id="checkPhoto" class="fas fa-check fa-sm" data-toggle="tooltip" data-placement="top" title="Upload image" ></button>
           </div>
+          <p style="color: red; max-width: 230px; position: relative; transform: translate(-50%); left: 50%" *ngIf="showErrorLabel"> Please select an image with a smaller size  (max: 45Kb) </p>
         </div>
       </div>
 

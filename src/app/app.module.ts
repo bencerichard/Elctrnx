@@ -35,6 +35,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatButtonModule} from '@angular/material/button';
 import {AgmCoreModule} from '@agm/core';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {environment} from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatGridListModule,
     MatSnackBarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'a'
+      apiKey: environment.GCP_KEY
     }),
   ],
   providers: [],

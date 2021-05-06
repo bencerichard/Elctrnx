@@ -94,8 +94,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.productService.postCart(localStorage.getItem('username'), this.cart).subscribe();
       this.productService.deleteCartAfterCheckout(localStorage.getItem('username')).subscribe();
       this.modalFunction();
-      this.productService.setRedeemedToTrue(this.donationId).subscribe(() => {});
-      setTimeout(() => this.location.back(), 3000);
+      if(!this.hideSale){
+        this.productService.setRedeemedToTrue(this.donationId).subscribe(() => {});
+      }
+      setTimeout(() => this.backToProductsList(), 3000);
     });
   }
 

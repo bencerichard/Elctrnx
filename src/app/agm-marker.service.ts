@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AgmMarkerModel} from './models/User';
+import {environment} from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class AgmMarkerService {
 
-  private agmMarkersUrl = 'https://elctrnx-backend.herokuapp.com/agmMarker/';
-  // private agmMarkersUrl = 'http://localhost:8080/agmMarker/';
+  private agmMarkersUrl = environment.API_URL + '/agmMarker/';
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

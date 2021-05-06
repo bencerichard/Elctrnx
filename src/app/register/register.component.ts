@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../User.service";
-import {first} from "rxjs/operators";
-import {Cart, DeliveryLocations, User} from "../models/User";
-import {NotifierService} from "angular-notifier";
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../User.service';
+import {first} from 'rxjs/operators';
+import {Cart, DeliveryLocations, User} from '../models/User';
+import {NotifierService} from 'angular-notifier';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,14 +30,13 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['/log-in'])
+    this.router.navigate(['/log-in']);
   }
 
   createAccount(): void {
     if (this.registrationData.password.value === this.registrationData.confirmPassword.value
       && this.registrationData.username.value != '' && this.registrationData.password.value != '') {
 
-      debugger;
       this.userService.newUser({
         username: this.registrationData.username.value,
         password: this.registrationData.password.value,
@@ -48,31 +48,31 @@ export class RegisterComponent implements OnInit {
         cart: this.cart,
         addressDTO: {
           addressCountry: this.registrationData.country.value,
-          addressCity:this.registrationData.city.value,
-          addressStreet:this.registrationData.street.value
-          },
+          addressCity: this.registrationData.city.value,
+          addressStreet: this.registrationData.street.value
+        },
         favorites: []
       } as User).pipe(first()).subscribe(
         data => {
           this.router.navigate(['/log-in']);
-          this.notifier.notify("info", "Account created with success");
+          this.notifier.notify('info', 'Account created with success');
         },
         error => {
           if (error.error.message === '1') {
-            this.notifier.notify("warning", "Please enter your Full name");
+            this.notifier.notify('warning', 'Please enter your Full name');
           } else {
-            this.notifier.notify("error", "This username is taken");
+            this.notifier.notify('error', 'This username is taken');
           }
         }
       );
     } else {
       if (this.registrationData.username.value === '') {
-        this.notifier.notify("error", "Enter an username");
+        this.notifier.notify('error', 'Enter an username');
       } else {
         if (this.registrationData.password.value === '' || this.registrationData.confirmPassword.value === '') {
-          this.notifier.notify("error", "Enter password");
+          this.notifier.notify('error', 'Enter password');
         } else {
-          this.notifier.notify("error", "Password doesn't match confirm Password");
+          this.notifier.notify('error', 'Password doesn\'t match confirm Password');
         }
       }
     }
@@ -99,4 +99,13 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
+  findInvalidControls(name: string) {
+    if (this.registerForm.get(name).invalid) {
+      return true;
+    }
+  }
+
+  getErrorMessage() {
+    return 'This field is required';
+  }
 }
